@@ -16,7 +16,9 @@ if (environment.production) {
   enableProdMode();
 }
 
-platformBrowserDynamic(providers).bootstrapModule(AppModule)
+platformBrowserDynamic(providers)
+  .bootstrapModule(AppModule)
   .catch(err => console.log(err));
 
-export { renderModule, renderModuleFactory } from '@angular/platform-server';
+// Removed so this will work with angular 9
+// export { renderModule, renderModuleFactory } from '@angular/platform-server';

@@ -39,6 +39,18 @@
             "port": 9222,
             "webRoot": "${workspaceFolder}/ClientApp",
             "urlFilter": "http://localhost:5002*"
-        }
+        },
+        {
+            "type": "chrome",
+            "request": "attach",
+            "name": "Unit tests",
+            "address": "localhost",
+            "port": 9333,
+            "sourceMaps": true,
+            "webRoot": "${workspaceFolder}/ClientApp",
+            "pathMapping": {
+                "/_karma_webpack_": "${workspaceFolder}/ClientApp"
+            }
+        },
     ]
 }

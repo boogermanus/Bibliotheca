@@ -9,7 +9,7 @@ using Bibliotheca.Models;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-
+using Bibliotheca.Data.Repositories;
 
 namespace Bibliotheca
 {
@@ -44,6 +44,9 @@ namespace Bibliotheca
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+
+            // custom services
+            services.AddScoped<LibraryRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

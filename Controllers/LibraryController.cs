@@ -1,18 +1,15 @@
-using Bibliotheca.Data;
+using Bibliotheca.Data.Repositories;
+using Bibliotheca.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
+// learn to use this logging stuff
+// using Microsoft.Extensions.Logging;
 
 namespace Bibliotheca.Controllers
 {
-    [Route("[controller]")]
-    public class LibraryController : Controller
+    [Route("api/[controller]")]
+    public class LibraryController : BaseController<Library, LibraryRepository>
     {
-        private ApplicationDbContext _context;
-
-        public LibraryController(ApplicationDbContext context)
-        {
-            _context = context;
-        }
+        public LibraryController(LibraryRepository repository) : base(repository) {}
     }
 
 }

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Bibliotheca.Data.Repositories;
 using Bibliotheca.Models;
+using System;
+using Microsoft.Extensions.Logging;
 
 namespace Bibliotheca.Controllers
 {
@@ -12,10 +14,12 @@ namespace Bibliotheca.Controllers
         where TRepository: IRepository<TEntity>
     {
         private readonly IRepository<TEntity> _repository;
+        private ILogger _logger;
 
-        public BaseController(TRepository repository)
+        public BaseController(TRepository repository, ILogger logger)
         {
             _repository = repository;
+            _logger = logger;
         }
 
         [HttpGet]
@@ -36,18 +40,25 @@ namespace Bibliotheca.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, TEntity entity)
-        {
-            if(id != entity.Id)
+        public async Task<IActionResult> Put([FromRoute]int id, [FromBody]TEntity entity)
+        { 
+            try 
+            {
+                entity.Id = id;
+                await _repository.Update(entity);
+            }
+            catch(Exception e)
+            {
+                _logger.LogInformation("Bad Update Request: {Message}", e.Message);
                 return BadRequest();
+            }           
             
-            await _repository.Update(entity);
 
             return NoContent();
         }
 
         [HttpPost]
-        public async Task<TEntity> Post(TEntity entity)
+        public async Task<TEntity> Post([FromBody]TEntity entity)
         {
             var newEntity = await _repository.Add(entity);
 

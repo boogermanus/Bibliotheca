@@ -29,7 +29,7 @@ namespace Bibliotheca
                 options.UseSqlite(
                     Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddIdentityServer()
@@ -53,6 +53,7 @@ namespace Bibliotheca
             {
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
+                app.UseCookiePolicy(new CookiePolicyOptions{MinimumSameSitePolicy = Microsoft.AspNetCore.Http.SameSiteMode.Lax});
             }
             else
             {
@@ -62,7 +63,6 @@ namespace Bibliotheca
             }
 
             // app.UseHttpsRedirection();
-            app.UseCookiePolicy(new CookiePolicyOptions{MinimumSameSitePolicy = Microsoft.AspNetCore.Http.SameSiteMode.Lax});
             app.UseStaticFiles();
             if (!env.IsDevelopment())
             {

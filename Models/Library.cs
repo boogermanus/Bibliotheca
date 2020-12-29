@@ -10,6 +10,6 @@ namespace Bibliotheca.Models
         [Key]
         public int Id { get; set; }
         public string Name { get; set; }
-        public DateTimeOffset CreatedOn { get; set }
+        public DateTimeOffset CreatedOn { get; set };
     }
 }

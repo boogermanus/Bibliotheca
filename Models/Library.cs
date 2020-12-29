@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -9,8 +10,6 @@ namespace Bibliotheca.Models
         [Key]
         public int Id { get; set; }
         public string Name { get; set; }
-        public string UserId { get; set; }
-        public ApplicationUser User { get; set; }
-
+        public DateTimeOffset CreatedOn { get; set }
     }
 }

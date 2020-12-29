@@ -12,6 +12,7 @@ import { AuthorizeGuard } from 'src/api-authorization/authorize.guard';
 import { AuthorizeInterceptor } from 'src/api-authorization/authorize.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
+import { LibraryModule } from './library/library.module';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { AppRoutingModule } from './app-routing.module';
     FormsModule,
     ApiAuthorizationModule,
     AppRoutingModule,
+    LibraryModule,
     BrowserAnimationsModule
   ],
   providers: [

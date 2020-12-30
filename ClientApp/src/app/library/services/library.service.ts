@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiService } from 'src/app/services/api-service';
-import { LibraryModule } from '../library.module';
 import { ILibrary } from '../models/ilibrary';
 
 @Injectable()

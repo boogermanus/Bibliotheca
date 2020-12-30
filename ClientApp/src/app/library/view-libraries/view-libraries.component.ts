@@ -13,7 +13,6 @@ import { LibraryService } from '../services/library.service';
 export class ViewLibrariesComponent implements OnInit {
 
   libraries: ILibrary[] = [];
-  // subscriptions: Subscription;
   constructor(private libraryService: LibraryService,
               public dialog: MatDialog) { }
 

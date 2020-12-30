@@ -24,7 +24,9 @@ export class ViewLibrariesComponent implements OnInit {
     const dialogRef = this.dialog.open(AddLibraryModalComponent, {data: {name: ''}});
 
     dialogRef.afterClosed().subscribe(name => {
-      this.libraryService.add(name).subscribe(newLibrary => this.libraries.push(newLibrary));
+      this.libraryService
+        .add(name)
+        .subscribe(newLibrary => this.libraries.push(newLibrary));
     });
   }
 

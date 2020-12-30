@@ -16,7 +16,7 @@ namespace Bibliotheca.Data.Repositories
         }
         public async Task<TEntity> Add(TEntity entity)
         {
-            _context.Set<TEntity>().Add(entity);
+            _context.Add<TEntity>(entity);
             await _context.SaveChangesAsync();
             return entity;
         }

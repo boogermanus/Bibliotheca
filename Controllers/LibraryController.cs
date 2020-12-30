@@ -10,7 +10,8 @@ namespace Bibliotheca.Controllers
     [Route("api/[controller]")]
     public class LibraryController : BaseController<Library, LibraryRepository>
     {
-        public LibraryController(LibraryRepository repository, ILogger<LibraryController> logger) : base(repository, logger) {}
+        public LibraryController(LibraryRepository repository, ILogger<LibraryController> logger) 
+            : base(repository, logger) {}
     }
 
 }

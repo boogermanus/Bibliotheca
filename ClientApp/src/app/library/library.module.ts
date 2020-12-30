@@ -5,6 +5,7 @@ import { ViewLibrariesComponent } from './view-libraries/view-libraries.componen
 import { LibraryService } from './services/library.service';
 import { MaterialModule } from '../material.module';
 import { AddLibraryModalComponent } from '../library/add-library-modal/add-library-modal.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -12,7 +13,8 @@ import { AddLibraryModalComponent } from '../library/add-library-modal/add-libra
   imports: [
     CommonModule,
     LibraryRoutingModule,
-    MaterialModule
+    MaterialModule,
+    FormsModule,
   ],
   providers: [LibraryService],
   entryComponents: [AddLibraryModalComponent]

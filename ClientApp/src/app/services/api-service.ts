@@ -1,7 +1,6 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { pathToFileURL } from 'url';
 
 @Injectable({
   providedIn: 'root'
@@ -18,8 +17,9 @@ export class ApiService {
     return `${this.baseUrl}${path}`;
   }
 
-  public post<T>(path: string, body: any, params?: HttpParams): Observable<T> {
-    return this.httpClient.post<T>(this.getUrl(path), body, {params});
+  public post<T>(path: string, body: T, params?: HttpParams): Observable<T> {
+    const headers: HttpHeaders = new HttpHeaders().append('Content-Type', 'application/json');
+    return this.httpClient.post<T>(this.getUrl(path), body, {params, headers});
   }
 
   public put<T>(path: string, body: any, params?: HttpParams): Observable<T> {

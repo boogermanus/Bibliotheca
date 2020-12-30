@@ -12,4 +12,14 @@ export class LibraryService {
   public getAll(): Observable<ILibrary[]> {
     return this.apiService.get<ILibrary[]>(this.libraryUrl);
   }
+
+  public add(name: string): Observable<ILibrary> {
+
+    const data: ILibrary = {
+      name,
+      createdOn: new Date()
+    };
+
+    return this.apiService.post<ILibrary>(this.libraryUrl, data);
+  }
 }

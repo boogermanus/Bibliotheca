@@ -1,10 +1,10 @@
 <div mat-dialog-title>Add new library</div>
 <div mat-dialog-content>
     <mat-form-field>
-        <input matInput type="text" placeholder="name">
+        <input matInput type="text" [(ngModel)]="data.name" placeholder="name">
     </mat-form-field>
 </div>
 <div mat-dialog-actions>
     <button mat-raised-button (click)="close()" color="secondary">Cancel</button>
-    <button mat-raised-button color="primary">Save</button>
+    <button mat-raised-button color="primary" [mat-dialog-close]="data.name">Save</button>
 </div>

@@ -1,5 +1,5 @@
 export interface ILibrary {
-    id: number;
+    id?: number;
     name: string;
     createdOn: Date;
 }

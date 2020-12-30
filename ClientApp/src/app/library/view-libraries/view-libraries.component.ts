@@ -10,28 +10,23 @@ import { LibraryService } from '../services/library.service';
   templateUrl: './view-libraries.component.html',
   styleUrls: ['./view-libraries.component.css']
 })
-export class ViewLibrariesComponent implements OnInit, OnDestroy {
+export class ViewLibrariesComponent implements OnInit {
 
-  libraries: Observable<ILibrary[]>;
-  subscriptions: Subscription = new Subscription();
+  libraries: ILibrary[] = [];
+  // subscriptions: Subscription;
   constructor(private libraryService: LibraryService,
               public dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.libraries = this.libraryService.getAll();
-  }
-
-  ngOnDestroy(): void {
-    this.subscriptions.unsubscribe();
+      this.libraryService.getAll().subscribe(libraries => this.libraries = libraries);
   }
 
   public openAddDialog(): void {
     const dialogRef = this.dialog.open(AddLibraryModalComponent, {data: {name: ''}});
 
-    this.subscriptions.add(dialogRef.afterClosed().subscribe(data => {
-      this.libraryService.add(data);
-      this.libraries = this.libraryService.getAll();
-    }));
+    dialogRef.afterClosed().subscribe(name => {
+      this.libraryService.add(name).subscribe(newLibrary => this.libraries.push(newLibrary));
+    });
   }
 
 }

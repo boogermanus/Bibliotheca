@@ -12,7 +12,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let library of libraries | async">
+            <tr *ngFor="let library of libraries">
                 <td>{{library.id}}</td>
                 <td>{{library.name}}</td>
                 <td>{{library.createdOn | date: 'shortDate'}}</td>

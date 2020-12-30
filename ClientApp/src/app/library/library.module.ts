@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LibraryRoutingModule } from './library-routing.module';
 import { ViewLibrariesComponent } from './view-libraries/view-libraries.component';
+import { LibraryService } from './services/library.service';
 
 
 @NgModule({
@@ -9,6 +10,7 @@ import { ViewLibrariesComponent } from './view-libraries/view-libraries.componen
   imports: [
     CommonModule,
     LibraryRoutingModule
-  ]
+  ],
+  providers: [LibraryService]
 })
 export class LibraryModule { }

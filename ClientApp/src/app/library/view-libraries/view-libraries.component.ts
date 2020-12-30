@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { ILibrary } from '../models/ilibrary';
+import { LibraryService } from '../services/library.service';
 
 @Component({
   selector: 'app-view-libraries',
@@ -7,9 +10,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ViewLibrariesComponent implements OnInit {
 
-  constructor() { }
+  libraries: Observable<ILibrary[]>;
+  constructor(private libraryService: LibraryService) { }
 
   ngOnInit(): void {
+    this.libraries = this.libraryService.getAll();
   }
 
 }

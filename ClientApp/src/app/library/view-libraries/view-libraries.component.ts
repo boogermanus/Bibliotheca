@@ -30,16 +30,19 @@ export class ViewLibrariesComponent implements OnInit, OnDestroy {
   public openAddDialog(): void {
     const dialogRef = this.dialog.open(AddLibraryModalComponent, {data: {name: ''}});
 
-    const sub = dialogRef.afterClosed().subscribe(name => {
-      const innerSub = this.libraryService
-        .add(name)
-        .subscribe(() => {
-          this.libraries = this.libraryService.getAll();
-        });
-      this.subscriptions.add(innerSub);
-    });
+    const sub = dialogRef
+      .afterClosed()
+      .subscribe(name => this.subscriptions.add(this.handleAfterClosed(name)));
 
     this.subscriptions.add(sub);
+  }
+
+  private handleAfterClosed(name: string): Subscription {
+    return this.libraryService
+      .add(name)
+      .subscribe(() => {
+        this.libraries = this.libraryService.getAll();
+      });
   }
 
 }

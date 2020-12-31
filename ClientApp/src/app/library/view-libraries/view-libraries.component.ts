@@ -45,4 +45,11 @@ export class ViewLibrariesComponent implements OnInit, OnDestroy {
       });
   }
 
+  public deleteLibrary(id: number): void {
+    this.subscriptions
+      .add(this.libraryService
+          .delete(id)
+          .subscribe(() => this.libraries = this.libraryService.getAll()));
+  }
+
 }

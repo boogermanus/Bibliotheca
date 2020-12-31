@@ -16,7 +16,7 @@
                 <td>{{library.id}}</td>
                 <td>{{library.name}}</td>
                 <td>{{library.createdOn | date: 'shortDate'}}</td>
-                <td><button mat-mini-fab color="primary" disabled><mat-icon>delete</mat-icon></button></td>
+                <td><button mat-mini-fab color="primary" (click)="deleteLibrary(library.id)"><mat-icon>delete</mat-icon></button></td>
             </tr>
         </tbody>
     </table>

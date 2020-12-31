@@ -23,13 +23,13 @@ namespace Bibliotheca.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<TEntity>> Get()
+        public virtual async Task<IEnumerable<TEntity>> Get()
         {
             return await _repository.GetAll();
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<TEntity>> Get(int id)
+        public virtual async Task<ActionResult<TEntity>> Get(int id)
         {
             var entity = await _repository.Get(id);
 
@@ -40,7 +40,7 @@ namespace Bibliotheca.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put([FromRoute]int id, [FromBody]TEntity entity)
+        public virtual async Task<IActionResult> Put([FromRoute]int id, [FromBody]TEntity entity)
         { 
             try 
             {
@@ -58,7 +58,7 @@ namespace Bibliotheca.Controllers
         }
 
         [HttpPost]
-        public async Task<TEntity> Post([FromBody]TEntity entity)
+        public virtual async Task<TEntity> Post([FromBody]TEntity entity)
         {
             var newEntity = await _repository.Add(entity);
 
@@ -66,7 +66,7 @@ namespace Bibliotheca.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult<TEntity>> Delete(int id)
+        public virtual async Task<ActionResult<TEntity>> Delete(int id)
         {
             var entity = await _repository.Delete(id);
 

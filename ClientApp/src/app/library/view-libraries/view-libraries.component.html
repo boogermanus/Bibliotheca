@@ -1,5 +1,7 @@
 <div class="d-flex justify-content-end mb-2">
-    <button mat-mini-fab color="primary" (click)="openAddDialog()"><mat-icon>library_add</mat-icon></button>
+    <button mat-mini-fab color="primary" matTooltip="Add library" matTooltipPosition="left" (click)="openAddDialog()">
+        <mat-icon>library_add</mat-icon>
+    </button>
 </div>
 <div class="d-flex justify-content-center">
     <table class="table">
@@ -16,7 +18,11 @@
                 <td>{{library.id}}</td>
                 <td>{{library.name}}</td>
                 <td>{{library.createdOn | date: 'shortDate'}}</td>
-                <td><button mat-mini-fab color="primary" (click)="deleteLibrary(library.id)"><mat-icon>delete</mat-icon></button></td>
+                <td>
+                    <button mat-mini-fab color="primary" matTooltip="Delete" matTooltipPosition="right" (click)="deleteLibrary(library.id)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </td>
             </tr>
         </tbody>
     </table>

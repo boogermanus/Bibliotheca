@@ -9,7 +9,7 @@ namespace Bibliotheca.Data.Repositories
         where TEntity : class, IEntity
         where TContext : DbContext
     {
-        private readonly TContext _context;
+        protected readonly TContext _context;
         public BaseRepository(TContext context)
         {
             _context = context;

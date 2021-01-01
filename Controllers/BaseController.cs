@@ -13,8 +13,9 @@ namespace Bibliotheca.Controllers
         where TEntity : class, IEntity
         where TRepository: IRepository<TEntity>
     {
-        private readonly IRepository<TEntity> _repository;
-        private ILogger _logger;
+        protected readonly IRepository<TEntity> _repository;
+        protected TRepository Repository => (TRepository)_repository;
+        protected ILogger _logger;
 
         public BaseController(TRepository repository, ILogger logger)
         {

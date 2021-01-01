@@ -11,6 +11,7 @@ namespace Bibliotheca.Data.Repositories
 
         public async Task<List<Library>> GetLibrariesForUser(string userId)
         {
+            // need to replace with actual query
             return await GetAll();
         }
     }

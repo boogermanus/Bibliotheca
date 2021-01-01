@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace Bibliotheca.Models
 {
@@ -11,5 +12,7 @@ namespace Bibliotheca.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public DateTimeOffset CreatedOn { get; set; }
+        [NotMapped]
+        public string userId { get; set; }
     }
 }

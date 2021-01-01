@@ -15,8 +15,7 @@ namespace Bibliotheca.Controllers
         public LibraryController(LibraryRepository repository, ILogger<LibraryController> logger) 
             : base(repository, logger) {}
 
-        [Route("getlibrariesforuser")]
-        [HttpPost]
+        [HttpPost("getlibrariesforuser")]
         public async Task<List<Library>> GetLibrariesForUser([FromBody]string userId)
         {
             return await Repository.GetLibrariesForUser(userId);   

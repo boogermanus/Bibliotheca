@@ -2,8 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text.Json.Serialization;
-
 namespace Bibliotheca.Models
 {
     public class Library : IEntity
@@ -14,7 +12,7 @@ namespace Bibliotheca.Models
         public string Name { get; set; }
         public DateTimeOffset CreatedOn { get; set; }
         [NotMapped]
-        public string userId { get; set; }
+        public string UserId { get; set; }
         public List<UserLibrary> UserLibraries { get; set; }
     }
 }

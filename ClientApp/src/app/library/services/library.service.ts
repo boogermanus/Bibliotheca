@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { AuthorizeService } from 'src/api-authorization/authorize.service';
 import { ApiService } from 'src/app/services/api-service';
 import { ILibrary } from '../models/ilibrary';
 
@@ -7,7 +8,10 @@ import { ILibrary } from '../models/ilibrary';
 export class LibraryService {
 
   private readonly libraryUrl = 'api/library';
-  constructor(private apiService: ApiService) { }
+  private userId: string;
+  constructor(private apiService: ApiService, private authService: AuthorizeService) {
+    this.authService.getUser().subscribe(user => this.userId = user.sub);
+  }
 
   public getAll(): Observable<ILibrary[]> {
     return this.apiService.get<ILibrary[]>(this.libraryUrl);
@@ -17,7 +21,8 @@ export class LibraryService {
 
     const data: ILibrary = {
       name,
-      createdOn: new Date()
+      createdOn: new Date(),
+      userId: this.userId
     };
 
     return this.apiService.post<ILibrary>(this.libraryUrl, data);

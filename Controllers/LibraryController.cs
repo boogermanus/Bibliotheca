@@ -25,7 +25,7 @@ namespace Bibliotheca.Controllers
         public override async Task<Library> Post([FromBody]Library library)
         {
             var newLibrary = await base.Post(library);
-            await Repository.AddUserLibrary(newLibrary.Id, library.userId);
+            await Repository.AddUserLibrary(newLibrary.Id, library.UserId);
             return newLibrary;
         }
     }

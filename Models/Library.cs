@@ -15,7 +15,6 @@ namespace Bibliotheca.Models
         public DateTimeOffset CreatedOn { get; set; }
         [NotMapped]
         public string userId { get; set; }
-        [JsonIgnore]
         public List<UserLibrary> UserLibraries { get; set; }
     }
 }

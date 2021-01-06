@@ -29,4 +29,9 @@ export class ApiService {
   public delete<T>(path: string, params?: HttpParams): Observable<T> {
     return this.httpClient.delete<T>(this.getUrl(path), {params});
   }
+
+  public getWithBody<T>(path: string, body: string, params?: HttpParams): Observable<T> {
+    const headers: HttpHeaders = new HttpHeaders().append('Content-Type', 'application/json');
+    return this.httpClient.post<T>(path, body, {params, headers});
+  }
 }

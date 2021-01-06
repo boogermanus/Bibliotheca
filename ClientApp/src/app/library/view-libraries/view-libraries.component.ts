@@ -20,7 +20,7 @@ export class ViewLibrariesComponent implements OnInit, OnDestroy {
 
   public ngOnInit(): void {
       // this.libraryService.getAll().subscribe(libraries => this.libraries = libraries);
-      this.libraries = this.libraryService.getAll();
+      this.libraries = this.libraryService.getAllForUser();
   }
 
   public ngOnDestroy(): void {

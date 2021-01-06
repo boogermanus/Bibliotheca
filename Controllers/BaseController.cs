@@ -5,6 +5,7 @@ using Bibliotheca.Data.Repositories;
 using Bibliotheca.Models;
 using System;
 using Microsoft.Extensions.Logging;
+using System.Security.Claims;
 
 namespace Bibliotheca.Controllers
 {
@@ -16,7 +17,15 @@ namespace Bibliotheca.Controllers
         protected readonly IRepository<TEntity> _repository;
         protected TRepository Repository => (TRepository)_repository;
         protected ILogger _logger;
+        protected string UserId
+        {
+            get 
+            {
+                var userId = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
+                return string.IsNullOrEmpty(userId) ? null : userId;
+            }
+        }
         public BaseController(TRepository repository, ILogger logger)
         {
             _repository = repository;

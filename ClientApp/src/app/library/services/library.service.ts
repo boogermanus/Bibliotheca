@@ -9,12 +9,15 @@ export class LibraryService {
 
   private readonly libraryUrl = 'api/library';
   private userId: string;
-  constructor(private apiService: ApiService, private authService: AuthorizeService) {
-    this.authService.getUser().subscribe(user => this.userId = user.sub);
+  constructor(private apiService: ApiService) {
   }
 
   public getAll(): Observable<ILibrary[]> {
     return this.apiService.get<ILibrary[]>(this.libraryUrl);
+  }
+
+  public getAllForUser(): Observable<ILibrary[]> {
+    return this.apiService.getWithBody(`${this.libraryUrl}/getlibrariesforuser`, this.userId);
   }
 
   public add(name: string): Observable<ILibrary> {

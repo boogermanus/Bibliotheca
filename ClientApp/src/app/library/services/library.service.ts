@@ -35,4 +35,8 @@ export class LibraryService {
   public delete(id: number): Observable<ILibrary> {
     return this.apiService.delete<ILibrary>(`${this.libraryUrl}/${id}`);
   }
+
+  public get(id: number): Observable<ILibrary> {
+    return this.apiService.get<ILibrary>(`${this.libraryUrl}/${id}`)
+  }
 }

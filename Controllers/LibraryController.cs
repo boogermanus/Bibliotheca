@@ -20,6 +20,14 @@ namespace Bibliotheca.Controllers
         {
             return await Repository.GetLibrariesForUser(userId);   
         }
+
+        [HttpPost]
+        public override async Task<Library> Post([FromBody]Library library)
+        {
+            var newLibrary = await base.Post(library);
+            await Repository.AddUserLibrary(newLibrary.Id, library.userId);
+            return newLibrary;
+        }
     }
 
 }

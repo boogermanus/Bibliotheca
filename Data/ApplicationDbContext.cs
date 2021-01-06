@@ -13,7 +13,7 @@ namespace Bibliotheca.Data
     public class ApplicationDbContext : ApiAuthorizationDbContext<ApplicationUser>
     {
         public DbSet<Library> Libraries { get; set; }
-        
+        public DbSet<UserLibrary> UserLibraries { get; set; }
         public ApplicationDbContext(
             DbContextOptions options,
             IOptions<OperationalStoreOptions> operationalStoreOptions) : base(options, operationalStoreOptions)

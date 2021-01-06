@@ -41,7 +41,7 @@ export class ViewLibrariesComponent implements OnInit, OnDestroy {
     return this.libraryService
       .add(name)
       .subscribe(() => {
-        this.libraries = this.libraryService.getAll();
+        this.libraries = this.libraryService.getAllForUser();
       });
   }
 
@@ -49,7 +49,7 @@ export class ViewLibrariesComponent implements OnInit, OnDestroy {
     this.subscriptions
       .add(this.libraryService
           .delete(id)
-          .subscribe(() => this.libraries = this.libraryService.getAll()));
+          .subscribe(() => this.libraries = this.libraryService.getAllForUser()));
   }
 
 }

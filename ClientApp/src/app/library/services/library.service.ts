@@ -12,9 +12,10 @@ export class LibraryService {
   constructor(private apiService: ApiService) {
   }
 
-  public getAll(): Observable<ILibrary[]> {
-    return this.apiService.get<ILibrary[]>(this.libraryUrl);
-  }
+  // used for initial testing
+  // public getAll(): Observable<ILibrary[]> {
+  //   return this.apiService.get<ILibrary[]>(this.libraryUrl);
+  // }
 
   public getAllForUser(): Observable<ILibrary[]> {
     return this.apiService.post<ILibrary[]>(`${this.libraryUrl}/getlibrariesforuser`, null);

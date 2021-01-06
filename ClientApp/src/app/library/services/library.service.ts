@@ -17,7 +17,7 @@ export class LibraryService {
   }
 
   public getAllForUser(): Observable<ILibrary[]> {
-    return this.apiService.getWithBody(`${this.libraryUrl}/getlibrariesforuser`, this.userId);
+    return this.apiService.post<ILibrary[]>(`${this.libraryUrl}/getlibrariesforuser`, null);
   }
 
   public add(name: string): Observable<ILibrary> {

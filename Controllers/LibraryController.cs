@@ -15,10 +15,12 @@ namespace Bibliotheca.Controllers
         public LibraryController(LibraryRepository repository, ILogger<LibraryController> logger) 
             : base(repository, logger) {}
 
-        [HttpPost("getlibrariesforuser")]
+        [Route("getlibrariesforuser")]
+        [HttpPost]
         public async Task<List<Library>> GetLibrariesForUser([FromBody]string userId)
         {
-            return await Repository.GetLibrariesForUser(userId);   
+            var currentUser = UserId ?? userId;
+            return await Repository.GetLibrariesForUser(currentUser);   
         }
 
         [HttpPost]

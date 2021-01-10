@@ -31,6 +31,12 @@ namespace Bibliotheca.Controllers
             await Repository.AddUserLibrary(newLibrary.Id, library.UserId);
             return newLibrary;
         }
+
+        public override async Task<ActionResult<Library>> Get(int id)
+        {
+            
+            return await base.Get(id);
+        }
     }
 
 }

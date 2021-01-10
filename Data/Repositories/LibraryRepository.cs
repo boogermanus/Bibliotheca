@@ -32,5 +32,13 @@ namespace Bibliotheca.Data.Repositories
 
             return userLibrary;
         }
+
+        public async Task<Library> GetLibraryFull(int libraryId)
+        {
+            return await _context.Libraries
+                .Where(l => l.Id == libraryId)
+                .Include(l => l.UserLibraries)
+                .FirstOrDefaultAsync();
+        }
     }
 }

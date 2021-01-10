@@ -17,8 +17,8 @@ export class ViewLibraryComponent implements OnInit {
   constructor(private route: ActivatedRoute, private libraryService: LibraryService) { }
 
   ngOnInit(): void {
-    this.id = this.route.snapshot.params["id"];
-    this.library = this.libraryService.get(+this.id);
+    this.id = +this.route.snapshot.params["id"];
+    this.library = this.libraryService.get(this.id);
   }
 
 }

@@ -38,6 +38,7 @@ namespace Bibliotheca.Data.Repositories
             return await _context.Libraries
                 .Where(l => l.Id == libraryId)
                 .Include(l => l.UserLibraries)
+                .ThenInclude(l => l.User)
                 .FirstOrDefaultAsync();
         }
     }

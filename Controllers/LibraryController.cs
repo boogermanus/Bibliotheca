@@ -35,7 +35,7 @@ namespace Bibliotheca.Controllers
         public override async Task<ActionResult<Library>> Get(int id)
         {
             
-            return await base.Get(id);
+            return await Repository.GetLibraryFull(id);
         }
     }
 

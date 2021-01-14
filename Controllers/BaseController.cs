@@ -39,7 +39,7 @@ namespace Bibliotheca.Controllers
         }
 
         [HttpGet("{id}")]
-        public virtual async Task<ActionResult<TEntity>> Get(int id)
+        public virtual async Task<ActionResult<TEntity>> Get([FromRoute]int id)
         {
             var entity = await _repository.Get(id);
 

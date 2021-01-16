@@ -37,6 +37,6 @@ export class LibraryService {
   }
 
   public get(id: number): Observable<ILibrary> {
-    return this.apiService.get<ILibrary>(`${this.libraryUrl}/${id}`)
+    return this.apiService.get<ILibrary>(`${this.libraryUrl}/${id}`);
   }
 }

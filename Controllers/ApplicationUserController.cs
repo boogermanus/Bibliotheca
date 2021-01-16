@@ -31,10 +31,19 @@ namespace Bibliotheca.Controllers
         [HttpGet("usersforlibrary/{library}")]
         public async Task<List<ApplicationUser>> GetUsersForLibrary([FromRoute]int library)
         {
-            return await _context.UserLibraries
-                .Include(ul => ul.User)
-                .Where(ul => ul.LibraryId == library)
-                .Select(ul => ul.User).ToListAsync();
+            return await _context.Users
+                .Join(_context.UserLibraries, 
+                    applicationUser => applicationUser.Id,
+                    userLibrary => userLibrary.userId,
+                    (applicationUser, userLibrary) => applicationUser)
+                .ToListAsync();
+
+            // this returns the exact same thing as the code above
+            // but it is much easier to read.                    
+            // return await _context.UserLibraries
+            //     .Where(ul => ul.LibraryId == library)
+            //     .Select(ul => ul.User)
+            //     .ToListAsync();
         }
     }
 

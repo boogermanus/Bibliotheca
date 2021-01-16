@@ -13,7 +13,9 @@ namespace Bibliotheca.Data.Repositories
         public async Task<List<Library>> GetLibrariesForUser(string userId)
         {            
             return await _context.UserLibraries
-                .Include(ul => ul.Library)
+                // this isn't necessary but leaving it for an example
+                // of what not to do!
+                //.Include(ul => ul.Library)
                 .Where(ul => ul.userId == userId)
                 .Select(ul => ul.Library)
                 .ToListAsync();

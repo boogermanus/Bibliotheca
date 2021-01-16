@@ -7,10 +7,11 @@ import { MaterialModule } from '../material.module';
 import { AddLibraryModalComponent } from '../library/add-library-modal/add-library-modal.component';
 import { FormsModule } from '@angular/forms';
 import { ViewLibraryComponent } from './view-library/view-library.component';
+import { ViewLibraryUserComponent } from './view-library-user/view-library-user.component';
 
 
 @NgModule({
-  declarations: [ViewLibrariesComponent, AddLibraryModalComponent, ViewLibraryComponent],
+  declarations: [ViewLibrariesComponent, AddLibraryModalComponent, ViewLibraryComponent, ViewLibraryUserComponent],
   imports: [
     CommonModule,
     LibraryRoutingModule,

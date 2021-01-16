@@ -12,6 +12,6 @@ export class ApplicationUserService {
   constructor(private apiService: ApiService) { }
 
   public getUsersForLibrary(libraryId: number): Observable<IApplicationUser> {
-    return this.apiService.get(`${this.applicationUserUrl}/usersforlibrary/${libraryId}`);
+    return this.apiService.get<IApplicationUser>(`${this.applicationUserUrl}/usersforlibrary/${libraryId}`);
   }
 }

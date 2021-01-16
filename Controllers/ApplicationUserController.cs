@@ -35,7 +35,9 @@ namespace Bibliotheca.Controllers
                 .Join(_context.UserLibraries, 
                     applicationUser => applicationUser.Id,
                     userLibrary => userLibrary.userId,
-                    (applicationUser, userLibrary) => applicationUser)
+                    (applicationUser, userLibrary) => new {applicationUser, userLibrary})
+                .Where(at => at.userLibrary.LibraryId == library)
+                .Select(at => at.applicationUser)
                 .ToListAsync();
 
             // this returns the exact same thing as the code above

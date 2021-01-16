@@ -1,4 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { IApplicationUser } from 'src/app/models/iapplication-user';
+import { ApplicationUserService } from 'src/app/services/application-user.service';
 
 @Component({
   selector: 'app-view-library-user',
@@ -7,10 +10,13 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ViewLibraryUserComponent implements OnInit {
 
-  @Input()libraryId: number;
-  constructor() { }
+  @Input()public libraryId: number;
+  public users: Observable<IApplicationUser>;
+
+  constructor(private applicationUserService: ApplicationUserService) { }
 
   ngOnInit(): void {
+    this.users = this.applicationUserService.getUsersForLibrary(this.libraryId);
   }
 
 }

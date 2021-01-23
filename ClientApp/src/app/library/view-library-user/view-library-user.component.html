@@ -5,6 +5,7 @@
     <mat-list *ngFor="let user of users | async">
         <mat-list-item class="user-list-item">
             {{user.userName}}
+            <button *ngIf="currentUser.name !== user.userName">Delete</button>
         </mat-list-item>
     </mat-list>
 </mat-card>

@@ -11,8 +11,9 @@ using System.Linq;
 namespace Bibliotheca.Controllers
 {
     [Route("api/[controller]")]
-    public class UserLibraryController
+    public class UserLibraryController : BaseController<UserLibrary, UserLibraryRepository>
     {
-
+        public UserLibraryController(UserLibraryRepository repository, ILogger<UserLibraryController> logger)
+            : base(repository, logger) {}
     }
 }

@@ -14,14 +14,14 @@ namespace Bibliotheca.Data.Repositories
         {
             _context = context;
         }
-        public async Task<TEntity> Add(TEntity entity)
+        public virtual async Task<TEntity> Add(TEntity entity)
         {
             _context.Add<TEntity>(entity);
             await _context.SaveChangesAsync();
             return entity;
         }
 
-        public async Task<TEntity> Delete(int id)
+        public virtual async Task<TEntity> Delete(int id)
         {
             var entity = await _context.Set<TEntity>().FindAsync(id);
             if (entity == null)
@@ -35,17 +35,17 @@ namespace Bibliotheca.Data.Repositories
             return entity;
         }
 
-        public async Task<TEntity> Get(int id)
+        public virtual async Task<TEntity> Get(int id)
         {
             return await _context.Set<TEntity>().FindAsync(id);
         }
 
-        public async Task<List<TEntity>> GetAll()
+        public virtual async Task<List<TEntity>> GetAll()
         {
             return await _context.Set<TEntity>().ToListAsync();
         }
 
-        public async Task<TEntity> Update(TEntity entity)
+        public virtual async Task<TEntity> Update(TEntity entity)
         {
             _context.Entry(entity).State = EntityState.Modified;
             await _context.SaveChangesAsync();

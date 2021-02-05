@@ -13,15 +13,17 @@
         </div>
         <div>
             <mat-list *ngFor="let user of users | async">
-                <mat-list-item class="user-list-item">
-                    <div class="d-flex flex-row">
-                        <div class="flex-column">{{user.userName}}</div>
-                        <div class="flex-column">
+                <mat-list-item>
+                    <table>
+                        <tr>
+                        <td [style.width.px]="300">{{user.userName}}</td>
+                        <td>
                             <button mat-mini-fab color="primary" *ngIf="currentUser.name !== user.userName">
                                 <mat-icon>delete</mat-icon>
                             </button>
-                        </div>
-                    </div>
+                        </td>
+                        </tr>
+                    </table>
                 </mat-list-item>
             </mat-list>
         </div>

@@ -22,4 +22,9 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Bibliotheca.Infrastrcture\Bibliotheca.Infrastrcture.csproj" />
+    <ProjectReference Include="..\Bibliotheca.Core\Bibliotheca.Core.csproj" />
+  </ItemGroup>
+
 </Project>

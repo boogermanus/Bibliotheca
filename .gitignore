@@ -156,11 +156,11 @@ csx/
 ecf/
 rcf/
 
-# Microsoft Azure ApplicationInsights config file
-ApplicationInsights.config
+# Microsoft Azure BibilothecalicationInsights config file
+BibilothecalicationInsights.config
 
-# Windows Store app package directory
-AppPackages/
+# Windows Store Bibilotheca package directory
+BibilothecaPackages/
 BundleArtifacts/
 
 # Visual Studio cache files
@@ -230,6 +230,7 @@ _Pvt_Extensions
 .fake/
 .idea/
 
-app.production.db
-app.db-shm
-app.db-wal
+Bibilotheca.db
+Bibilotheca.production.db
+Bibilotheca.db-shm
+Bibilotheca.db-wal

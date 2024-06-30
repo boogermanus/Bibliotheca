@@ -43,6 +43,7 @@ builder.Services.AddAuthentication(options =>
     });
 
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddTransient<IUserService, UserService>();
 
 var app = builder.Build();
 

@@ -5,7 +5,7 @@ namespace Bibliotheca.Core.Interfaces.Auth;
 
 public interface IAuthService
 {
-    Task<IdentityResult> Register(RegisterModel model);
-    Task<AuthModel> Login();
+    Task<IdentityResult> Register(RegistrationModel model);
+    Task<AuthModel?> Login(LoginModel model);
     
 }

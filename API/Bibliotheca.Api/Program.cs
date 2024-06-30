@@ -1,5 +1,7 @@
 using System.Text;
+using Bibliotheca.Core.Interfaces.Auth;
 using Bibliotheca.Core.Models;
+using Bibliotheca.Core.Services.Auth;
 using Bibliotheca.Infrastrcture;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -39,6 +41,8 @@ builder.Services.AddAuthentication(options =>
         ValidateIssuerSigningKey = true,
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"] ?? string.Empty))
     });
+
+builder.Services.AddScoped<IAuthService, AuthService>();
 
 var app = builder.Build();
 

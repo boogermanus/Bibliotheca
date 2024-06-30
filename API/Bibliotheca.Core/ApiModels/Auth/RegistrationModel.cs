@@ -4,7 +4,7 @@ using Bibliotheca.Core.Models;
 
 namespace Bibliotheca.Core.ApiModels.Auth;
 
-public class RegisterModel
+public class RegistrationModel
 {
     [Required]
     [EmailAddress]

@@ -29,7 +29,7 @@
                 <mat-error>Confirm Password is required</mat-error>
                 }
             </mat-form-field>
-            @if(passwordsDoNotMatch()) {
+            @if(isControlInvalid(form, "confirmPassword")) {
             <mat-error>Passwords do not match</mat-error>
             }
             <button mat-flat-button class="form-control mt-3" [disabled]="!form.valid">Register</button>

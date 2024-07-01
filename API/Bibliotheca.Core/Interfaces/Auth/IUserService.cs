@@ -4,6 +4,6 @@ namespace Bibliotheca.Core.Interfaces.Auth;
 
 public interface IUserService
 {
-    public ClaimsPrincipal User { get; }
-    public string CurrentUserId { get; }
+    ClaimsPrincipal? User { get; }
+    string CurrentUserId { get; }
 }

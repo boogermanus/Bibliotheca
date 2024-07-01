@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { BaseAuthComponent } from '../base-auth.component';
 import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -36,6 +36,17 @@ export class RegisterComponent extends BaseAuthComponent implements OnInit {
 
   ngOnInit(): void {
     this.subscriptions.unsubscribe();
+  }
+
+  public submit(): void {
+    const password = this.passwordControl.value as string;
+    const confirm = this.confirmPasswordControl.value as string;
+
+    if(password !== confirm) {
+      this.passwordsDoNotMatch.set(true);
+      return;
+    }
+
   }
 
 }

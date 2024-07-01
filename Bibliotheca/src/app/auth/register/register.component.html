@@ -1,22 +1,24 @@
 <div class="form text-center">
-    <form [formGroup]="form">
+    <form [formGroup]="form" (ngSubmit)="submit()">
         <p class="h3 mb-3 fw-normal">Please register</p>
         <div style="position: relative;">
+
             <mat-form-field class="field-max-width">
                 <mat-label>Email Address</mat-label>
                 <input matInput type="email" formControlName="email" placeholder="name@example.com">
                 @if(isControlInvalid(emailControl)) {
-                    <mat-error>Email Address is required</mat-error>
+                <mat-error>Email Address is required</mat-error>
                 }
                 @if(isControlInvalid(emailControl,"email")) {
-                    <mat-error>Invalid Email Address</mat-error>
+                <mat-error>Invalid Email Address</mat-error>
                 }
             </mat-form-field>
+
             <mat-form-field class="field-max-width">
                 <mat-label>Password</mat-label>
                 <input matInput type="password" formControlName="password" placeholder="Password">
                 @if(isControlInvalid(passwordControl)) {
-                    <mat-error>Password is required</mat-error>
+                <mat-error>Password is required</mat-error>
                 }
             </mat-form-field>
 
@@ -24,11 +26,13 @@
                 <mat-label>Confirm Password</mat-label>
                 <input matInput type="password" formControlName="confirmPassword" placeholder="Confirm Password">
                 @if(isControlInvalid(confirmPasswordControl)) {
-                    <mat-error>Confirm Password is required</mat-error>
+                <mat-error>Confirm Password is required</mat-error>
                 }
             </mat-form-field>
-
-            <button mat-flat-button class="form-control mt-3">Register</button>
+            @if(passwordsDoNotMatch()) {
+            <mat-error>Passwords do not match</mat-error>
+            }
+            <button mat-flat-button class="form-control mt-3" [disabled]="!form.valid">Register</button>
         </div>
     </form>
 </div>

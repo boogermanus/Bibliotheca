@@ -6,6 +6,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
 import { BaseAuthComponent } from '../base-auth.component';
 import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
+import { LoginModel } from '../models/login-model';
+import { IAuthResponse } from '../interfaces/iauth-response';
 
 @Component({
   selector: 'app-login',
@@ -22,9 +25,14 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent extends BaseAuthComponent implements OnInit {
 
+  public loginError: boolean = false;
+  public otherLoginError: boolean = false;
+
   constructor(
     private readonly formBuilder: FormBuilder,
-    private readonly router: Router) {
+    private readonly router: Router,
+    private readonly authService: AuthService
+    ) {
 
     super();
 
@@ -42,4 +50,30 @@ export class LoginComponent extends BaseAuthComponent implements OnInit {
     this.router.navigate(['/register'])
   }
 
+  public login(): void {
+    this.subscriptions = this.authService.login(
+      new LoginModel(this.emailControl.value, this.passwordControl.value)
+    )
+    .subscribe({
+      next: (response) => this.handleLogin(response),
+      error: (error) => this.handleLoginError(error)
+    })
+  }
+
+  private handleLogin(response: IAuthResponse): void {
+    this.authService.authenticate(response);
+    this.router.navigate(['/']);
+  }
+
+  private handleLoginError(error: any): void {
+    if(error.status === 401) {
+      this.loginError = true;
+      this.otherLoginError = false;
+    }
+    else {
+      this.otherLoginError = true
+      this.loginError = false;
+      console.log(error);
+    }
+  }
 }

@@ -1,5 +1,5 @@
 <div class="form text-center">
-    <form [formGroup]="form">
+    <form [formGroup]="form" (ngSubmit)="login()">
         <p class="h3 mb-3 fw-normal">Please login</p>
         <div style="position: relative;">
             <mat-form-field class="field-max-width">
@@ -19,6 +19,14 @@
                     <mat-error>Password is required</mat-error>
                 }
             </mat-form-field>
+
+            @if(loginError) {
+                <mat-error>Invalid Username or Password</mat-error>
+            }
+
+            @if(otherLoginError) {
+                <mat-error>Unknown login error</mat-error>
+            }
 
             <button mat-flat-button class="form-control mt-1" [disabled]="!form.valid">Login</button>
             <button mat-flat-button class="form-control mt-3" (click)="register()">Register</button>

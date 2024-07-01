@@ -1,11 +1,17 @@
 using System.Text;
 using Bibliotheca.Core.Interfaces.Auth;
+using Bibliotheca.Core.Interfaces.Database.Repositories;
+using Bibliotheca.Core.Interfaces.Services;
 using Bibliotheca.Core.Models;
+using Bibliotheca.Core.Services.Api;
 using Bibliotheca.Core.Services.Auth;
 using Bibliotheca.Infrastrcture;
+using Bibliotheca.Infrastrcture.Repositories;
+using Bibliotheca.Utils;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,10 +22,20 @@ builder.Services.AddControllers()
     .AddNewtonsoftJson();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(options => 
+{
+    options.AddSecurityDefinition("bearer", new OpenApiSecurityScheme
+    {
+        Type = SecuritySchemeType.Http,
+        BearerFormat = "JWT",
+        In = ParameterLocation.Header,
+        Scheme = "bearer"
+    });
+    options.OperationFilter<AddAuthHeaderOperationFilter>();
+});
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ??
-    throw new InvalidOperationException("Connections tring 'DefaultConnection' not fould");
+    throw new InvalidOperationException("Connections string 'DefaultConnection' not fould");
 
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlite(connectionString));
 
@@ -44,6 +60,8 @@ builder.Services.AddAuthentication(options =>
 
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddTransient<IUserService, UserService>();
+builder.Services.AddScoped<ILibraryRepository, LibraryRepository>();
+builder.Services.AddScoped<ILibraryService, LibraryService>();
 
 var app = builder.Build();
 

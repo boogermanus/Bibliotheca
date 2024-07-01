@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "name": "C#: Bibliotheca.Api [http]",
+            "type": "dotnet",
+            "request": "launch",
+            "projectPath": "${workspaceFolder}\\Bibliotheca.Api\\Bibliotheca.Api.csproj",
+            "launchConfigurationId": "TargetFramework=;http"
+        }
+    ]
+}

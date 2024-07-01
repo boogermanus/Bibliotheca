@@ -8,6 +8,6 @@ public class HomeController : ControllerBase
     [HttpGet]
     public IActionResult Get()
     {
-        return Ok($"Bibilotheca API {DateTime.Now}");
+        return Ok($"Bibilotheca API {DateTime.UtcNow}");
     }
 }

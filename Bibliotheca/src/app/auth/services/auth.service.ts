@@ -15,6 +15,7 @@ export class AuthService {
   private readonly AUTH_URL = AppConfig.authApi;
   private readonly TOKEN = 'token';
   private readonly USER_ID = 'userid';
+  private readonly EMAIL = 'email';
 
   private _isAuthenticated = signal(false);
   public readonly isAuthenticated = this._isAuthenticated.asReadonly();
@@ -38,11 +39,19 @@ export class AuthService {
     if (decoded.nameid) {
       localStorage.setItem(this.USER_ID, decoded.nameid);
     }
+
+    if(decoded.email) {
+      localStorage.setItem(this.EMAIL, decoded.email);
+    }
     this._isAuthenticated.set(true);
   }
 
   public userId(): string {
     return localStorage.getItem(this.USER_ID);
+  }
+
+  public username(): string {
+    return localStorage.getItem(this.EMAIL);
   }
 
   public logout(): void {

@@ -59,8 +59,8 @@ public class AuthService : IAuthService
         var claims = new[]
         {
             new Claim(JwtRegisteredClaimNames.Sub, user.Id),
-            new Claim(JwtRegisteredClaimNames.Name, user.Id),
-            new Claim(JwtRegisteredClaimNames.NameId, user.UserName ?? string.Empty),
+            new Claim(JwtRegisteredClaimNames.NameId, user.Id),
+            new Claim(JwtRegisteredClaimNames.Email, user.UserName ?? string.Empty),
         };
 
         var token = new JwtSecurityToken(

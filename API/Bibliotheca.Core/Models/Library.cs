@@ -12,6 +12,7 @@ public class Library : IEntity
     [MaxLength(50)]
     public string Name { get; set; } = string.Empty;
     public DateTime CreateDate { get; set; }
+    public ICollection<LibraryUser>? LibraryUsers { get; set; }
     
     
 }

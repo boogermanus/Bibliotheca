@@ -7,5 +7,7 @@ namespace Bibliotheca.Infrastrcture;
 
 public class AppDbContext : IdentityDbContext<User>
 {
+    public DbSet<Library> Libraries { get; set; }
+    public DbSet<LibraryUser> LibraryUsers { get; set; }
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) {}
 }

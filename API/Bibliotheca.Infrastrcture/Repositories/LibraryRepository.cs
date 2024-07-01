@@ -7,7 +7,7 @@ namespace Bibliotheca.Infrastrcture.Repositories;
 public class LibraryRepository : BaseRepository<Library>, ILibraryRepository
 {
     public LibraryRepository(AppDbContext context) : base(context) {}
-
+    
     public async Task<IEnumerable<Library>> GetLibrariesForUserIdAsync(string userId)
     {
         var libraries = await DbContext.Libraries

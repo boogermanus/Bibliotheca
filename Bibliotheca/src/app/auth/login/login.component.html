@@ -1,17 +1,26 @@
 <main class="form-login text-center">
-    <form>
+    <form [formGroup]="form">
         <p class="h3 mb-3 fw-normal">Please login</p>
         <div style="position: relative;">
             <mat-form-field class="field-max-width">
                 <mat-label>Email Address</mat-label>
-                <input matInput type="email" placeholder="name@example.com">
+                <input matInput type="email" formControlName="email" placeholder="name@example.com">
+                @if(isControlInvalid(emailControl)) {
+                    <mat-error>Email Address is required</mat-error>
+                }
+                @if(isControlInvalid(emailControl,"email")) {
+                    <mat-error>Invalid Email Address</mat-error>
+                }
             </mat-form-field>
             <mat-form-field class="field-max-width">
                 <mat-label>Password</mat-label>
-                <input matInput type="password" placeholder="Password">
+                <input matInput type="password" formControlName="password" placeholder="Password">
+                @if(isControlInvalid(passwordControl)) {
+                    <mat-error>Password is required</mat-error>
+                }
             </mat-form-field>
 
-            <button mat-flat-button class="form-control">Login</button>
+            <button mat-flat-button class="form-control mt-1" [disabled]="!form.valid">Login</button>
             <button mat-flat-button class="form-control mt-3">Register</button>
         </div>
     </form>

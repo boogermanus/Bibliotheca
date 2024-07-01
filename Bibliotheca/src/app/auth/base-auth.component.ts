@@ -1,6 +1,15 @@
-import { AbstractControl, ValidationErrors } from "@angular/forms";
+import { OnInit } from "@angular/core";
+import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from "@angular/forms";
+import { Router } from "@angular/router";
+import { Subscription } from "rxjs";
 
 export class BaseAuthComponent {
+    protected form:FormGroup;
+    protected emailControl: FormControl = new FormControl('',Validators.compose([Validators.required, Validators.email]));
+    protected passwordControl: FormControl = new FormControl('',Validators.compose([Validators.required]));
+    protected subscriptions: Subscription = new Subscription();
+
+    constructor() {}
     protected isControlInvalid(control: AbstractControl, error: string = 'required'): boolean {
         return control.touched && control.hasError(error);
     }

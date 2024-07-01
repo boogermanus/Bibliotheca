@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar'
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
@@ -21,5 +21,13 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrl: './nav-menu.component.css'
 })
 export class NavMenuComponent {
+
+  constructor(
+    private readonly router: Router
+  ) {}
+
+  public loginOrRegister() {
+    this.router.navigate(['login']);
+  }
 
 }

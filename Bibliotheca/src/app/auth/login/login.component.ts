@@ -38,4 +38,8 @@ export class LoginComponent extends BaseAuthComponent implements OnInit {
     this.subscriptions.unsubscribe();
   }
 
+  public register(): void {
+    this.router.navigate(['/register'])
+  }
+
 }

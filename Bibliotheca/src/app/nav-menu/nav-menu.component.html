@@ -1,0 +1,10 @@
+<mat-toolbar>
+    <span>Bibliotheca</span>
+    <span class="spacer"></span>
+    <button mat-icon-button [mat-menu-trigger-for]="menu">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item>Login / Register</button>
+    </mat-menu>
+</mat-toolbar>

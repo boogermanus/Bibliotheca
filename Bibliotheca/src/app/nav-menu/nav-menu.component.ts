@@ -5,6 +5,7 @@ import { MatToolbarModule } from '@angular/material/toolbar'
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { AuthService } from '../auth/services/auth.service';
 
 @Component({
   selector: 'app-nav-menu',
@@ -23,11 +24,20 @@ import { MatIconModule } from '@angular/material/icon';
 export class NavMenuComponent {
 
   constructor(
-    private readonly router: Router
+    private readonly router: Router,
+    private readonly authService: AuthService
   ) {}
 
   public loginOrRegister() {
     this.router.navigate(['login']);
+  }
+
+  public logout() {
+    this.authService.logout();
+  }
+
+  public get isAuthenticated(): boolean {
+    return this.authService.isAuthenticated();
   }
 
 }

@@ -5,6 +5,11 @@
         <mat-icon>menu</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
+        @if(!isAuthenticated) {
         <button mat-menu-item (click)="loginOrRegister()">Login / Register</button>
+        }
+        @if(isAuthenticated) {
+            <button mat-menu-item (click)="logout()">Logout</button>
+        }
     </mat-menu>
 </mat-toolbar>

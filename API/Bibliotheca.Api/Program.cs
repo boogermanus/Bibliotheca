@@ -41,7 +41,9 @@ builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlite(connect
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddDefaultIdentity<User>()
+builder.Services.AddDefaultIdentity<User>(options => {
+    options.Password.RequireDigit = false;
+})
     .AddEntityFrameworkStores<AppDbContext>();
 
 builder.Services.AddAuthentication(options =>

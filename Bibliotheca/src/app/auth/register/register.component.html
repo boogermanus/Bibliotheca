@@ -33,6 +33,12 @@
             <mat-error>Passwords do not match</mat-error>
             }
             <button mat-flat-button class="form-control mt-3" [disabled]="!form.valid">Register</button>
+
+            @if(registerSuccessful) {
+            <div class="alert alert-info mt-2">
+                Registration successful! Please <a routerLink="/login">Login</a>
+            </div>
+            }
         </div>
     </form>
 </div>

@@ -1,10 +1,13 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, OnDestroy, OnInit, signal } from '@angular/core';
 import { BaseAuthComponent } from '../base-auth.component';
 import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AuthService } from '../services/auth.service';
+import { RegisterModel } from '../models/register-model';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -14,16 +17,19 @@ import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angu
     MatFormFieldModule,
     MatInput,
     MatButtonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule
   ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
-export class RegisterComponent extends BaseAuthComponent implements OnInit {
+export class RegisterComponent extends BaseAuthComponent implements OnDestroy {
   public confirmPasswordControl: FormControl = new FormControl('', Validators.compose([Validators.required]));
+  public registerSuccessful: boolean = false;
 
   constructor(
     private readonly formBuilder: FormBuilder,
+    private readonly authService: AuthService
   ) {
     super();
 
@@ -37,19 +43,20 @@ export class RegisterComponent extends BaseAuthComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
+  ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
   }
 
   public submit(): void {
-    const password = this.passwordControl.value as string;
-    const confirm = this.confirmPasswordControl.value as string;
-
-    if(password !== confirm) {
-      this.passwordsDoNotMatch.set(true);
-      return;
-    }
-
+    this.subscriptions = this.authService.register(new RegisterModel(
+      this.emailControl.value, this.passwordControl.value, this.confirmPasswordControl.value)
+    ).subscribe({
+      next: (response) => {
+        if (response) {
+          this.registerSuccessful = true;
+        }
+      }
+    });
   }
 
 }

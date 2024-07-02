@@ -26,7 +26,9 @@ export class NavMenuComponent {
   constructor(
     private readonly router: Router,
     private readonly authService: AuthService
-  ) {}
+  ) {
+    this.authService.hasAuthentication();
+  }
 
   public loginOrRegister() {
     this.router.navigate(['login']);
@@ -39,10 +41,6 @@ export class NavMenuComponent {
 
   public get isAuthenticated(): boolean {
     return this.authService.isAuthenticated();
-  }
-
-  public get username(): string {
-    return this.authService.username();
   }
 
 }

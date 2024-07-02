@@ -58,4 +58,17 @@ export class AuthService {
     localStorage.clear();
     this._isAuthenticated.set(false);
   }
+
+  public hasAuthentication(): void {
+    if(this.hasValidToken()) {
+      this._isAuthenticated.set(true);
+    }
+    else {
+      this._isAuthenticated.set(false);
+    }
+  }
+
+  private hasValidToken(): boolean {
+    return !!this.jwtService.isTokenExpired(localStorage.getItem(this.TOKEN));
+  }
 }

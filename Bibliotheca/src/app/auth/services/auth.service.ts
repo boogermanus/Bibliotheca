@@ -23,7 +23,12 @@ export class AuthService {
   constructor(
     private readonly httpClient: HttpClient,
     private readonly jwtService: JwtHelperService
-  ) { }
+  ) {
+    
+    if (this.hasValidToken()) {
+      this._isAuthenticated.set(true);
+    }
+  }
 
   public register(model: RegisterModel): Observable<boolean> {
     return this.httpClient.post<boolean>(`${this.AUTH_URL}/register`, model);
@@ -40,7 +45,7 @@ export class AuthService {
       localStorage.setItem(this.USER_ID, decoded.nameid);
     }
 
-    if(decoded.email) {
+    if (decoded.email) {
       localStorage.setItem(this.EMAIL, decoded.email);
     }
     this._isAuthenticated.set(true);
@@ -59,16 +64,7 @@ export class AuthService {
     this._isAuthenticated.set(false);
   }
 
-  public hasAuthentication(): void {
-    if(this.hasValidToken()) {
-      this._isAuthenticated.set(true);
-    }
-    else {
-      this._isAuthenticated.set(false);
-    }
-  }
-
   private hasValidToken(): boolean {
-    return !!this.jwtService.isTokenExpired(localStorage.getItem(this.TOKEN));
+    return !this.jwtService.isTokenExpired(localStorage.getItem(this.TOKEN));
   }
 }

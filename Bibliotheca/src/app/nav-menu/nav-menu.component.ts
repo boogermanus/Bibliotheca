@@ -27,7 +27,7 @@ export class NavMenuComponent {
     private readonly router: Router,
     private readonly authService: AuthService
   ) {
-    this.authService.hasAuthentication();
+
   }
 
   public loginOrRegister() {

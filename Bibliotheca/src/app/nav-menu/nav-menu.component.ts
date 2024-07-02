@@ -34,6 +34,7 @@ export class NavMenuComponent {
 
   public logout() {
     this.authService.logout();
+    this.router.navigate(['/'])
   }
 
   public get isAuthenticated(): boolean {

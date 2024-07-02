@@ -41,4 +41,8 @@ export class NavMenuComponent {
     return this.authService.isAuthenticated();
   }
 
+  public get username(): string {
+    return this.authService.username();
+  }
+
 }

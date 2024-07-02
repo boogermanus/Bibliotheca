@@ -24,7 +24,7 @@ export class AuthService {
     private readonly httpClient: HttpClient,
     private readonly jwtService: JwtHelperService
   ) {
-    
+
     if (this.hasValidToken()) {
       this._isAuthenticated.set(true);
     }

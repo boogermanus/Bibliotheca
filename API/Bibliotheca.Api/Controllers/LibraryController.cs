@@ -28,4 +28,10 @@ public class LibraryController : ControllerBase
     {
         return Ok(await _libraryService.GetLibrariesForUserAsync());
     }
+
+    [HttpGet("GetLibraryUsers")]
+    public async Task<IActionResult> GetLibraryUsers([FromQuery]int libraryId)
+    {
+        return Ok(await _libraryService.GetLibraryUsersAsync(libraryId));
+    }
 }

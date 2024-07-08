@@ -39,4 +39,13 @@ public class LibraryService : ILibraryService
         var libraries = await _libraryRepository.GetLibrariesForUserIdAsync(_userService.CurrentUserId);
         return libraries.Select(l => l.ToApiModel()).ToList();
     }
+
+    public async Task<IEnumerable<LibraryUserModel>> GetLibraryUsersAsync(int libraryId)
+    {
+        var libraryUsers = await _libraryUserRepository.GetLibraryUsersByLibraryIdAsync(libraryId);
+
+        var models = libraryUsers.Select(lu => lu.ToApiModel()).ToList();
+
+        return models;
+    }
 }

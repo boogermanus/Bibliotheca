@@ -8,17 +8,10 @@ namespace Bibliotheca.Core.Services.Auth;
 public class UserService : IUserService
 {
     private readonly IHttpContextAccessor _context;
-    public ClaimsPrincipal? User
-    {
-        get
-        {
-            if(_context.HttpContext == null)
-                return null;
-            return _context.HttpContext.User;
-        }
-    }
+    public ClaimsPrincipal User => _context.HttpContext.User;
 
-    public string CurrentUserId => User?.FindFirstValue(JwtRegisteredClaimNames.Name) ?? string.Empty;
+    public string CurrentUserId => User.FindFirstValue(ClaimTypes.NameIdentifier) ?? string.Empty;
+
 
     public UserService(IHttpContextAccessor context)
     {

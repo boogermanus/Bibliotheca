@@ -3,6 +3,7 @@ using Bibliotheca.Core.Interfaces.Auth;
 using Bibliotheca.Core.Interfaces.Database.Repositories;
 using Bibliotheca.Core.Interfaces.Services;
 using Bibliotheca.Core.Models;
+using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace Bibliotheca.Core.Services.Api;
 
@@ -47,5 +48,11 @@ public class LibraryService : ILibraryService
         var models = libraryUsers.Select(lu => lu.ToApiModel()).ToList();
 
         return models;
+    }
+
+    public async Task<LibraryUserModel> AddLibraryUserAsync(string username, int libraryId)
+    {
+        var newLibaryUser = await _libraryUserRepository.AddLibraryUserAsync(username, libraryId);
+        return newLibaryUser.ToApiModel();
     }
 }

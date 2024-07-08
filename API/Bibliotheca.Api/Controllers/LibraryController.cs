@@ -34,4 +34,21 @@ public class LibraryController : ControllerBase
     {
         return Ok(await _libraryService.GetLibraryUsersAsync(libraryId));
     }
+
+    [HttpPost("AddLibraryUser")]
+    public async Task<IActionResult> AddLibraryUser([FromQuery]string email, [FromQuery]int libraryId)
+    {
+        try
+        {
+            var user = await _libraryService.AddLibraryUserAsync(email,libraryId);
+            return Ok(user);
+        }
+        catch(Exception e)
+        {
+            if(e.Message.Contains("registered"))
+                return NotFound(e.Message);
+
+            return BadRequest(e.Message);
+        }
+    }
 }

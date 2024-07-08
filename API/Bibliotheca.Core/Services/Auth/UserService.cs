@@ -10,7 +10,7 @@ public class UserService : IUserService
     private readonly IHttpContextAccessor _context;
     public ClaimsPrincipal User => _context.HttpContext.User;
 
-    public string CurrentUserId => User.FindFirstValue(ClaimTypes.NameIdentifier) ?? string.Empty;
+    public string CurrentUserId => User.FindFirstValue(JwtRegisteredClaimNames.NameId) ?? string.Empty;
 
 
     public UserService(IHttpContextAccessor context)

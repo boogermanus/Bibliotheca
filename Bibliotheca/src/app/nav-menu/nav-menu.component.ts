@@ -30,17 +30,21 @@ export class NavMenuComponent {
 
   }
 
-  public loginOrRegister() {
+  public loginOrRegister(): void {
     this.router.navigate(['login']);
   }
 
-  public logout() {
+  public logout(): void {
     this.authService.logout();
     this.router.navigate(['/'])
   }
 
   public get isAuthenticated(): boolean {
     return this.authService.isAuthenticated();
+  }
+
+  public libraries(): void {
+    this.router.navigate(['/libraries'])
   }
 
 }

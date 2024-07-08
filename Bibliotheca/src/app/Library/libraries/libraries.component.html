@@ -12,3 +12,10 @@
         </div>
     </div>
 </form>
+<div class="row">
+    <mat-list>
+        <mat-list-item *ngFor="let library of libraries | async">
+            {{library.name}}
+        </mat-list-item>
+    </mat-list>
+</div>

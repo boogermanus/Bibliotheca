@@ -1,3 +1,16 @@
-<div class="row">
-    {{library.id}}
-</div>
+<mat-card appearance="outlined">
+    <mat-card-header>
+        <mat-card-title>{{library.name}}</mat-card-title>
+        <mat-card-subtitle>Id: {{library.id}} - Create Date: {{library.createDate | date}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <div class="row justify-content-around">
+            <div class="col-md-4">
+                Library Users
+            </div>
+            <div class="col-md-4">
+                Bookshelves
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>

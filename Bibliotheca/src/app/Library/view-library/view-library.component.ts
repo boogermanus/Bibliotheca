@@ -4,24 +4,26 @@ import { ILibrary } from '../interfaces/ilibrary';
 import { ActivatedRoute } from '@angular/router';
 import { LibraryService } from '../services/library.service';
 import { Subscription } from 'rxjs';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-view-library',
   standalone: true,
   imports: [
-    CommonModule
+    CommonModule,
+    MatCardModule
   ],
   templateUrl: './view-library.component.html',
   styleUrl: './view-library.component.css'
 })
 export class ViewLibraryComponent implements OnInit, OnDestroy {
-  @Input()library: ILibrary
+  public library: ILibrary = {id: 0, name: '', createDate: new Date()}
   private subscriptions: Subscription = new Subscription();
 
   constructor(
     private readonly route: ActivatedRoute,
     private readonly libraryService: LibraryService
-  ) {}
+  ) {  }
 
   ngOnInit(): void {
     const libraryId = this.route.snapshot.params['id'];

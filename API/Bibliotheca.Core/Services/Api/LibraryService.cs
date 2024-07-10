@@ -1,3 +1,4 @@
+using System.Drawing;
 using Bibliotheca.Core.ApiModels.Api;
 using Bibliotheca.Core.Interfaces.Auth;
 using Bibliotheca.Core.Interfaces.Database.Repositories;
@@ -33,6 +34,12 @@ public class LibraryService : ILibraryService
         await _libraryUserRepository.AddAsync(libraryUser);
 
         return newLibrary.ToApiModel();
+    }
+
+    public async Task<LibraryModel?> DeleteLibraryAsync(int libraryId)
+    {
+        var deletedLibrary = await _libraryRepository.DeleteAsync(libraryId);
+        return deletedLibrary?.ToApiModel();
     }
 
     public async Task<IEnumerable<LibraryModel>> GetLibrariesForUserAsync()

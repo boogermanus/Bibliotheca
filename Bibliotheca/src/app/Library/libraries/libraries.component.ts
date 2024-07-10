@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -10,6 +10,7 @@ import { LibraryService } from '../Services/library.service';
 import { Observable, Subscription } from 'rxjs';
 import { ILibrary } from '../Interfaces/ilibrary';
 import { CommonModule } from '@angular/common';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @Component({
   selector: 'app-libraries',
@@ -20,14 +21,15 @@ import { CommonModule } from '@angular/common';
     MatButtonModule,
     MatIconModule,
     MatTooltipModule,
-    MatListModule,
+    // MatListModule,
     ReactiveFormsModule,
-    CommonModule
+    CommonModule,
+    MatExpansionModule
   ],
   templateUrl: './libraries.component.html',
   styleUrl: './libraries.component.css'
 })
-export class LibrariesComponent implements OnInit {
+export class LibrariesComponent implements OnInit, OnDestroy {
   public form: FormGroup
   public libraryName: FormControl = new FormControl('', Validators.required)
   public subscriptions: Subscription = new Subscription();
@@ -36,8 +38,7 @@ export class LibrariesComponent implements OnInit {
   constructor(
     private readonly formBuilder: FormBuilder,
     private readonly libraryService: LibraryService
-  )
-  {
+  ) {
     this.form = this.formBuilder.group({
       libraryName: this.libraryName
     });
@@ -47,7 +48,27 @@ export class LibrariesComponent implements OnInit {
     this.libraries = this.libraryService.getLibrariesForUser();
   }
 
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
+  }
+
   public submit(): void {
-    
+    this.subscriptions.add(
+      this.libraryService.addLibrary(this.libraryName.value)
+        .subscribe({
+          next: () => {
+            this.libraries = this.libraryService.getLibrariesForUser();
+          }
+        }));
+  }
+
+  public delete(libraryId: number): void {
+    this.subscriptions.add(
+      this.libraryService.deleteLibrary(libraryId)
+        .subscribe({
+          next: () => {
+            this.libraries = this.libraryService.getLibrariesForUser()
+          }
+        }));
   }
 }

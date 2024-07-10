@@ -51,4 +51,10 @@ public class LibraryController : ControllerBase
             return BadRequest(e.Message);
         }
     }
+
+    [HttpDelete("{id:int}")]
+    public async Task<IActionResult> DeleteLibrary(int id) 
+    {
+        return Ok(await _libraryService.DeleteLibraryAsync(id));
+    }
 }

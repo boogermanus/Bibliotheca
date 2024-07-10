@@ -12,10 +12,16 @@
         </div>
     </div>
 </form>
-<div class="row">
-    <mat-list>
-        <mat-list-item *ngFor="let library of libraries | async">
-            {{library.name}}
-        </mat-list-item>
-    </mat-list>
+<div class="row mt-2" *ngFor="let library of libraries | async">
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title>{{library.name}}</mat-panel-title>
+            <mat-panel-description>{{library.createDate | date}} - Id {{library.id}}</mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-action-row>
+            <button mat-icon-button matTooltip="Delete" matTooltipPosition="left" (click)="delete(library.id)">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </mat-action-row>
+    </mat-expansion-panel>
 </div>

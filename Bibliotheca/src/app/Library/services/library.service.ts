@@ -16,4 +16,12 @@ export class LibraryService {
   public getLibrariesForUser(): Observable<ILibrary[]> {
     return this.httpClient.get<ILibrary[]>(`${AppConfig.LibraryApi}/GetLibrariesForUser`);
   }
+
+  public addLibrary(libraryName: string): Observable<ILibrary> {
+    return this.httpClient.post<ILibrary>(`${AppConfig.LibraryApi}/AddLibrary`, {name: libraryName});
+  }
+
+  public deleteLibrary(libraryId: number): Observable<ILibrary> {
+    return this.httpClient.delete<ILibrary>(`${AppConfig.LibraryApi}/${libraryId}`);
+  }
 }

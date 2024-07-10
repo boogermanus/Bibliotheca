@@ -65,6 +65,7 @@ builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddScoped<ILibraryRepository, LibraryRepository>();
 builder.Services.AddScoped<ILibraryService, LibraryService>();
 builder.Services.AddScoped<ILibraryUserRepository, LibraryUserRepository>();
+builder.Services.AddScoped<ILibraryBookshelfRepository, LibraryBookshelfRepository>();
 
 var app = builder.Build();
 

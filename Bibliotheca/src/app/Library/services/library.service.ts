@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ILibrary } from '../Interfaces/ilibrary';
+import { ILibrary } from '../interfaces/ilibrary';
 import { AppConfig } from '../../config';
 
 @Injectable({

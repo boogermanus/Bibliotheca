@@ -9,4 +9,5 @@ public interface ILibraryService
     Task<IEnumerable<LibraryUserModel>> GetLibraryUsersAsync(int libraryId);
     Task<LibraryUserModel> AddLibraryUserAsync(string username, int libraryId);
     Task<LibraryModel?> DeleteLibraryAsync(int libraryId);
+    Task<LibraryModel?> GetLibraryAsync(int libraryId);
 }

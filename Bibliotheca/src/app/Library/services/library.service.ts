@@ -24,4 +24,8 @@ export class LibraryService {
   public deleteLibrary(libraryId: number): Observable<ILibrary> {
     return this.httpClient.delete<ILibrary>(`${AppConfig.LibraryApi}/${libraryId}`);
   }
+
+  public getLibrary(libraryId: number): Observable<ILibrary> {
+    return this.httpClient.get<ILibrary>(`${AppConfig.LibraryApi}/${libraryId}`);
+  }
 }

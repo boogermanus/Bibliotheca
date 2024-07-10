@@ -57,4 +57,10 @@ public class LibraryController : ControllerBase
     {
         return Ok(await _libraryService.DeleteLibraryAsync(id));
     }
+
+    [HttpGet("{id:int}")]
+    public async Task<IActionResult> GetLibrary(int id) 
+    {
+        return Ok(await _libraryService.GetLibraryAsync(id));
+    }
 }

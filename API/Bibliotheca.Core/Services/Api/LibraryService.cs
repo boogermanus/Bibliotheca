@@ -62,4 +62,10 @@ public class LibraryService : ILibraryService
         var newLibaryUser = await _libraryUserRepository.AddLibraryUserAsync(username, libraryId);
         return newLibaryUser.ToApiModel();
     }
+    public async Task<LibraryModel?> GetLibraryAsync(int libraryId)
+    {
+        var library = await _libraryRepository.GetAsync(libraryId);
+        return library.ToApiModel();
+    }
+    
 }

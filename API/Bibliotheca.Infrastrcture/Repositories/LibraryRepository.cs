@@ -23,4 +23,20 @@ public class LibraryRepository : BaseRepository<Library>, ILibraryRepository
         return libraries;
             
     }
+
+    public async Task<Library?> GetLibraryForUserIdAsync(int libraryId, string userId)
+    {
+        var library = await DbContext.Libraries
+            .Join(
+                DbContext.LibraryUsers,
+                library => library.Id,
+                libraryUser => libraryUser.LibraryId,
+                (library, libraryUser) => new {library, libraryUser}
+            )
+            .Where(l => l.library.Id == libraryId && l.libraryUser.UserId == userId)
+            .Select(l => l.library)
+            .FirstOrDefaultAsync();
+
+        return library;
+    }
 }

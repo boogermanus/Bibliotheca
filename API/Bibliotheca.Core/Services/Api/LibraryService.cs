@@ -14,7 +14,11 @@ public class LibraryService : ILibraryService
     private readonly ILibraryUserRepository _libraryUserRepository;
     private readonly IUserService _userService;
 
-    public LibraryService(ILibraryRepository libraryRepository, ILibraryUserRepository libraryUserRepository, IUserService userService)
+    public LibraryService(
+        ILibraryRepository libraryRepository,
+        ILibraryUserRepository libraryUserRepository,
+        IUserService userService
+        )
     {
         _libraryRepository = libraryRepository;
         _userService = userService;
@@ -73,6 +77,13 @@ public class LibraryService : ILibraryService
         var libaryUser = await _libraryUserRepository.DeleteAsync(libraryUserId);
 
         return libaryUser?.ToApiModel();
+    }
+
+    public async Task<LibraryModel?> GetLibraryForUserAsync(int libraryId)
+    {
+        var library = await _libraryRepository.GetLibraryForUserIdAsync(libraryId, _userService.CurrentUserId);
+
+        return library?.ToApiModel();
     }
     
 }

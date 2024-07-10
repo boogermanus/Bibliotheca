@@ -1,12 +1,15 @@
-<div class="row justify-content-center">Library Users</div>
+<div class="row justify-content-center h5">Library Users</div>
 <div class="row">
     <mat-list>
         <mat-list-item *ngFor="let libraryUser of libraryUsers | async">
             <div>
                 <span>{{libraryUser.username}}</span>
                 <span *ngIf="libraryUser.name !== ''"> - {{libraryUser.name}}</span>
-                <span style="float: right"><button mat-icon-button
-                        (click)="delete(libraryUser.id)"><mat-icon>delete</mat-icon></button></span>
+                <span style="float: right">
+                    <button mat-icon-button (click)="delete(libraryUser.id)" matTooltip="Delete"
+                        matTooltipPosition="left">
+                        <mat-icon>delete</mat-icon>
+                    </button></span>
             </div>
         </mat-list-item>
     </mat-list>
@@ -20,8 +23,10 @@
             </mat-form-field>
         </span>
         <span style="float: right">
-            <button mat-icon-button [disabled]="emailInput.value == ''"
-                (click)="add(emailInput.value)"><mat-icon>add</mat-icon></button>
+            <button mat-icon-button [disabled]="emailInput.value == ''" (click)="add(emailInput.value)" matTooltip="Add"
+                matTooltipPosition="left">
+                <mat-icon>add</mat-icon>
+            </button>
         </span>
     </div>
     <div>

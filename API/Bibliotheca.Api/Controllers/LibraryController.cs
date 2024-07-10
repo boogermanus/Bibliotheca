@@ -68,4 +68,12 @@ public class LibraryController : ControllerBase
 
         return Ok(library);
     }
+
+    [HttpDelete("DeleteLibraryUser/{id:int}")]
+    public async Task<IActionResult> DeleteLibraryUser(int id)
+    {
+        var libraryUser = await _libraryService.DeleteLibraryUserAsync(id);
+        return Ok(libraryUser);
+    }
+
 }

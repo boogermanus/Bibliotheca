@@ -9,6 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatFormField, MatInput, MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-library-users',
@@ -27,17 +28,50 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 export class LibraryUsersComponent implements OnInit, OnDestroy {
   public libraryUsers: Observable<ILibraryUser[]>
   private subscriptions: Subscription = new Subscription();
+  public libraryId: number = 0;
+  public hasError: boolean = false;
+  public errorMessage: string = '';
+
   constructor(
     private readonly libraryService: LibraryService,
     private readonly route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    const libraryId = this.route.snapshot.params['id'];
-    this.libraryUsers = this.libraryService.getLibraryUsers(libraryId);
+    this.libraryId = this.route.snapshot.params['id'];
+    this.libraryUsers = this.libraryService.getLibraryUsers(this.libraryId);
   }
 
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
+  }
+
+  public add(username: string): void {
+    this.subscriptions.add(
+      this.libraryService.addLibraryUser(username,this.libraryId)
+        .subscribe({
+          next: () => {
+            this.libraryUsers = this.libraryService.getLibraryUsers(this.libraryId);
+            this.errorMessage = '';
+          },
+          error: (error: HttpErrorResponse) => {
+            if(error.status == 400 || error.status == 404) {
+              this.errorMessage = error.error;
+            }
+          }
+        }
+        )
+    );
+  }
+
+  public delete(libraryUserId: number): void {
+    this.subscriptions.add(
+      this.libraryService.deleteLibraryUser(libraryUserId)
+        .subscribe({
+          next:() => {
+            this.libraryUsers = this.libraryService.getLibraryUsers(this.libraryId);
+          }
+        })
+    );
   }
 }

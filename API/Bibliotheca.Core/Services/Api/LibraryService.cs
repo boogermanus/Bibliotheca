@@ -67,5 +67,12 @@ public class LibraryService : ILibraryService
         var library = await _libraryRepository.GetAsync(libraryId);
         return library?.ToApiModel();
     }
+
+    public async Task<LibraryUserModel?> DeleteLibraryUserAsync(int libraryUserId)
+    {
+        var libaryUser = await _libraryUserRepository.DeleteAsync(libraryUserId);
+
+        return libaryUser?.ToApiModel();
+    }
     
 }

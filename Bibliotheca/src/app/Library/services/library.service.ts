@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ILibrary } from '../interfaces/ilibrary';
@@ -32,5 +32,17 @@ export class LibraryService {
 
   public getLibraryUsers(libraryId: number): Observable<ILibraryUser[]> {
     return this.httpClient.get<ILibraryUser[]>(`${AppConfig.LibraryApi}/${libraryId}/GetLibraryUsers`);
+  }
+
+  public addLibraryUser(username: string, libraryid: number): Observable<ILibraryUser> {
+    const params = new HttpParams()
+      .append('email', username)
+      .append('libraryId', libraryid);
+
+      return this.httpClient.post<ILibraryUser>(`${AppConfig.LibraryApi}/AddLibraryUser`, null ,{params});
+  }
+
+  public deleteLibraryUser(libraryUserId: number): Observable<ILibraryUser> {
+    return this.httpClient.delete<ILibraryUser>(`${AppConfig.LibraryApi}/DeleteLibraryUser/${libraryUserId}`)
   }
 }

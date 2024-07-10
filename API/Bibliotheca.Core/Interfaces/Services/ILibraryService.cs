@@ -10,4 +10,5 @@ public interface ILibraryService
     Task<LibraryUserModel> AddLibraryUserAsync(string username, int libraryId);
     Task<LibraryModel?> DeleteLibraryAsync(int libraryId);
     Task<LibraryModel?> GetLibraryAsync(int libraryId);
+    Task<LibraryUserModel?> DeleteLibraryUserAsync(int libraryUserId);
 }

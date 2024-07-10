@@ -6,6 +6,7 @@ import { LibraryService } from '../services/library.service';
 import { Subscription } from 'rxjs';
 import { MatCardModule } from '@angular/material/card';
 import { LibraryUsersComponent } from "../library-users/library-users.component";
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-view-library',
@@ -36,7 +37,7 @@ export class ViewLibraryComponent implements OnInit, OnDestroy {
           next: (data) => {
             this.library = data;
           },
-          error: (error) => {
+          error: (error: HttpErrorResponse) => {
             if(error.status === 404) {
               this.loadError = true;
             }

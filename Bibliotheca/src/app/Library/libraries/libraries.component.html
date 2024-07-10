@@ -13,7 +13,7 @@
     </div>
 </form>
 <div class="row mt-2" *ngFor="let library of libraries | async">
-    <mat-expansion-panel>
+    <mat-expansion-panel expanded="true">
         <mat-expansion-panel-header>
             <mat-panel-title>{{library.name}}</mat-panel-title>
             <mat-panel-description> Id: {{library.id}} - Create Date: {{library.createDate | date}}</mat-panel-description>

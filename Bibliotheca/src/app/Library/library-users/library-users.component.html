@@ -24,11 +24,6 @@
                 (click)="add(emailInput.value)"><mat-icon>add</mat-icon></button>
         </span>
     </div>
-    <!-- </mat-list-item>
-        <mat-list-item *ngIf="errorMessage != ''">
-            <mat-error>{{errorMessage}}</mat-error>
-        </mat-list-item>
-    </mat-list> -->
     <div>
         <mat-error *ngIf="errorMessage != ''">{{errorMessage}}</mat-error>
     </div>

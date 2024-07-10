@@ -31,6 +31,6 @@ export class LibraryService {
   }
 
   public getLibraryUsers(libraryId: number): Observable<ILibraryUser[]> {
-    return this.httpClient.get<ILibraryUser[]>(`${AppConfig.LibraryApi}/${libraryId}/GetLibraryUser`);
+    return this.httpClient.get<ILibraryUser[]>(`${AppConfig.LibraryApi}/${libraryId}/GetLibraryUsers`);
   }
 }

@@ -1,18 +1,20 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { AfterContentInit, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ILibrary } from '../interfaces/ilibrary';
 import { ActivatedRoute } from '@angular/router';
 import { LibraryService } from '../services/library.service';
 import { Subscription } from 'rxjs';
 import { MatCardModule } from '@angular/material/card';
+import { LibraryUsersComponent } from "../library-users/library-users.component";
 
 @Component({
   selector: 'app-view-library',
   standalone: true,
   imports: [
     CommonModule,
-    MatCardModule
-  ],
+    MatCardModule,
+    LibraryUsersComponent
+],
   templateUrl: './view-library.component.html',
   styleUrl: './view-library.component.css'
 })
@@ -23,7 +25,7 @@ export class ViewLibraryComponent implements OnInit, OnDestroy {
   constructor(
     private readonly route: ActivatedRoute,
     private readonly libraryService: LibraryService
-  ) {  }
+  ) { }
 
   ngOnInit(): void {
     const libraryId = this.route.snapshot.params['id'];

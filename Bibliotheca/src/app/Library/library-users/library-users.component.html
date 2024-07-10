@@ -1,0 +1,8 @@
+<div class="row justify-content-center">Library Users</div>
+
+<div class="row">
+    <div *ngFor="let libraryUser of libraryUsers | async">
+        <span>{{libraryUser.username}}</span>
+        <span *ngIf="libraryUser.name !== ''"> - {{libraryUser.name}}</span>
+    </div>
+</div>

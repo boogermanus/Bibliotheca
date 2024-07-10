@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ILibrary } from '../interfaces/ilibrary';
 import { AppConfig } from '../../config';
+import { ILibraryUser } from '../interfaces/ilibrary-user';
 
 @Injectable({
   providedIn: 'root'
@@ -27,5 +28,9 @@ export class LibraryService {
 
   public getLibrary(libraryId: number): Observable<ILibrary> {
     return this.httpClient.get<ILibrary>(`${AppConfig.LibraryApi}/${libraryId}`);
+  }
+
+  public getLibraryUsers(libraryId: number): Observable<ILibraryUser[]> {
+    return this.httpClient.get<ILibraryUser[]>(`${AppConfig.LibraryApi}/${libraryId}/GetLibraryUser`);
   }
 }

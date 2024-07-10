@@ -1,6 +1,5 @@
-import { OnInit, signal } from "@angular/core";
+import { signal } from "@angular/core";
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from "@angular/forms";
-import { Router } from "@angular/router";
 import { Subscription } from "rxjs";
 
 export class BaseAuthComponent {

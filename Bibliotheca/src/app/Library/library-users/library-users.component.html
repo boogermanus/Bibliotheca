@@ -1,8 +1,29 @@
 <div class="row justify-content-center">Library Users</div>
-
 <div class="row">
-    <div *ngFor="let libraryUser of libraryUsers | async">
-        <span>{{libraryUser.username}}</span>
-        <span *ngIf="libraryUser.name !== ''"> - {{libraryUser.name}}</span>
-    </div>
+    <mat-list>
+        <mat-list-item *ngFor="let libraryUser of libraryUsers | async">
+            <div>
+                <span>{{libraryUser.username}}</span>
+                <span *ngIf="libraryUser.name !== ''"> - {{libraryUser.name}}</span>
+                <span style="float: right"><button mat-icon-button><mat-icon>delete</mat-icon></button></span>
+            </div>
+        </mat-list-item>
+    </mat-list>
+</div>
+<div class="row">
+    <mat-list>
+        <mat-list-item>
+            <div>
+                <span>
+                    <mat-form-field style="width: 65%">
+                        <mat-label>Email Address</mat-label>
+                        <input matInput type="email" placeholder="name@name.com">
+                    </mat-form-field>
+                </span>
+                <span style="float: right">
+                    <button mat-icon-button><mat-icon>add</mat-icon></button>
+                </span>
+            </div>
+        </mat-list-item>
+    </mat-list>
 </div>

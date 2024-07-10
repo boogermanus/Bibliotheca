@@ -11,6 +11,7 @@ import { Observable, Subscription } from 'rxjs';
 import { ILibrary } from '../interfaces/ilibrary';
 import { CommonModule } from '@angular/common';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-libraries',
@@ -37,7 +38,8 @@ export class LibrariesComponent implements OnInit, OnDestroy {
 
   constructor(
     private readonly formBuilder: FormBuilder,
-    private readonly libraryService: LibraryService
+    private readonly libraryService: LibraryService,
+    private readonly router: Router
   ) {
     this.form = this.formBuilder.group({
       libraryName: this.libraryName
@@ -70,5 +72,9 @@ export class LibrariesComponent implements OnInit, OnDestroy {
             this.libraries = this.libraryService.getLibrariesForUser()
           }
         }));
+  }
+
+  public view(libraryId: number): void {
+    this.router.navigate(['/library',libraryId]);
   }
 }

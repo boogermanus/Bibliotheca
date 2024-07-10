@@ -19,6 +19,9 @@
             <mat-panel-description> Id: {{library.id}} - Create Date: {{library.createDate | date}}</mat-panel-description>
         </mat-expansion-panel-header>
         <mat-action-row>
+            <button mat-icon-button matTooltip="View" matTooltipPosition="left" (click)="view(library.id)">
+                <mat-icon>folder_open</mat-icon>
+            </button>
             <button mat-icon-button matTooltip="Delete" matTooltipPosition="left" (click)="delete(library.id)">
                 <mat-icon>delete</mat-icon>
             </button>

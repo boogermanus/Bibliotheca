@@ -3,7 +3,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInput } from '@angular/material/input';
+import { MatInputModule } from '@angular/material/input';
 import { BaseAuthComponent } from '../base-auth.component';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
@@ -16,7 +16,7 @@ import { IAuthResponse } from '../interfaces/iauth-response';
   imports: [
     CommonModule,
     MatFormFieldModule,
-    MatInput,
+    MatInputModule,
     MatButtonModule,
     ReactiveFormsModule
   ],

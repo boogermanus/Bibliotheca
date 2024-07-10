@@ -65,7 +65,7 @@ public class LibraryService : ILibraryService
     public async Task<LibraryModel?> GetLibraryAsync(int libraryId)
     {
         var library = await _libraryRepository.GetAsync(libraryId);
-        return library.ToApiModel();
+        return library?.ToApiModel();
     }
     
 }

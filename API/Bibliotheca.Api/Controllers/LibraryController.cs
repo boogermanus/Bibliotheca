@@ -61,6 +61,11 @@ public class LibraryController : ControllerBase
     [HttpGet("{id:int}")]
     public async Task<IActionResult> GetLibrary(int id) 
     {
-        return Ok(await _libraryService.GetLibraryAsync(id));
+        var library = await _libraryService.GetLibraryAsync(id);
+
+        if(library == null)
+            return NotFound();
+
+        return Ok(library);
     }
 }

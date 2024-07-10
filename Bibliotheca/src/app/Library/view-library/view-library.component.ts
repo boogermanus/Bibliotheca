@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { AfterContentInit, Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ILibrary } from '../interfaces/ilibrary';
 import { ActivatedRoute } from '@angular/router';
 import { LibraryService } from '../services/library.service';
@@ -21,6 +21,7 @@ import { LibraryUsersComponent } from "../library-users/library-users.component"
 export class ViewLibraryComponent implements OnInit, OnDestroy {
   public library: ILibrary = {id: 0, name: '', createDate: new Date()}
   private subscriptions: Subscription = new Subscription();
+  public loadError: boolean = false;
 
   constructor(
     private readonly route: ActivatedRoute,
@@ -34,6 +35,11 @@ export class ViewLibraryComponent implements OnInit, OnDestroy {
         .subscribe({
           next: (data) => {
             this.library = data;
+          },
+          error: (error) => {
+            if(error.status === 404) {
+              this.loadError = true;
+            }
           }
         }));
   }

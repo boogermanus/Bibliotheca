@@ -7,6 +7,7 @@ import { Subscription } from 'rxjs';
 import { MatCardModule } from '@angular/material/card';
 import { LibraryUsersComponent } from "../library-users/library-users.component";
 import { HttpErrorResponse } from '@angular/common/http';
+import { LibraryBookshelvesComponent } from "../library-bookshelves/library-bookshelves.component";
 
 @Component({
   selector: 'app-view-library',
@@ -14,7 +15,8 @@ import { HttpErrorResponse } from '@angular/common/http';
   imports: [
     CommonModule,
     MatCardModule,
-    LibraryUsersComponent
+    LibraryUsersComponent,
+    LibraryBookshelvesComponent
 ],
   templateUrl: './view-library.component.html',
   styleUrl: './view-library.component.css'

@@ -1,5 +1,6 @@
 export interface ILibraryUser {
-    name: string;
+    id?: number;
     username: string;
-    id: number;
+    libraryId: number;
+    name?: string;
 }

@@ -37,11 +37,11 @@ public class LibraryController : ControllerBase
     }
 
     [HttpPost("AddLibraryUser")]
-    public async Task<IActionResult> AddLibraryUser([FromQuery]string email, [FromQuery]int libraryId)
+    public async Task<IActionResult> AddLibraryUser(LibraryUserModel model)
     {
         try
         {
-            var user = await _libraryService.AddLibraryUserAsync(email,libraryId);
+            var user = await _libraryService.AddLibraryUserAsync(model);
             return Ok(user);
         }
         catch(Exception e)

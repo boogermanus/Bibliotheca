@@ -49,8 +49,9 @@ export class LibraryUsersComponent implements OnInit, OnDestroy {
   }
 
   public add(username: string): void {
+    let libraryUser: ILibraryUser = {username,libraryId: this.libraryId}
     this.subscriptions.add(
-      this.libraryService.addLibraryUser(username,this.libraryId)
+      this.libraryService.addLibraryUser(libraryUser)
         .subscribe({
           next: () => {
             this.libraryUsers = this.libraryService.getLibraryUsers(this.libraryId);

@@ -17,7 +17,7 @@ public class LibraryBookshelfService : ILibraryBookshelfService
     {
         var found = await _libraryBookshelfRepository.GetBookshelfByNameAndLibraryAsync(model.Name, model.LibraryId);
 
-        if(found != null)
+        if(found != null && found.Name.ToLower() == model.Name.ToLower())
             throw new Exception("Bookshelf already exists in library.");
 
         var newBookshelf = await _libraryBookshelfRepository.AddAsync(model.ToDomainModel());

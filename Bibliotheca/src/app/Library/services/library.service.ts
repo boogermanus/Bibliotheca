@@ -35,12 +35,8 @@ export class LibraryService {
     return this.httpClient.get<ILibraryUser[]>(`${AppConfig.LibraryApi}/${libraryId}/GetLibraryUsers`);
   }
 
-  public addLibraryUser(username: string, libraryid: number): Observable<ILibraryUser> {
-    const params = new HttpParams()
-      .append('email', username)
-      .append('libraryId', libraryid);
-
-      return this.httpClient.post<ILibraryUser>(`${AppConfig.LibraryApi}/AddLibraryUser`, null ,{params});
+  public addLibraryUser(libraryUser: ILibraryUser): Observable<ILibraryUser> {
+      return this.httpClient.post<ILibraryUser>(`${AppConfig.LibraryApi}/AddLibraryUser`,libraryUser);
   }
 
   public deleteLibraryUser(libraryUserId: number): Observable<ILibraryUser> {

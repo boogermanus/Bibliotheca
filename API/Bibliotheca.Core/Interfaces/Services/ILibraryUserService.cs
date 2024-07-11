@@ -6,7 +6,6 @@ namespace Bibliotheca.Core.Interfaces.Services;
 public interface ILibraryUserService
 {
     Task<IEnumerable<LibraryUserModel>> GetLibraryUsersAsync(int libraryId);
-    Task<LibraryUserModel> AddLibraryUserAsync(string username, int libraryId);
     Task<LibraryUserModel?> DeleteLibraryUserAsync(int libraryUserId);
-    Task<LibraryUserModel> AddLibraryUserAsync(LibraryUser libraryUser);
+    Task<LibraryUserModel> AddLibraryUserAsync(LibraryUserModel model);
 }

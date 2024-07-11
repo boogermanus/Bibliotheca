@@ -17,22 +17,23 @@ public class LibraryUserService : ILibraryUserService
         _userManager = userManager;
     }
     
-    public async Task<LibraryUserModel> AddLibraryUserAsync(string username, int libraryId)
+    public async Task<LibraryUserModel> AddLibraryUserAsync(LibraryUserModel model)
     {
-        var existingUser = await _userManager.FindByNameAsync(username);
+        var existingUser = await _userManager.FindByNameAsync(model.Username);
 
         if (existingUser == null)
-            throw new Exception($"User {username} is not registered.");
+            throw new Exception($"User {model.Username} is not registered.");
 
-        var existingLibraryUser = await _libraryUserRepository.GetLibraryUserByLibraryAndUserAsync(existingUser.Id, libraryId);
+        var existingLibraryUser = 
+            await _libraryUserRepository.GetLibraryUserByLibraryAndUserAsync(existingUser.Id, model.LibraryId);
 
         if (existingLibraryUser != null)
-            throw new Exception($"User {username} already exists in library.");
+            throw new Exception($"User {model.Username} already exists in library.");
 
         var newLibraryUser = await _libraryUserRepository.AddAsync(new LibraryUser
         {
             UserId = existingUser.Id,
-            LibraryId = libraryId
+            LibraryId = model.LibraryId
         });
 
         return newLibraryUser.ToApiModel();

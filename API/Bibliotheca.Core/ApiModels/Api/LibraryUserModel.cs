@@ -5,7 +5,7 @@ namespace Bibliotheca.Core.ApiModels.Api;
 public class LibraryUserModel
 {
     public int Id { get; set; }
-    public required string UserId { get; set; }
+    public string UserId { get; set; } = string.Empty;
     public required int LibraryId { get; set; }
     public string Username { get; set; } = string.Empty;
     public string Name { get; set; } = string.Empty;

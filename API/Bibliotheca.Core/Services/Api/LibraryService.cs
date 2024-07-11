@@ -33,7 +33,7 @@ public class LibraryService : ILibraryService
         var newLibrary = model.ToDomainModel();
         newLibrary = await _libraryRepository.AddAsync(newLibrary);
 
-        var libraryUser = new LibraryUser
+        var libraryUser = new LibraryUserModel
         {
             UserId = _userService.CurrentUserId,
             LibraryId = newLibrary.Id
@@ -63,9 +63,9 @@ public class LibraryService : ILibraryService
         return libraryUsers;
     }
 
-    public async Task<LibraryUserModel> AddLibraryUserAsync(string username, int libraryId)
+    public async Task<LibraryUserModel> AddLibraryUserAsync(LibraryUserModel model)
     {
-        var newLibraryUser = await _libraryUserService.AddLibraryUserAsync(username, libraryId);
+        var newLibraryUser = await _libraryUserService.AddLibraryUserAsync(model);
         return newLibraryUser;
     }
     public async Task<LibraryModel?> GetLibraryAsync(int libraryId)

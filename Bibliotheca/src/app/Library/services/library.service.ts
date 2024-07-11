@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { ILibrary } from '../interfaces/ilibrary';
 import { AppConfig } from '../../config';
 import { ILibraryUser } from '../interfaces/ilibrary-user';
+import { ILibraryBookshelf } from '../interfaces/ilibrary-bookshelf';
 
 @Injectable({
   providedIn: 'root'
@@ -43,6 +44,10 @@ export class LibraryService {
   }
 
   public deleteLibraryUser(libraryUserId: number): Observable<ILibraryUser> {
-    return this.httpClient.delete<ILibraryUser>(`${AppConfig.LibraryApi}/DeleteLibraryUser/${libraryUserId}`)
+    return this.httpClient.delete<ILibraryUser>(`${AppConfig.LibraryApi}/DeleteLibraryUser/${libraryUserId}`);
+  }
+
+  public getLibraryBookshelves(libraryId: number): Observable<ILibraryBookshelf[]> {
+    return this.httpClient.get<ILibraryBookshelf[]>(`${AppConfig.LibraryApi}/${libraryId}/GetLibraryBookshelves`);
   }
 }

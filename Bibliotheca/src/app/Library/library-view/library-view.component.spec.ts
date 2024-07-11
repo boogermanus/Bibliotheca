@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ViewLibraryComponent } from './view-library.component';
+import { LibraryViewComponent } from './library-view.component';
 
-describe('ViewLibraryComponent', () => {
-  let component: ViewLibraryComponent;
-  let fixture: ComponentFixture<ViewLibraryComponent>;
+describe('LibraryViewComponent', () => {
+  let component: LibraryViewComponent;
+  let fixture: ComponentFixture<LibraryViewComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ViewLibraryComponent]
+      imports: [LibraryViewComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ViewLibraryComponent);
+    fixture = TestBed.createComponent(LibraryViewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

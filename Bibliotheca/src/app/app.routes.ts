@@ -5,7 +5,7 @@ import { HomeComponent } from './home/home.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LibrariesComponent } from './library/libraries/libraries.component';
 import { authGuard } from './guards/auth.guard';
-import { ViewLibraryComponent } from './library/view-library/view-library.component';
+import { LibraryViewComponent } from './library/library-view/library-view.component';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -13,6 +13,6 @@ export const routes: Routes = [
     { path: 'register', component: RegisterComponent },
     { path: 'dashboard', component: DashboardComponent, canActivate: [authGuard] },
     { path: 'libraries', component: LibrariesComponent, canActivate: [authGuard] },
-    { path: 'library/:id', component: ViewLibraryComponent, canActivate: [authGuard] },
+    { path: 'library/:id', component: LibraryViewComponent, canActivate: [authGuard] },
     { path: '**', component: HomeComponent, pathMatch: 'full', redirectTo: '' }
 ];

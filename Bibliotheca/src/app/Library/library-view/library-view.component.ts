@@ -1,27 +1,27 @@
-import { CommonModule } from '@angular/common';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ILibrary } from '../interfaces/ilibrary';
+import { Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { LibraryService } from '../services/library.service';
-import { Subscription } from 'rxjs';
-import { MatCardModule } from '@angular/material/card';
-import { LibraryUsersComponent } from "../library-users/library-users.component";
 import { HttpErrorResponse } from '@angular/common/http';
-import { LibraryBookshelvesComponent } from "../library-bookshelves/library-bookshelves.component";
+import { CommonModule } from '@angular/common';
+import { MatCardModule } from '@angular/material/card';
+import { LibraryUsersComponent } from '../library-users/library-users.component';
+import { LibraryBookshelvesComponent } from '../library-bookshelves/library-bookshelves.component';
 
 @Component({
-  selector: 'app-view-library',
+  selector: 'app-library-view',
   standalone: true,
   imports: [
     CommonModule,
     MatCardModule,
     LibraryUsersComponent,
     LibraryBookshelvesComponent
-],
-  templateUrl: './view-library.component.html',
-  styleUrl: './view-library.component.css'
+  ],
+  templateUrl: './library-view.component.html',
+  styleUrl: './library-view.component.css'
 })
-export class ViewLibraryComponent implements OnInit, OnDestroy {
+export class LibraryViewComponent {
   public library: ILibrary = {id: 0, name: '', createDate: new Date()}
   private subscriptions: Subscription = new Subscription();
   public loadError: boolean = false;

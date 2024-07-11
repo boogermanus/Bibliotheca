@@ -45,7 +45,6 @@ public class LibraryUserService : ILibraryUserService
         });
 
         return newLibraryUser.ToApiModel();
-
     }
 
     public async Task<LibraryUserModel> AddLibraryUserAsync(LibraryUser libraryUser)

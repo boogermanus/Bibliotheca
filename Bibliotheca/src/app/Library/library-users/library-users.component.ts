@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { LibraryService } from '../services/library.service';
 import { Observable, Subscription } from 'rxjs';
 import { ILibraryUser } from '../interfaces/ilibrary-user';
@@ -32,6 +32,7 @@ export class LibraryUsersComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription = new Subscription();
   public libraryId: number = 0;
   public errorMessage: string = '';
+  @ViewChild('emailInput')emailInput: ElementRef
 
   constructor(
     private readonly libraryService: LibraryService,
@@ -53,6 +54,7 @@ export class LibraryUsersComponent implements OnInit, OnDestroy {
         .subscribe({
           next: () => {
             this.libraryUsers = this.libraryService.getLibraryUsers(this.libraryId);
+            this.emailInput.nativeElement.value = ''
             this.errorMessage = '';
           },
           error: (error: HttpErrorResponse) => {

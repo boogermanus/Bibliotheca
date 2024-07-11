@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { MatListModule } from '@angular/material/list';
 import { ActivatedRoute } from '@angular/router';
 import { LibraryService } from '../services/library.service';
@@ -30,6 +30,8 @@ export class LibraryBookshelvesComponent implements OnInit, OnDestroy {
   public libraryBookshelvels: Observable<ILibraryBookshelf[]>;
   public subscriptions: Subscription = new Subscription();
   public errorMessage: string = '';
+  @ViewChild('bookshelfInput')bookshelfInput: ElementRef;
+  @ViewChild('rowInput')rowInput: ElementRef;
 
   constructor(
     private readonly route: ActivatedRoute,
@@ -53,6 +55,9 @@ export class LibraryBookshelvesComponent implements OnInit, OnDestroy {
       .subscribe({
         next: () => {
           this.libraryBookshelvels = this.libraryService.getLibraryBookshelves(this.libraryId);
+          this.bookshelfInput.nativeElement.value = ''
+          this.rowInput.nativeElement.value = ''
+          this.errorMessage = ''
         },
         error: (error: HttpErrorResponse) => {
           this.errorMessage = error.error;

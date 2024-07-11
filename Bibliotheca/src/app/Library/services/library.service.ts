@@ -50,4 +50,12 @@ export class LibraryService {
   public getLibraryBookshelves(libraryId: number): Observable<ILibraryBookshelf[]> {
     return this.httpClient.get<ILibraryBookshelf[]>(`${AppConfig.LibraryApi}/${libraryId}/GetLibraryBookshelves`);
   }
+
+  public addLibraryBookshelf(bookshelf: ILibraryBookshelf): Observable<ILibraryBookshelf> {
+    return this.httpClient.post<ILibraryBookshelf>(`${AppConfig.LibraryApi}/AddLibraryBookshelf`, bookshelf);
+  }
+
+  public deleteLibraryBookshelf(bookshelfId: number): Observable<ILibraryBookshelf> {
+    return this.httpClient.delete<ILibraryBookshelf>(`${AppConfig.LibraryApi}/DeleteLibraryBookshelf/${bookshelfId}`);
+  }
 }

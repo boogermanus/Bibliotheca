@@ -31,7 +31,6 @@ export class LibraryUsersComponent implements OnInit, OnDestroy {
   public libraryUsers: Observable<ILibraryUser[]>
   private subscriptions: Subscription = new Subscription();
   public libraryId: number = 0;
-  public hasError: boolean = false;
   public errorMessage: string = '';
 
   constructor(

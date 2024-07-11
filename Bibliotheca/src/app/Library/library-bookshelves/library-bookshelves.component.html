@@ -4,7 +4,7 @@
         <mat-list-item *ngFor="let bookshelf of libraryBookshelvels | async">
             <span>{{bookshelf.name}} - {{bookshelf.numberOfRows}} rows</span>
             <span style="float: right">
-                <button mat-icon-button matTooltip="Delete" matTooltipPosition="left">
+                <button mat-icon-button matTooltip="Delete" matTooltipPosition="left" (click)="delete(bookshelf.id)">
                     <mat-icon>delete</mat-icon>
                 </button>
             </span>
@@ -22,13 +22,17 @@
         <span class="ms-2">
             <mat-form-field style="width: 15%">
                 <mat-label>Rows</mat-label>
-                <input matInput type="number" min="1" max="50" value="1">
+                <input matInput type="number" min="1" max="50" value="1" #rowInput>
             </mat-form-field>
         </span>
         <span style="float: right">
-            <button mat-icon-button [disabled]="bookshelfInput.value == ''" matTooltip="Add" matTooltipPosition="left">
+            <button mat-icon-button [disabled]="bookshelfInput.value == ''" matTooltip="Add" matTooltipPosition="left"
+                (click)="add(bookshelfInput.value, +rowInput.value)">
                 <mat-icon>add</mat-icon>
             </button>
         </span>
+    </div>
+    <div>
+        <mat-error *ngIf="errorMessage != ''">{{errorMessage}}</mat-error>
     </div>
 </div>

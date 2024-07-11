@@ -66,20 +66,6 @@ export class LibrariesComponent implements OnInit, OnDestroy {
         }));
   }
 
-  public delete(libraryId: number): void {
-    this.subscriptions.add(
-      this.libraryService.deleteLibrary(libraryId)
-        .subscribe({
-          next: () => {
-            this.libraries = this.libraryService.getLibrariesForUser()
-          }
-        }));
-  }
-
-  public view(libraryId: number): void {
-    this.router.navigate(['/library',libraryId]);
-  }
-
   public libraryDeleted(): void {
 
     this.libraries = this.libraryService.getLibrariesForUser()

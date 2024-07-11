@@ -14,7 +14,9 @@ public class Book : IEntity
     public required string Subject { get; set; }
     [MaxLength(100)]
     public required string Format { get; set; }
+    [MaxLength(13)]
     public required string Isbn13 { get; set; }
+    [MaxLength(10)]
     public required string Isbn10 { get; set; }
     public required int NumberOfPages { get; set; }
     public required DateTime PublishDate { get; set; }

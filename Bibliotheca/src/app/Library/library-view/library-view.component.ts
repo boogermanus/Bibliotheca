@@ -1,13 +1,16 @@
 import { Component } from '@angular/core';
 import { ILibrary } from '../interfaces/ilibrary';
 import { Subscription } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { LibraryService } from '../services/library.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { LibraryUsersComponent } from '../library-users/library-users.component';
 import { LibraryBookshelvesComponent } from '../library-bookshelves/library-bookshelves.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-library-view',
@@ -16,7 +19,10 @@ import { LibraryBookshelvesComponent } from '../library-bookshelves/library-book
     CommonModule,
     MatCardModule,
     LibraryUsersComponent,
-    LibraryBookshelvesComponent
+    LibraryBookshelvesComponent,
+    MatButtonModule,
+    MatIconModule,
+    MatTooltipModule
   ],
   templateUrl: './library-view.component.html',
   styleUrl: './library-view.component.css'
@@ -28,7 +34,8 @@ export class LibraryViewComponent {
 
   constructor(
     private readonly route: ActivatedRoute,
-    private readonly libraryService: LibraryService
+    private readonly libraryService: LibraryService,
+    private readonly router: Router
   ) { }
 
   ngOnInit(): void {
@@ -49,5 +56,9 @@ export class LibraryViewComponent {
 
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
+  }
+
+  public back(): void {
+    this.router.navigate(['/libraries']);
   }
 }

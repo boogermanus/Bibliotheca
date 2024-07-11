@@ -19,6 +19,7 @@ public abstract class BaseOpenLibraryService<TEntity> where TEntity : class
         };
 
         _restClientOptions = new RestClientOptions(url);
+
         _restClient = new RestClient(_restClientOptions);
     }
 
@@ -26,7 +27,7 @@ public abstract class BaseOpenLibraryService<TEntity> where TEntity : class
     {
         var request = new RestRequest(path);
 
-        _headers.Keys.ToList().ForEach(key => request.AddHeader(key,_headers[key]));
+        _headers.Keys.ToList().ForEach(key => request.AddHeader(key, _headers[key]));
 
         return _restClient.GetAsync<TEntity>(request);
     }

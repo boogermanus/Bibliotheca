@@ -18,6 +18,8 @@
             <mat-panel-title>{{library.name}}</mat-panel-title>
             <mat-panel-description> Id: {{library.id}} - Create Date: {{library.createDate | date}}</mat-panel-description>
         </mat-expansion-panel-header>
+        <p>Users: {{library.libraryUsers.length}}</p>
+        <p>Bookshelves: {{library.libraryBookshelves.length}}</p>
         <mat-action-row>
             <button mat-icon-button matTooltip="View" matTooltipPosition="left" (click)="view(library.id)">
                 <mat-icon>folder_open</mat-icon>

@@ -18,6 +18,8 @@ public class LibraryRepository : BaseRepository<Library>, ILibraryRepository
                 (library, libraryUser) => new {library, libraryUser})
             .Where(l => l.libraryUser.UserId == userId)
             .Select(l => l.library)
+            .Include(l => l.LibraryUsers)
+            .Include(l => l.LibraryBookshelves)
             .ToListAsync();
 
         return libraries;            

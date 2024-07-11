@@ -1,11 +1,17 @@
 {
     "configurations": [
         {
-            "name": "C#: Bibliotheca.Api [http]",
+            "name": "Bibliotheca.Api",
             "type": "dotnet",
             "request": "launch",
             "projectPath": "${workspaceFolder}\\Bibliotheca.Api\\Bibliotheca.Api.csproj",
             "launchConfigurationId": "TargetFramework=;http"
+        },
+        {
+            "name": "Bibliotheca.Api Attach",
+            "type": "coreclr",
+            "request": "attach",
+            "processId":"${command:pickProcess}"
         }
     ]
 }

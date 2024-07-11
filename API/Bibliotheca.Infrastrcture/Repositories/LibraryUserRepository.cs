@@ -16,27 +16,9 @@ public class LibraryUserRepository : BaseRepository<LibraryUser>, ILibraryUserRe
             .ToListAsync();
     }
 
-    public async Task<LibraryUser> AddLibraryUserAsync(string username, int libraryId)
+    public async Task<LibraryUser?> GetLibraryUserByLibraryAndUserAsync(string userId, int libraryId)
     {
-        var existingUser = await DbContext.Users.FirstOrDefaultAsync(u => u.UserName == username);
-
-        if (existingUser == null)
-            throw new Exception($"User {username} is not registered.");
-
-        var existingLibraryUser = 
-            await Entities.FirstOrDefaultAsync(lu => lu.UserId == existingUser.Id && lu.LibraryId == libraryId);
-
-        if(existingLibraryUser != null)
-            throw new Exception($"User {username} already exists in library.");
-
-        var newLibraryUser = new LibraryUser
-        {
-            LibraryId = libraryId,
-            UserId = existingUser.Id
-        };
-
-        newLibraryUser = await AddAsync(newLibraryUser);
-
-        return newLibraryUser;
+        var existing = await Entities.FirstOrDefaultAsync(lu => lu.UserId == userId && lu.LibraryId == libraryId);
+        return existing;
     }
 }

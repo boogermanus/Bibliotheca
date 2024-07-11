@@ -11,18 +11,18 @@ namespace Bibliotheca.Core.Services.Api;
 public class LibraryService : ILibraryService
 {
     private readonly ILibraryRepository _libraryRepository;
-    private readonly ILibraryUserRepository _libraryUserRepository;
+    private readonly ILibraryUserService _libraryUserService;
     private readonly IUserService _userService;
 
     public LibraryService(
         ILibraryRepository libraryRepository,
-        ILibraryUserRepository libraryUserRepository,
+        ILibraryUserService libraryUserService,
         IUserService userService
         )
     {
         _libraryRepository = libraryRepository;
+        _libraryUserService = libraryUserService;
         _userService = userService;
-        _libraryUserRepository = libraryUserRepository;
     }
     public async Task<LibraryModel> AddLibraryAsync(LibraryModel model)
     {
@@ -35,7 +35,7 @@ public class LibraryService : ILibraryService
             LibraryId = newLibrary.Id
         };
 
-        await _libraryUserRepository.AddAsync(libraryUser);
+        await _libraryUserService.AddLibraryUserAsync(libraryUser);
 
         return newLibrary.ToApiModel();
     }
@@ -54,17 +54,15 @@ public class LibraryService : ILibraryService
 
     public async Task<IEnumerable<LibraryUserModel>> GetLibraryUsersAsync(int libraryId)
     {
-        var libraryUsers = await _libraryUserRepository.GetLibraryUsersByLibraryIdAsync(libraryId);
+        var libraryUsers = await _libraryUserService.GetLibraryUsersAsync(libraryId);
 
-        var models = libraryUsers.Select(lu => lu.ToApiModel()).ToList();
-
-        return models;
+        return libraryUsers;
     }
 
     public async Task<LibraryUserModel> AddLibraryUserAsync(string username, int libraryId)
     {
-        var newLibaryUser = await _libraryUserRepository.AddLibraryUserAsync(username, libraryId);
-        return newLibaryUser.ToApiModel();
+        var newLibraryUser = await _libraryUserService.AddLibraryUserAsync(username, libraryId);
+        return newLibraryUser;
     }
     public async Task<LibraryModel?> GetLibraryAsync(int libraryId)
     {
@@ -74,9 +72,9 @@ public class LibraryService : ILibraryService
 
     public async Task<LibraryUserModel?> DeleteLibraryUserAsync(int libraryUserId)
     {
-        var libaryUser = await _libraryUserRepository.DeleteAsync(libraryUserId);
+        var libaryUser = await _libraryUserService.DeleteLibraryUserAsync(libraryUserId);
 
-        return libaryUser?.ToApiModel();
+        return libaryUser;
     }
 
     public async Task<LibraryModel?> GetLibraryForUserAsync(int libraryId)

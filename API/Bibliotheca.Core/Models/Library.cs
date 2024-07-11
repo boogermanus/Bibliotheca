@@ -13,7 +13,8 @@ public class Library : IEntity
     [MaxLength(50)]
     public string Name { get; set; } = string.Empty;
     public DateTime CreateDate { get; set; }
-    public ICollection<LibraryUser>? LibraryUsers { get; set; }
+    public IEnumerable<LibraryUser>? LibraryUsers { get; set; }
+    public IEnumerable<LibraryBookshelf>? LibraryBookshelves { get; set; }
 
     public LibraryModel ToApiModel()
     {
@@ -22,6 +23,8 @@ public class Library : IEntity
             Id = Id,
             Name = Name,
             CreateDate = CreateDate,
+            LibraryUsers = LibraryUsers?.Select(lu => lu.ToApiModel()),
+            LibraryBookshelves = LibraryBookshelves?.Select(lb => lb.ToApiModel())
         };
     }
     

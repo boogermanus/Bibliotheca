@@ -20,8 +20,7 @@ public class LibraryRepository : BaseRepository<Library>, ILibraryRepository
             .Select(l => l.library)
             .ToListAsync();
 
-        return libraries;
-            
+        return libraries;            
     }
 
     public async Task<Library?> GetLibraryForUserIdAsync(int libraryId, string userId)

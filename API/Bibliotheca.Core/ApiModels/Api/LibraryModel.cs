@@ -9,6 +9,8 @@ public class LibraryModel
     [MaxLength(50)]
     public string Name {get; set;} = string.Empty;
     public DateTime? CreateDate { get; set; }
+    public IEnumerable<LibraryUserModel>? LibraryUsers { get; set; }
+    public IEnumerable<LibraryBookshelfModel>? LibraryBookshelves { get; set; }
 
     public Library ToDomainModel()
     {

@@ -1,0 +1,17 @@
+<mat-expansion-panel expanded="true">
+    <mat-expansion-panel-header>
+        <mat-panel-title>{{library.name}}</mat-panel-title>
+        <mat-panel-description> Id: {{library.id}} - Create Date: {{library.createDate | date}}</mat-panel-description>
+    </mat-expansion-panel-header>
+    <p>Users: {{library.libraryUsers.length}}</p>
+    <p>Bookshelves: {{library.libraryBookshelves.length}}</p>
+    <mat-action-row>
+        <button mat-icon-button matTooltip="View" matTooltipPosition="left" (click)="view()">
+            <mat-icon>folder_open</mat-icon>
+        </button>
+        <button mat-icon-button matTooltip="Delete" matTooltipPosition="left" (click)="delete()"
+            [disabled]="!canBeDeleted">
+            <mat-icon>delete</mat-icon>
+        </button>
+    </mat-action-row>
+</mat-expansion-panel>

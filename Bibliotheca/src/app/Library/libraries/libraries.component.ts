@@ -12,6 +12,7 @@ import { ILibrary } from '../interfaces/ilibrary';
 import { CommonModule } from '@angular/common';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { Router } from '@angular/router';
+import { LibraryDetailComponent } from "../library-detail/library-detail.component";
 
 @Component({
   selector: 'app-libraries',
@@ -25,8 +26,9 @@ import { Router } from '@angular/router';
     // MatListModule,
     ReactiveFormsModule,
     CommonModule,
-    MatExpansionModule
-  ],
+    MatExpansionModule,
+    LibraryDetailComponent
+],
   templateUrl: './libraries.component.html',
   styleUrl: './libraries.component.css'
 })
@@ -76,5 +78,10 @@ export class LibrariesComponent implements OnInit, OnDestroy {
 
   public view(libraryId: number): void {
     this.router.navigate(['/library',libraryId]);
+  }
+
+  public libraryDeleted(): void {
+
+    this.libraries = this.libraryService.getLibrariesForUser()
   }
 }

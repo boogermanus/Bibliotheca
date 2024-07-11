@@ -19,7 +19,15 @@ public class LibraryUserService : ILibraryUserService
     
     public async Task<LibraryUserModel> AddLibraryUserAsync(LibraryUserModel model)
     {
-        var existingUser = await _userManager.FindByNameAsync(model.Username);
+        User? existingUser = null;
+        if(!string.IsNullOrEmpty(model.Username)) 
+        {
+            existingUser = await _userManager.FindByNameAsync(model.Username);
+        }
+        else
+        {
+            existingUser = await _userManager.FindByIdAsync(model.UserId);
+        }
 
         if (existingUser == null)
             throw new Exception($"User {model.Username} is not registered.");

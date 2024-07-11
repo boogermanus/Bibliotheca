@@ -7,6 +7,7 @@ import { ILibrary } from '../interfaces/ilibrary';
 import { Subscription } from 'rxjs';
 import { LibraryService } from '../services/library.service';
 import { Router } from '@angular/router';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-library-detail',
@@ -15,7 +16,8 @@ import { Router } from '@angular/router';
     MatExpansionModule,
     MatIconModule,
     MatButtonModule,
-    CommonModule
+    CommonModule,
+    MatTooltipModule
   ],
   templateUrl: './library-detail.component.html',
   styleUrl: './library-detail.component.css'

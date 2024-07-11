@@ -1,3 +1,4 @@
+using Bibliotheca.Core.ApiModels;
 using Bibliotheca.Core.ApiModels.Api;
 using Bibliotheca.Core.Interfaces.Services;
 using Microsoft.AspNetCore.Authorization;
@@ -74,6 +75,34 @@ public class LibraryController : ControllerBase
     {
         var libraryUser = await _libraryService.DeleteLibraryUserAsync(id);
         return Ok(libraryUser);
+    }
+
+    [HttpPost("AddLibraryBookshelf")]
+    public async Task<IActionResult> AddLibraryBookshelf([FromBody]LibraryBookshelfModel model)
+    {
+        try
+        {
+            var bookshelf = await _libraryService.AddLibraryBookshelfAsync(model);
+            return Ok(bookshelf);
+        }
+        catch(Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+    }
+
+    [HttpDelete("DeleteLibraryBookshelf/{id:int}")]
+    public async Task<IActionResult> DeleteLibraryBookshelf(int id)
+    {
+        var deleted = await _libraryService.DeleteLibraryBookshelfAsync(id);
+        return Ok(deleted);
+    }
+
+    [HttpGet("{id:int}/GetLibraryBookshelves")]
+    public async Task<IActionResult> GetLibraryBookshelves(int id)
+    {
+        var bookshelvels = await _libraryService.GetBookshelvesForLibrary(id);
+        return Ok(bookshelvels);
     }
 
 }

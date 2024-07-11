@@ -1,4 +1,5 @@
 using System.Drawing;
+using Bibliotheca.Core.ApiModels;
 using Bibliotheca.Core.ApiModels.Api;
 using Bibliotheca.Core.Interfaces.Auth;
 using Bibliotheca.Core.Interfaces.Database.Repositories;
@@ -12,16 +13,19 @@ public class LibraryService : ILibraryService
 {
     private readonly ILibraryRepository _libraryRepository;
     private readonly ILibraryUserService _libraryUserService;
+    private readonly ILibraryBookshelfService _libraryBookshelfService;
     private readonly IUserService _userService;
 
     public LibraryService(
         ILibraryRepository libraryRepository,
         ILibraryUserService libraryUserService,
+        ILibraryBookshelfService libraryBookshelfService,
         IUserService userService
         )
     {
         _libraryRepository = libraryRepository;
         _libraryUserService = libraryUserService;
+        _libraryBookshelfService = libraryBookshelfService;
         _userService = userService;
     }
     public async Task<LibraryModel> AddLibraryAsync(LibraryModel model)
@@ -83,5 +87,22 @@ public class LibraryService : ILibraryService
 
         return library?.ToApiModel();
     }
-    
+
+    public async Task<LibraryBookshelfModel> AddLibraryBookshelfAsync(LibraryBookshelfModel libraryBookshelf)
+    {
+        var newBookShelf = await _libraryBookshelfService.AddLibraryBookshelfAsync(libraryBookshelf);
+        return newBookShelf;
+    }
+
+    public async Task<LibraryBookshelfModel?> DeleteLibraryBookshelfAsync(int bookshelfId)
+    {
+        var deletedBookshelf = await _libraryBookshelfService.DeleteLibraryBookshelfAsync(bookshelfId);
+        return deletedBookshelf;
+    }
+
+    public async Task<IEnumerable<LibraryBookshelfModel>> GetBookshelvesForLibrary(int libraryId)
+    {
+        var bookshelves = await _libraryBookshelfService.GetLibraryBookshelvesAsync(libraryId);
+        return bookshelves;
+    }
 }

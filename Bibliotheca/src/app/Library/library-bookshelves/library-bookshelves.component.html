@@ -26,8 +26,8 @@
             </mat-form-field>
         </span>
         <span style="float: right">
-            <button mat-icon-button [disabled]="bookshelfInput.value == '' || +(rowInput.value) <= 0" matTooltip="Add" matTooltipPosition="left"
-                (click)="add(bookshelfInput.value, +rowInput.value)">
+            <button mat-icon-button [disabled]="bookshelfInput.value == '' || +(rowInput.value) <= 0" matTooltip="Add"
+                matTooltipPosition="left" (click)="add(bookshelfInput.value, +rowInput.value)">
                 <mat-icon>add</mat-icon>
             </button>
         </span>

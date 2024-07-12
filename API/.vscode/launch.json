@@ -12,6 +12,12 @@
             "type": "coreclr",
             "request": "attach",
             "processId":"${command:pickProcess}"
-        }
+        },
+        {
+            "name": "Bibliotheca.Demo",
+            "type": "dotnet",
+            "request": "launch",
+            "projectPath": "${workspaceFolder}\\Bibliotheca.OpenLibrary.Demo\\Bibliotheca.OpenLibrary.Demo.csproj",
+        },
     ]
 }

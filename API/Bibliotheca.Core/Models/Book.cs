@@ -20,8 +20,10 @@ public class Book : IEntity
     public required string Isbn10 { get; set; }
     public required int NumberOfPages { get; set; }
     public required DateTime PublishDate { get; set; }
+    public string Description { get; set; } = string.Empty;
     public required int LibraryId { get; set; }
     public Library? Library { get; set; }
+    public required int Row { get; set; }
     public required int LibraryBookshelfId { get; set; }
     public LibraryBookshelf? LibraryBookshelf { get; set; }
 

@@ -12,5 +12,4 @@ export interface IBook {
     libraryId: number;
     libraryBookshelfId: number;
     row: number
-
 }

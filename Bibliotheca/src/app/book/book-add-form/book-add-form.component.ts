@@ -55,6 +55,7 @@ export class BookAddFormComponent implements OnInit {
   public bookshelfControl: FormControl = new FormControl('', Validators.required);
 
   public bookshelfRows: number = 0;
+  public formObject: any;
 
   constructor(
     private readonly formBuilder: FormBuilder,
@@ -94,7 +95,7 @@ export class BookAddFormComponent implements OnInit {
   }
 
   public submit(): void {
-
+    this.formObject = this.form.getRawValue();
   }
 
   public reset(): void {

@@ -1,3 +1,4 @@
+using Bibliotheca.Core.ApiModels.Api;
 using Bibliotheca.Core.Interfaces.Database.Repositories;
 using Bibliotheca.Core.Interfaces.Services;
 
@@ -10,5 +11,14 @@ public class BookService : IBookService
     public BookService(IBookRepository bookRepository)
     {
         _bookRepository = bookRepository;
+    }
+
+    public async Task<BookModel> AddBookAsync(BookModel model)
+    {
+        var domainModel = model.ToDomainModel();
+
+        var newBook = await _bookRepository.AddAsync(domainModel);
+
+        return newBook.ToApiModel();
     }
 }

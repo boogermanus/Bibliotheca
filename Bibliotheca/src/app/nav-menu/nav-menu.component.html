@@ -10,7 +10,7 @@
         }
         @if(isAuthenticated) {
         <button mat-menu-item (click)="libraries()">Libraries</button>
-        <button mat-menu-item>Books</button>
+        <button mat-menu-item (click)="books()">Books</button>
         <button mat-menu-item (click)="logout()">Logout</button>
         }
     </mat-menu>

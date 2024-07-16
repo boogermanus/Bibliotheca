@@ -47,4 +47,8 @@ export class NavMenuComponent {
     this.router.navigate(['/libraries'])
   }
 
+  public books(): void {
+    this.router.navigate(['/books']);
+  }
+
 }

@@ -40,8 +40,7 @@ export class LibrariesComponent implements OnInit, OnDestroy {
 
   constructor(
     private readonly formBuilder: FormBuilder,
-    private readonly libraryService: LibraryService,
-    private readonly router: Router
+    private readonly libraryService: LibraryService
   ) {
     this.form = this.formBuilder.group({
       libraryName: this.libraryName

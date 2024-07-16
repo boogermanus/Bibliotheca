@@ -3,7 +3,7 @@ import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } 
 import { MatCardModule } from '@angular/material/card';
 import { LibraryService } from '../../library/services/library.service';
 import { MatSelectChange, MatSelectModule } from '@angular/material/select';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { ILibrary } from '../../library/interfaces/ilibrary';
 import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -12,6 +12,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { ILibraryBookshelf } from '../../library/interfaces/ilibrary-bookshelf';
 import { MatButtonModule } from '@angular/material/button';
+import { BookService } from '../services/book.service';
+import { IBook } from '../interfaces/ibook';
 
 @Component({
   selector: 'app-book-add-form',
@@ -57,9 +59,12 @@ export class BookAddFormComponent implements OnInit {
   public bookshelfRows: number = 0;
   public formObject: any;
 
+  public subscriptions: Subscription = new Subscription();
+
   constructor(
     private readonly formBuilder: FormBuilder,
-    private readonly libraryService: LibraryService
+    private readonly libraryService: LibraryService,
+    private readonly bookService: BookService
   ) {
     this.form = this.formBuilder.group({
       title: this.titleControl,
@@ -95,16 +100,33 @@ export class BookAddFormComponent implements OnInit {
   }
 
   public submit(): void {
-    this.formObject = this.form.getRawValue();
+    // const newBook: IBook = {
+    //   title: this.titleControl.value,
+    //   author: this.authorControl.value,
+    //   subject: this.subjectControl.value,
+    //   format: this.formatControl.value,
+    //   isbn13: this.isbn13Control.value,
+    //   isbn10: this.isbn10Control.value,
+    //   numberOfPages: this.pagesControl.value,
+    //   publishDate: this.publishControl.value,
+    //   description: this.descControl.value,
+    //   libraryId: this.libraryControl.value,
+    //   libraryBookshelfId: this.bookshelfControl.value.id,
+    //   row: this.rowControl.value
+    // }
+
+    // this.subscriptions.add(this.bookService.addBook(newBook)
+    // .subscribe({
+    //   next: (book) => {
+    //     console.log(book);
+    //     this.reset();
+    //   }
+    // }))
   }
 
   public reset(): void {
     this.form.reset();
     this.form.markAsPristine();
     this.form.markAsUntouched();
-    this.pagesControl.setValue(1);
-    this.rowControl.setValue(1);
-    this.bookshelfControl.disable();
-    this.rowControl.disable();
   }
 }

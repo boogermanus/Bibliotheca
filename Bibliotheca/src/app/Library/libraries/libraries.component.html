@@ -1,3 +1,4 @@
+@if(libraries | async; as libraryData) {
 <form [formGroup]="form" (ngSubmit)="submit()">
     <div class="row">
         <div class="col-md-4">
@@ -8,11 +9,17 @@
         </div>
         <div class="col-md-2">
             <button type="submit" mat-fab matTooltip="Add Library" color="primary"
-                [disabled]="!form.valid"><mat-icon>add</mat-icon></button>
+                [disabled]="!form.valid || libraryData.length >= 3"><mat-icon>add</mat-icon></button>
         </div>
     </div>
-    <div class="row" [hidden]="errorMessage === ''"><mat-error>{{errorMessage}}</mat-error></div>
+    @if(libraryData.length >= 3) {
+        <div class="row">
+            <mat-error>Maximum of 3 libraries allowed.</mat-error>
+        </div>
+    }
 </form>
-<div class="row mt-2" *ngFor="let library of libraries | async">
+
+<div class="row mt-2" *ngFor="let library of libraryData">
     <app-library-detail [library]="library" (libraryDeleted)="libraryDeleted()"></app-library-detail>
 </div>
+}

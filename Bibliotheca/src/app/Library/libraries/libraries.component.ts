@@ -63,9 +63,9 @@ export class LibrariesComponent implements OnInit, OnDestroy {
         .subscribe({
           next: () => {
             this.libraries = this.libraryService.getLibrariesForUser();
-          },
-          error: (error: HttpErrorResponse) => {
-            this.errorMessage = error.error;
+            this.libraryName.setValue('');
+            this.form.markAsPristine();
+            this.form.markAsUntouched();
           }
         }));
   }

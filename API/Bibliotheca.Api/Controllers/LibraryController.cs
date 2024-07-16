@@ -20,16 +20,8 @@ public class LibraryController : ControllerBase
     [HttpPost("AddLibrary")]
     public async Task<IActionResult> AddLibrary([FromBody]LibraryModel model)
     {
-        try
-        {
-            var newLibrary = await _libraryService.AddLibraryAsync(model);
-            return Ok(newLibrary);
-        }
-        catch(Exception e)
-        {
-            return BadRequest(e.Message);
-        }
-
+        var newLibrary = await _libraryService.AddLibraryAsync(model);
+        return Ok(newLibrary);
     }
 
     [HttpGet("GetLibrariesForUser")]

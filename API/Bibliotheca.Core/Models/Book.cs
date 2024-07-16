@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Bibliotheca.Core.ApiModels.Api;
 using Bibliotheca.Core.Interfaces.Database;
 
@@ -6,6 +7,8 @@ namespace Bibliotheca.Core.Models;
 
 public class Book : IEntity
 {
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    [Key]
     public int Id { get; set; }
     [MaxLength(300)]
     public required string Title { get; set; }

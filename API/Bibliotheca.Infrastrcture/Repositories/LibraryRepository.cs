@@ -8,7 +8,7 @@ public class LibraryRepository : BaseRepository<Library>, ILibraryRepository
 {
     public LibraryRepository(AppDbContext context) : base(context) {}
     
-    public async Task<IEnumerable<Library>> GetLibrariesForUserIdAsync(string userId)
+    public async Task<IEnumerable<Library>> GetLibrariesForUserAsync(string userId)
     {
         var libraries = await DbContext.Libraries
             .Join(
@@ -25,7 +25,7 @@ public class LibraryRepository : BaseRepository<Library>, ILibraryRepository
         return libraries;            
     }
 
-    public async Task<Library?> GetLibraryForUserIdAsync(int libraryId, string userId)
+    public async Task<Library?> GetLibraryForUserAsync(int libraryId, string userId)
     {
         var library = await DbContext.Libraries
             .Join(

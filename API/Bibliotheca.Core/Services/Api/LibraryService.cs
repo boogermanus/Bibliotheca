@@ -52,7 +52,7 @@ public class LibraryService : ILibraryService
 
     public async Task<IEnumerable<LibraryModel>> GetLibrariesForUserAsync()
     {
-        var libraries = await _libraryRepository.GetLibrariesForUserIdAsync(_userService.CurrentUserId);
+        var libraries = await _libraryRepository.GetLibrariesForUserAsync(_userService.CurrentUserId);
         return libraries.Select(l => l.ToApiModel()).ToList();
     }
 
@@ -83,7 +83,7 @@ public class LibraryService : ILibraryService
 
     public async Task<LibraryModel?> GetLibraryForUserAsync(int libraryId)
     {
-        var library = await _libraryRepository.GetLibraryForUserIdAsync(libraryId, _userService.CurrentUserId);
+        var library = await _libraryRepository.GetLibraryForUserAsync(libraryId, _userService.CurrentUserId);
 
         return library?.ToApiModel();
     }

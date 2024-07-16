@@ -1,10 +1,9 @@
 using System.ComponentModel.DataAnnotations;
-using Bibliotheca.Core.ApiModels.Api;
-using Bibliotheca.Core.Interfaces.Database;
+using Bibliotheca.Core.Models;
 
-namespace Bibliotheca.Core.Models;
+namespace Bibliotheca.Core.ApiModels.Api;
 
-public class Book : IEntity
+public class BookModel
 {
     public int Id { get; set; }
     [MaxLength(300)]
@@ -23,14 +22,14 @@ public class Book : IEntity
     public required DateTime PublishDate { get; set; }
     public string Description { get; set; } = string.Empty;
     public required int LibraryId { get; set; }
-    public Library? Library { get; set; }
+    public LibraryModel? Library { get; set; }
     public required int LibraryBookshelfId { get; set; }
     public required int Row { get; set; }
-    public LibraryBookshelf? LibraryBookshelf { get; set; }
+    public LibraryBookshelfModel? LibraryBookshelf { get; set; }
 
-    public BookModel ToApiModel()
+    public Book ToDomainModel()
     {
-        return new BookModel
+        return new Book
         {
             Id = Id,
             Title = Title,
@@ -43,11 +42,8 @@ public class Book : IEntity
             PublishDate = PublishDate,
             Description = Description,
             LibraryId = LibraryId,
-            Library = Library?.ToApiModel(),
             Row = Row,
-            LibraryBookshelfId = LibraryBookshelfId,
-            LibraryBookshelf = LibraryBookshelf?.ToApiModel()
+            LibraryBookshelfId = LibraryBookshelfId
         };
     }
-
 }

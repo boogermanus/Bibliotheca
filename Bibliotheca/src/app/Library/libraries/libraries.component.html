@@ -11,6 +11,7 @@
                 [disabled]="!form.valid"><mat-icon>add</mat-icon></button>
         </div>
     </div>
+    <div class="row" [hidden]="errorMessage === ''"><mat-error>{{errorMessage}}</mat-error></div>
 </form>
 <div class="row mt-2" *ngFor="let library of libraries | async">
     <app-library-detail [library]="library" (libraryDeleted)="libraryDeleted()"></app-library-detail>

@@ -13,6 +13,7 @@ import { CommonModule } from '@angular/common';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { Router } from '@angular/router';
 import { LibraryDetailComponent } from "../library-detail/library-detail.component";
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-libraries',
@@ -37,6 +38,7 @@ export class LibrariesComponent implements OnInit, OnDestroy {
   public libraryName: FormControl = new FormControl('', Validators.required)
   public subscriptions: Subscription = new Subscription();
   public libraries: Observable<ILibrary[]>
+  public errorMessage: string = '';
 
   constructor(
     private readonly formBuilder: FormBuilder,
@@ -61,6 +63,9 @@ export class LibrariesComponent implements OnInit, OnDestroy {
         .subscribe({
           next: () => {
             this.libraries = this.libraryService.getLibrariesForUser();
+          },
+          error: (error: HttpErrorResponse) => {
+            this.errorMessage = error.error;
           }
         }));
   }

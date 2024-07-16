@@ -30,6 +30,12 @@ public class LibraryService : ILibraryService
     }
     public async Task<LibraryModel> AddLibraryAsync(LibraryModel model)
     {
+        var libraries = await _libraryRepository.GetLibrariesForUserAsync(_userService.CurrentUserId);
+
+        if(libraries.Count() >= 3)
+        {
+            throw new Exception("Maximum of 3 libraries allowed.");
+        }
         var newLibrary = model.ToDomainModel();
         newLibrary = await _libraryRepository.AddAsync(newLibrary);
 

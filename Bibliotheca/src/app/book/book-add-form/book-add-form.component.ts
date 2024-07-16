@@ -11,6 +11,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { ILibraryBookshelf } from '../../library/interfaces/ilibrary-bookshelf';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-book-add-form',
@@ -23,6 +24,7 @@ import { ILibraryBookshelf } from '../../library/interfaces/ilibrary-bookshelf';
     ReactiveFormsModule,
     MatInputModule,
     MatDatepickerModule,
+    MatButtonModule
   ],
   providers: [
     provideNativeDateAdapter()
@@ -89,5 +91,19 @@ export class BookAddFormComponent implements OnInit {
   bookshelfSelected(event: MatSelectChange): void {
     this.bookshelfRows = event.value.rows;
     this.rowControl.enable();
+  }
+
+  public submit(): void {
+
+  }
+
+  public reset(): void {
+    this.form.reset();
+    this.form.markAsPristine();
+    this.form.markAsUntouched();
+    this.pagesControl.setValue(1);
+    this.rowControl.setValue(1);
+    this.bookshelfControl.disable();
+    this.rowControl.disable();
   }
 }

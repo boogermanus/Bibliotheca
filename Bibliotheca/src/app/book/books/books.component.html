@@ -1,1 +1,12 @@
-<p>books works!</p>
+<div class="row">
+    <div class="col-md-2">
+        <button mat-fab matTooltip="Add Books" matTooltipPosition="right" color="primary" [mat-menu-trigger-for]="menu">
+            <mat-icon>add</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item>Manually</button>
+            <button mat-menu-item>By ISBN</button>
+            <button mat-menu-item>Scan ISBN</button>
+        </mat-menu>
+    </div>
+</div>

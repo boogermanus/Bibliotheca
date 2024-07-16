@@ -4,16 +4,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-// import { MatListModule } from '@angular/material/list';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { LibraryService } from '../services/library.service'
 import { Observable, Subscription } from 'rxjs';
 import { ILibrary } from '../interfaces/ilibrary';
 import { CommonModule } from '@angular/common';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { Router } from '@angular/router';
 import { LibraryDetailComponent } from "../library-detail/library-detail.component";
-import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-libraries',
@@ -24,7 +21,6 @@ import { HttpErrorResponse } from '@angular/common/http';
     MatButtonModule,
     MatIconModule,
     MatTooltipModule,
-    // MatListModule,
     ReactiveFormsModule,
     CommonModule,
     MatExpansionModule,

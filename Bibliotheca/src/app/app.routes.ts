@@ -6,7 +6,6 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { LibrariesComponent } from './library/libraries/libraries.component';
 import { authGuard } from './guards/auth.guard';
 import { LibraryViewComponent } from './library/library-view/library-view.component';
-import { Component } from '@angular/core';
 import { BooksComponent } from './book/books/books.component';
 import { BookAddFormComponent } from './book/book-add-form/book-add-form.component';
 

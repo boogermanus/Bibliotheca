@@ -100,33 +100,35 @@ export class BookAddFormComponent implements OnInit {
   }
 
   public submit(): void {
-    // const newBook: IBook = {
-    //   title: this.titleControl.value,
-    //   author: this.authorControl.value,
-    //   subject: this.subjectControl.value,
-    //   format: this.formatControl.value,
-    //   isbn13: this.isbn13Control.value,
-    //   isbn10: this.isbn10Control.value,
-    //   numberOfPages: this.pagesControl.value,
-    //   publishDate: this.publishControl.value,
-    //   description: this.descControl.value,
-    //   libraryId: this.libraryControl.value,
-    //   libraryBookshelfId: this.bookshelfControl.value.id,
-    //   row: this.rowControl.value
-    // }
+    const newBook: IBook = {
+      title: this.titleControl.value,
+      author: this.authorControl.value,
+      subject: this.subjectControl.value,
+      format: this.formatControl.value,
+      isbn13: this.isbn13Control.value,
+      isbn10: this.isbn10Control.value,
+      numberOfPages: this.pagesControl.value,
+      publishDate: this.publishControl.value,
+      description: this.descControl.value,
+      libraryId: this.libraryControl.value,
+      libraryBookshelfId: this.bookshelfControl.value.id,
+      row: this.rowControl.value
+    }
 
-    // this.subscriptions.add(this.bookService.addBook(newBook)
-    // .subscribe({
-    //   next: (book) => {
-    //     console.log(book);
-    //     this.reset();
-    //   }
-    // }))
+    this.subscriptions.add(this.bookService.addBook(newBook)
+    .subscribe({
+      next: (book) => {
+        console.log(book);
+        this.reset();
+      }
+    }))
   }
 
   public reset(): void {
-    this.form.reset();
-    this.form.markAsPristine();
-    this.form.markAsUntouched();
+    this.form.reset({
+      pages: 1,
+      row: 1
+    });
+    this.bookshelfControl.disable();
   }
 }

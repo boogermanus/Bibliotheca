@@ -52,6 +52,8 @@ export class BookAddFormComponent implements OnInit {
   public rowControl: FormControl = new FormControl(1, Validators.required);
   public bookshelfControl: FormControl = new FormControl('', Validators.required);
 
+  public bookshelfRows: number = 0;
+
   constructor(
     private readonly formBuilder: FormBuilder,
     private readonly libraryService: LibraryService
@@ -82,5 +84,10 @@ export class BookAddFormComponent implements OnInit {
   librarySelected(event: MatSelectChange): void {
     this.bookshelves = this.libraryService.getLibraryBookshelves(event.value);
     this.bookshelfControl.enable();
+  }
+
+  bookshelfSelected(event: MatSelectChange): void {
+    this.bookshelfRows = event.value.rows;
+    this.rowControl.enable();
   }
 }

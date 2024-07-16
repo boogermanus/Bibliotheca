@@ -85,9 +85,11 @@
                         <div class="col-md-6">
                             <mat-form-field class="mat-input-field">
                                 <mat-label>Bookshelf</mat-label>
-                                <mat-select [formControl]="bookshelfControl">
+                                <mat-select [formControl]="bookshelfControl"
+                                    (selectionChange)="bookshelfSelected($event)">
                                     <mat-option *ngFor="let bookshelf of bookshelves | async"
-                                        [value]="bookshelf.id">{{bookshelf.name}}</mat-option>
+                                        [value]="{id: bookshelf.id, rows: bookshelf.numberOfRows}">{{bookshelf.name}}
+                                    </mat-option>
                                 </mat-select>
                             </mat-form-field>
                         </div>
@@ -96,7 +98,7 @@
                         <div class="col-md-2">
                             <mat-form-field class="mat-input-field">
                                 <mat-label>Row</mat-label>
-                                <input matInput type="number" [formControl]="rowControl">
+                                <input matInput type="number" [formControl]="rowControl" min="1" [max]="bookshelfRows">
                             </mat-form-field>
                         </div>
                     </div>

@@ -8,6 +8,7 @@ import { authGuard } from './guards/auth.guard';
 import { LibraryViewComponent } from './library/library-view/library-view.component';
 import { Component } from '@angular/core';
 import { BooksComponent } from './book/books/books.component';
+import { BookAddFormComponent } from './book/book-add-form/book-add-form.component';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -17,5 +18,6 @@ export const routes: Routes = [
     { path: 'libraries', component: LibrariesComponent, canActivate: [authGuard] },
     { path: 'library/:id', component: LibraryViewComponent, canActivate: [authGuard] },
     { path: 'books', component: BooksComponent, canActivate: [authGuard] },
+    { path: 'book-add-form', component: BookAddFormComponent, canActivate: [authGuard] },
     { path: '**', component: HomeComponent, pathMatch: 'full', redirectTo: '' }
 ];

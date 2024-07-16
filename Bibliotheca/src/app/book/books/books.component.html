@@ -4,7 +4,7 @@
             <mat-icon>add</mat-icon>
         </button>
         <mat-menu #menu="matMenu">
-            <button mat-menu-item>Manually</button>
+            <button mat-menu-item (click)="bookAddForm()">Manually</button>
             <button mat-menu-item>By ISBN</button>
             <button mat-menu-item>Scan ISBN</button>
         </mat-menu>

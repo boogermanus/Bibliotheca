@@ -1,7 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 import { AuthService } from './auth.service';
 import { provideHttpClient } from '@angular/common/http';
-import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
 
 describe('AuthService', () => {
   let service: AuthService;
@@ -10,13 +11,13 @@ describe('AuthService', () => {
     TestBed.configureTestingModule({
       providers: [
         provideHttpClient(),
-        provideHttpClientTesting()
+        provideHttpClientTesting(),
+        { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
+        JwtHelperService
       ]
     });
     service = TestBed.inject(AuthService);
   });
-
-  const httpTesting = TestBed.inject(HttpTestingController);
 
   it('should be created', () => {
     expect(service).toBeTruthy();

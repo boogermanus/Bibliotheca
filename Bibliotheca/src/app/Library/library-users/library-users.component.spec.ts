@@ -1,6 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LibraryUsersComponent } from './library-users.component';
+import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { provideRouter } from '@angular/router';
+import { ILibrary } from '../interfaces/ilibrary';
 
 describe('LibraryUsersComponent', () => {
   let component: LibraryUsersComponent;
@@ -8,7 +13,13 @@ describe('LibraryUsersComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LibraryUsersComponent]
+      imports: [LibraryUsersComponent],
+      providers: [
+        provideHttpClient(),
+        provideHttpClientTesting(),
+        provideAnimations(),
+        provideRouter([])
+      ]
     })
     .compileComponents();
 

@@ -24,8 +24,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 })
 export class LibraryDetailComponent implements OnDestroy {
 
-  @Input()library: ILibrary
-  public subscriptions: Subscription = new Subscription()
+  @Input() library: ILibrary;
+  public subscriptions: Subscription = new Subscription();
   @Output()libraryDeleted: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   public get canBeDeleted(): boolean {

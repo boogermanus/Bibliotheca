@@ -11,6 +11,7 @@ public class LibraryModel
     public DateTime? CreateDate { get; set; }
     public IEnumerable<LibraryUserModel>? LibraryUsers { get; set; }
     public IEnumerable<LibraryBookshelfModel>? LibraryBookshelves { get; set; }
+    public int BookCount { get; set; }
 
     public Library ToDomainModel()
     {

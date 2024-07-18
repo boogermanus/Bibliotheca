@@ -40,4 +40,12 @@ public class LibraryRepository : BaseRepository<Library>, ILibraryRepository
 
         return library;
     }
+
+    public async Task<int> GetLibraryBookCountAsync(int libraryId)
+    {
+        var count = await DbContext.Books
+            .CountAsync(b => b.LibraryId == libraryId);
+
+        return count;
+    }
 }

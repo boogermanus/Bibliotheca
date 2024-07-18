@@ -1,4 +1,5 @@
 using System.Drawing;
+using System.Reflection.Metadata.Ecma335;
 using Bibliotheca.Core.ApiModels;
 using Bibliotheca.Core.ApiModels.Api;
 using Bibliotheca.Core.Interfaces.Auth;
@@ -71,7 +72,12 @@ public class LibraryService : ILibraryService
     public async Task<LibraryModel?> GetLibraryAsync(int libraryId)
     {
         var library = await _libraryRepository.GetAsync(libraryId);
-        return library?.ToApiModel();
+        var model = library?.ToApiModel();
+        if(model != null)
+        {
+            model.BookCount = await _libraryRepository.GetLibraryBookCountAsync(model?.Id ?? -1);
+        }
+        return model;
     }
 
     public async Task<LibraryUserModel?> DeleteLibraryUserAsync(int libraryUserId)
@@ -85,7 +91,14 @@ public class LibraryService : ILibraryService
     {
         var library = await _libraryRepository.GetLibraryForUserAsync(libraryId, _userService.CurrentUserId);
 
-        return library?.ToApiModel();
+        var model = library?.ToApiModel();
+
+        if(model != null)
+        {
+            model.BookCount = await _libraryRepository.GetLibraryBookCountAsync(model?.Id ?? -1);
+        }
+
+        return model;
     }
 
     public async Task<LibraryBookshelfModel> AddLibraryBookshelfAsync(LibraryBookshelfModel libraryBookshelf)

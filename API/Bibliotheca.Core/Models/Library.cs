@@ -15,6 +15,7 @@ public class Library : IEntity
     public DateTime CreateDate { get; set; }
     public IEnumerable<LibraryUser>? LibraryUsers { get; set; }
     public IEnumerable<LibraryBookshelf>? LibraryBookshelves { get; set; }
+    public IEnumerable<Book>? Books { get; set; }
 
     public LibraryModel ToApiModel()
     {

@@ -47,8 +47,10 @@ export class BookAddFormComponent implements OnInit {
     new FormControl('', Validators.compose([Validators.required, Validators.maxLength(100)]));
   public formatControl: FormControl =
     new FormControl('', Validators.compose([Validators.required, Validators.maxLength(100)]));
-  public isbn13Control: FormControl = new FormControl('', Validators.maxLength(13));
-  public isbn10Control: FormControl = new FormControl('', Validators.maxLength(10));
+  public isbn13Control: FormControl =
+    new FormControl('', Validators.compose([Validators.minLength(13), Validators.pattern('[0-9]*')]));
+  public isbn10Control: FormControl =
+    new FormControl('', Validators.compose([Validators.minLength(10), Validators.pattern('[0-9]*')]));
   public pagesControl: FormControl = new FormControl(1, Validators.compose([Validators.required, Validators.min(1)]));
   public publishControl: FormControl = new FormControl('', Validators.required);
   public descControl: FormControl = new FormControl('');
@@ -116,12 +118,11 @@ export class BookAddFormComponent implements OnInit {
     }
 
     this.subscriptions.add(this.bookService.addBook(newBook)
-    .subscribe({
-      next: (book) => {
-        console.log(book);
-        this.reset();
-      }
-    }))
+      .subscribe({
+        next: () => {
+          this.reset();
+        }
+      }))
   }
 
   public reset(): void {
@@ -130,9 +131,11 @@ export class BookAddFormComponent implements OnInit {
       row: 1
     });
     this.bookshelfControl.disable();
+    this.rowControl.disable();
+    this.subscriptions.unsubscribe();
   }
 
-  public isControlInvalid(control: AbstractControl, error: string = 'required') : boolean {
+  public isControlInvalid(control: AbstractControl, error: string = 'required'): boolean {
     return control.touched && control.hasError(error);
   }
 }

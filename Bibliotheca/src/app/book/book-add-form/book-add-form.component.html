@@ -56,6 +56,10 @@
                                 <mat-label>ISBN 13</mat-label>
                                 <input matInput type="text" [formControl]="isbn13Control" placeholder="isbn13">
                             </mat-form-field>
+                            <mat-error *ngIf="isControlInvalid(isbn13Control,'minlength')">ISBN 13 cannot be less than
+                                13 characters</mat-error>
+                            <mat-error *ngIf="isControlInvalid(isbn13Control,'pattern')">ISBN 13 must only contain
+                                numbers</mat-error>
                         </div>
                     </div>
                     <div class="row">
@@ -64,6 +68,10 @@
                                 <mat-label>ISBN 10</mat-label>
                                 <input matInput type="text" [formControl]="isbn10Control" placeholder="isbn10">
                             </mat-form-field>
+                            <mat-error *ngIf="isControlInvalid(isbn10Control,'minlength')">ISBN 10 cannot be less than
+                                13 characters</mat-error>
+                            <mat-error *ngIf="isControlInvalid(isbn10Control,'pattern')">ISBN 10 must only contain
+                                numbers</mat-error>
                         </div>
                     </div>
                     <div class="row">
@@ -72,6 +80,9 @@
                                 <mat-label>Number of Pages</mat-label>
                                 <input matInput type="number" [formControl]="pagesControl">
                             </mat-form-field>
+                            <mat-error *ngIf="isControlInvalid(pagesControl)">Number of Pages is required</mat-error>
+                            <mat-error *ngIf="isControlInvalid(pagesControl, 'min')">Number of Pages must be greater
+                                than 0</mat-error>
                         </div>
                     </div>
                     <div class="row">
@@ -83,6 +94,7 @@
                                 <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                                 <mat-datepicker #picker></mat-datepicker>
                             </mat-form-field>
+                            <mat-error *ngIf="isControlInvalid(publishControl)">Publish Date is required</mat-error>
                         </div>
                     </div>
                     <div class="row">
@@ -94,6 +106,7 @@
                                         [value]="library.id">{{library.name}}</mat-option>
                                 </mat-select>
                             </mat-form-field>
+                            <mat-error *ngIf="isControlInvalid(libraryControl)">Library is required</mat-error>
                         </div>
                     </div>
                     <div class="row">
@@ -107,6 +120,7 @@
                                     </mat-option>
                                 </mat-select>
                             </mat-form-field>
+                            <mat-error *ngIf="isControlInvalid(bookshelfControl)">Bookshelf is required</mat-error>
                         </div>
                     </div>
                     <div class="row">
@@ -115,6 +129,7 @@
                                 <mat-label>Row</mat-label>
                                 <input matInput type="number" [formControl]="rowControl" min="1" [max]="bookshelfRows">
                             </mat-form-field>
+                            <mat-error *ngIf="isControlInvalid(rowControl)">Row is required</mat-error>
                         </div>
                     </div>
                 </form>

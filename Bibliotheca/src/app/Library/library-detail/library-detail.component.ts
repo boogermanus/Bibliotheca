@@ -29,7 +29,8 @@ export class LibraryDetailComponent implements OnDestroy {
   @Output()libraryDeleted: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   public get canBeDeleted(): boolean {
-    return this.library.libraryBookshelves.length === 0 && this.library.libraryUsers.length === 1;
+    return this.library.libraryBookshelves.length === 0 
+      && this.library.libraryUsers.length === 1 && this.library.bookCount > 0;
   }
 
   constructor(

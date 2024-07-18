@@ -7,4 +7,5 @@ export interface ILibrary {
     createDate: Date;
     libraryUsers?: ILibraryUser[];
     libraryBookshelves?: ILibraryBookshelf[];
+    bookCount: number;
 }

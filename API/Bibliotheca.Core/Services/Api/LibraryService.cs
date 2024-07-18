@@ -76,16 +76,6 @@ public class LibraryService : ILibraryService
         var newLibraryUser = await _libraryUserService.AddLibraryUserAsync(model);
         return newLibraryUser;
     }
-    public async Task<LibraryModel?> GetLibraryAsync(int libraryId)
-    {
-        var library = await _libraryRepository.GetAsync(libraryId);
-        var model = library?.ToApiModel();
-        if(model != null)
-        {
-            model.BookCount = await _libraryRepository.GetLibraryBookCountAsync(model?.Id ?? -1);
-        }
-        return model;
-    }
 
     public async Task<LibraryUserModel?> DeleteLibraryUserAsync(int libraryUserId)
     {

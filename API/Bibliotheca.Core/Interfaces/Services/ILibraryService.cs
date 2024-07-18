@@ -10,7 +10,6 @@ public interface ILibraryService
     Task<IEnumerable<LibraryUserModel>> GetLibraryUsersAsync(int libraryId);
     Task<LibraryUserModel> AddLibraryUserAsync(LibraryUserModel model);
     Task<LibraryModel?> DeleteLibraryAsync(int libraryId);
-    Task<LibraryModel?> GetLibraryAsync(int libraryId);
     Task<LibraryUserModel?> DeleteLibraryUserAsync(int libraryUserId);
     Task<LibraryModel?> GetLibraryForUserAsync(int libraryId);
     Task<LibraryBookshelfModel> AddLibraryBookshelfAsync(LibraryBookshelfModel libraryBookshelf);

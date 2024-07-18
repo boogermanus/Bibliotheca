@@ -28,7 +28,12 @@ import { MatTooltipModule } from '@angular/material/tooltip';
   styleUrl: './library-view.component.css'
 })
 export class LibraryViewComponent {
-  public library: ILibrary
+  public library: ILibrary = {
+    id: 0,
+    name: '',
+    createDate: new Date(),
+    bookCount: 0
+  }
   private subscriptions: Subscription = new Subscription();
   public loadError: boolean = false;
 

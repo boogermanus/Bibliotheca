@@ -26,7 +26,14 @@ describe('LibraryDetailComponent', () => {
 
     fixture = TestBed.createComponent(LibraryDetailComponent);
     component = fixture.componentInstance;    
-    input = {id: 0, name: 'test', createDate: new Date(), libraryBookshelves: [], libraryUsers: []};
+    input = {
+      id: 0, 
+      name: 'test', 
+      createDate: new Date(), 
+      libraryBookshelves: [], 
+      libraryUsers: [],
+      bookCount: 0
+    };
     component.library = input;
     fixture.detectChanges();
   });

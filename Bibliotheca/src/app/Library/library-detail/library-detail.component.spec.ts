@@ -16,9 +16,8 @@ describe('LibraryDetailComponent', () => {
     await TestBed.configureTestingModule({
       imports: [LibraryDetailComponent],
       providers: [
-        // provideRouter([]),
         provideHttpClient(),
-        // provideHttpClientTesting(),
+        provideHttpClientTesting(),
         provideAnimations()
       ]
     })

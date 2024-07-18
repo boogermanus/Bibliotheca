@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { LibraryService } from '../../library/services/library.service';
 import { MatSelectChange, MatSelectModule } from '@angular/material/select';
@@ -130,5 +130,9 @@ export class BookAddFormComponent implements OnInit {
       row: 1
     });
     this.bookshelfControl.disable();
+  }
+
+  public isControlInvalid(control: AbstractControl, error: string = 'required') : boolean {
+    return control.touched && control.hasError(error);
   }
 }

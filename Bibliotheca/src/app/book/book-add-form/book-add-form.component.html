@@ -1,17 +1,20 @@
 <div class="row justify-content-center">
     <div class="col-md-8">
         <mat-card appearance="outlined">
-                <mat-card-header>
-                    <p class="h3">Add a new Book</p>
-                </mat-card-header>
-                <mat-card-content>
-                    <form [formGroup]="form">
+            <mat-card-header>
+                <p class="h3">Add a new Book</p>
+            </mat-card-header>
+            <mat-card-content>
+                <form [formGroup]="form">
                     <div class="row">
                         <div class="col-md-8">
                             <mat-form-field class="mat-input-field">
                                 <mat-label>Title</mat-label>
                                 <input matInput type="text" [formControl]="titleControl" placeholder="title">
                             </mat-form-field>
+                            <mat-error *ngIf="isControlInvalid(titleControl)">Title is required</mat-error>
+                            <mat-error *ngIf="isControlInvalid(titleControl, 'maxlength')">Title cannot be greater than
+                                300 characters</mat-error>
                         </div>
                     </div>
                     <div class="row">
@@ -20,6 +23,9 @@
                                 <mat-label>Author</mat-label>
                                 <input matInput type="text" [formControl]="authorControl" placeholder="author">
                             </mat-form-field>
+                            <mat-error *ngIf="isControlInvalid(authorControl)">Author is required</mat-error>
+                            <mat-error *ngIf="isControlInvalid(authorControl, 'maxlength')">Author cannot be greater
+                                than 300 characters</mat-error>
                         </div>
                     </div>
                     <div class="row">
@@ -28,6 +34,9 @@
                                 <mat-label>Subject</mat-label>
                                 <input matInput type="text" [formControl]="subjectControl" placeholder="subject">
                             </mat-form-field>
+                            <mat-error *ngIf="isControlInvalid(subjectControl)">Subject is required</mat-error>
+                            <mat-error *ngIf="isControlInvalid(subjectControl, 'maxlength')">Subject cannot be greater
+                                than 100 characters</mat-error>
                         </div>
                     </div>
                     <div class="row">
@@ -36,6 +45,9 @@
                                 <mat-label>Format</mat-label>
                                 <input matInput type="text" [formControl]="formatControl" placeholder="format">
                             </mat-form-field>
+                            <mat-error *ngIf="isControlInvalid(formatControl)">Format is required</mat-error>
+                            <mat-error *ngIf="isControlInvalid(formatControl, 'maxlength')">Format cannot be greater
+                                than 100 characters</mat-error>
                         </div>
                     </div>
                     <div class="row">
@@ -106,11 +118,11 @@
                         </div>
                     </div>
                 </form>
-                </mat-card-content>
-                <mat-card-actions>
-                    <button class="me-2" mat-flat-button (click)="submit()" [disabled]="form.invalid">Save</button>
-                    <button mat-flat-button (click)="reset()">Clear</button>
-                </mat-card-actions>
+            </mat-card-content>
+            <mat-card-actions>
+                <button class="me-2" mat-flat-button (click)="submit()" [disabled]="form.invalid">Save</button>
+                <button mat-flat-button (click)="reset()">Clear</button>
+            </mat-card-actions>
         </mat-card>
     </div>
 </div>

@@ -14,6 +14,8 @@ import { ILibraryBookshelf } from '../../library/interfaces/ilibrary-bookshelf';
 import { MatButtonModule } from '@angular/material/button';
 import { BookService } from '../services/book.service';
 import { IBook } from '../interfaces/ibook';
+import { MatIconModule } from '@angular/material/icon';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-book-add-form',
@@ -26,7 +28,9 @@ import { IBook } from '../interfaces/ibook';
     ReactiveFormsModule,
     MatInputModule,
     MatDatepickerModule,
-    MatButtonModule
+    MatButtonModule,
+    MatIconModule,
+    RouterModule
   ],
   providers: [
     provideNativeDateAdapter()
@@ -66,7 +70,7 @@ export class BookAddFormComponent implements OnInit {
   constructor(
     private readonly formBuilder: FormBuilder,
     private readonly libraryService: LibraryService,
-    private readonly bookService: BookService
+    private readonly bookService: BookService,
   ) {
     this.form = this.formBuilder.group({
       title: this.titleControl,

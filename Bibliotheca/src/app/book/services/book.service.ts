@@ -24,4 +24,8 @@ export class BookService {
   public getBookforUser(bookId: number): Observable<IBook> {
     return this.httpClient.get<IBook>(`${AppConfig.BookApi}/${bookId}`);
   }
+
+  public deleteBook(bookId: number): Observable<IBook> {
+    return this.httpClient.delete<IBook>(`${AppConfig.BookApi}/${bookId}`);
+  }
 }

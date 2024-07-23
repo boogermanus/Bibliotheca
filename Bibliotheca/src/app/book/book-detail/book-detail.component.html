@@ -1,3 +1,7 @@
+<button mat-mini-fab class="mb-2" matTooltip="Back to Libraries" matTooltipPosition="right" (click)="back()"
+    color="primary">
+    <mat-icon>arrow_back</mat-icon>
+</button>
 <ng-template [ngIf]="loadError">
     <h2>Book not found</h2>
 </ng-template>
@@ -11,7 +15,7 @@
             <mat-card-content>
                 <p>Subject: {{book.subject}}</p>
                 <p>Format: {{book.format}}</p>
-                <p>ISBN: 
+                <p>ISBN:
                     <span *ngIf="book.isbn10 !== ''">{{book.isbn10}}</span>
                     <span *ngIf="book.isbn13 !== ''">/</span>
                     <span *ngIf="book.isbn13 !== ''">{{book.isbn13}}</span>
@@ -22,8 +26,7 @@
                 <p>Bookshelf: {{book.libraryBookshelf.name}} - Row {{book.row}}</p>
             </mat-card-content>
             <mat-card-actions align="end">
-                <button>Delete</button>
-                <button>Edit</button>
+                <button mat-icon-button matTooltip="Delete Book" (click)="delete()"><mat-icon>delete</mat-icon></button>
             </mat-card-actions>
         </mat-card>
     </div>

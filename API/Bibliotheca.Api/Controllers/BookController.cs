@@ -42,4 +42,11 @@ public class BookController : ControllerBase
 
         return Ok(book);
     }
+
+    [HttpDelete("{id:int}")]
+    public async Task<IActionResult> DeleteBook(int id)
+    {
+        var book = await _bookService.DeleteBookAsync(id);
+        return Ok(book);
+    }
 }

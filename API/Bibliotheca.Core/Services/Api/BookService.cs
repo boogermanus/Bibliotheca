@@ -40,4 +40,10 @@ public class BookService : IBookService
 
         return book?.ToApiModel();
     }
+
+    public async Task<BookModel?> DeleteBookAsync(int bookId)
+    {
+        var book = await _bookRepository.DeleteAsync(bookId);
+        return book?.ToApiModel();
+    }
 }

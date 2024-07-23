@@ -3,15 +3,21 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { Observable, Subscription } from 'rxjs';
 import { IBook } from '../interfaces/ibook';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BookService } from '../services/book.service';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-book-detail',
   standalone: true,
   imports: [
     CommonModule,
-    MatCardModule
+    MatCardModule,
+    MatButtonModule,
+    MatIconModule,
+    MatTooltipModule
   ],
   templateUrl: './book-detail.component.html',
   styleUrl: './book-detail.component.css'
@@ -24,8 +30,9 @@ export class BookDetailComponent implements OnInit, OnDestroy {
 
   constructor(
     private readonly route: ActivatedRoute,
-    private readonly bookService: BookService
-  ) {}
+    private readonly bookService: BookService,
+    private readonly router: Router
+  ) { }
 
   ngOnInit(): void {
     this.bookId = this.route.snapshot.params['id'];
@@ -43,4 +50,15 @@ export class BookDetailComponent implements OnInit, OnDestroy {
     this.subscriptions.unsubscribe();
   }
 
+  public back(): void {
+    this.router.navigate(['/books']);
+  }
+
+  public delete(): void {
+    this.subscriptions.add(
+      this.bookService.deleteBook(this.bookId)
+        .subscribe({
+          next: () => this.back()
+        }));
+  }
 }

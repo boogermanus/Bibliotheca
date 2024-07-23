@@ -5,8 +5,8 @@
     <div class="row">
         <mat-card appearance="outlined">
             <mat-card-header>
-                <mat-card-title>{{book.title}}</mat-card-title>
-                <mat-card-subtitle>{{book.author}}</mat-card-subtitle>
+                <mat-card-title>Title: {{book.title}}</mat-card-title>
+                <mat-card-subtitle>Author: {{book.author}}</mat-card-subtitle>
             </mat-card-header>
             <mat-card-content>
                 <p>Subject: {{book.subject}}</p>
@@ -21,6 +21,10 @@
                 <p>Library: {{book.library.name}}</p>
                 <p>Bookshelf: {{book.libraryBookshelf.name}} - Row {{book.row}}</p>
             </mat-card-content>
+            <mat-card-actions align="end">
+                <button>Delete</button>
+                <button>Edit</button>
+            </mat-card-actions>
         </mat-card>
     </div>
 </ng-template>

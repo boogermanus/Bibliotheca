@@ -4,7 +4,23 @@
 <ng-template [ngIf]="!loadError">
     <div class="row">
         <mat-card appearance="outlined">
-            <p>book card</p>
+            <mat-card-header>
+                <mat-card-title>{{book.title}}</mat-card-title>
+                <mat-card-subtitle>{{book.author}}</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <p>Subject: {{book.subject}}</p>
+                <p>Format: {{book.format}}</p>
+                <p>ISBN: 
+                    <span *ngIf="book.isbn10 !== ''">{{book.isbn10}}</span>
+                    <span *ngIf="book.isbn13 !== ''">/</span>
+                    <span *ngIf="book.isbn13 !== ''">{{book.isbn13}}</span>
+                </p>
+                <p>Number of Pages: {{book.numberOfPages}}</p>
+                <p>Publish Date: {{book.publishDate | date}}</p>
+                <p>Library: {{book.library.name}}</p>
+                <p>Bookshelf: {{book.libraryBookshelf.name}} - Row {{book.row}}</p>
+            </mat-card-content>
         </mat-card>
     </div>
 </ng-template>

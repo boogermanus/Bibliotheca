@@ -20,4 +20,8 @@ export class BookService {
   public getBooksForUser(): Observable<IBook[]> {
     return this.httpClient.get<IBook[]>(`${AppConfig.BookApi}/GetBooksForUser`);
   }
+
+  public getBookforUser(bookId: number): Observable<IBook> {
+    return this.httpClient.get<IBook>(`${AppConfig.BookApi}/${bookId}`);
+  }
 }

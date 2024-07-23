@@ -4,6 +4,7 @@ import { MatTable, MatTableDataSource, MatTableModule } from '@angular/material/
 import { BookService } from '../services/book.service';
 import { IBook } from '../interfaces/ibook';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-book-table',
@@ -11,7 +12,8 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
   imports: [
     MatTableModule,
     CommonModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    RouterModule
   ],
   templateUrl: './book-table.component.html',
   styleUrl: './book-table.component.css'
@@ -31,7 +33,8 @@ export class BookTableComponent implements OnInit {
   @ViewChild(MatPaginator)paginator: MatPaginator
 
   constructor(
-    private readonly bookService: BookService
+    private readonly bookService: BookService,
+    private readonly router: Router
   ) {}
 
   ngOnInit(): void {
@@ -41,7 +44,11 @@ export class BookTableComponent implements OnInit {
           this.dataSource = new MatTableDataSource<IBook>(books);
           this.dataSource.paginator = this.paginator;
         }
-      })
+      });
+  }
+
+  public viewBookDetail(bookId: number): void {
+    this.router.navigate(['/book', bookId]);
   }
 
 }

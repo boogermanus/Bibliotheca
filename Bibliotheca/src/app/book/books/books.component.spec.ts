@@ -5,6 +5,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { BookService } from '../services/book.service';
+import { BookTableComponent } from '../book-table/book-table.component';
 
 describe('BooksComponent', () => {
   let component: BooksComponent;
@@ -12,7 +13,7 @@ describe('BooksComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BooksComponent],
+      imports: [BooksComponent, BookTableComponent],
       providers: [
         provideHttpClient(),
         provideHttpClientTesting(),

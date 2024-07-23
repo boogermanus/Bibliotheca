@@ -1,3 +1,6 @@
+import { ILibrary } from "../../library/interfaces/ilibrary";
+import { ILibraryBookshelf } from "../../library/interfaces/ilibrary-bookshelf";
+
 export interface IBook {
     id?: number;
     title: string;
@@ -10,6 +13,8 @@ export interface IBook {
     publishDate: Date
     description: string;
     libraryId: number;
+    library?: ILibrary
     libraryBookshelfId: number;
+    libraryBookshelf?: ILibraryBookshelf
     row: number
 }

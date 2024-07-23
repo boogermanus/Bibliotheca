@@ -16,4 +16,8 @@ export class BookService {
   public addBook(book: IBook): Observable<IBook> {
     return this.httpClient.post<IBook>(`${AppConfig.BookApi}/AddBook`, book);
   }
+
+  public getBooksForUser(): Observable<IBook[]> {
+    return this.httpClient.get<IBook[]>(`${AppConfig.BookApi}/GetBooksForUser`);
+  }
 }

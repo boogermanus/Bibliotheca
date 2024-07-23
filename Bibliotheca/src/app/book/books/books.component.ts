@@ -4,6 +4,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { Router } from '@angular/router';
+import { BookTableComponent } from "../book-table/book-table.component";
 
 @Component({
   selector: 'app-books',
@@ -12,8 +13,9 @@ import { Router } from '@angular/router';
     MatButtonModule,
     MatIconModule,
     MatMenuModule,
-    MatTooltipModule
-  ],
+    MatTooltipModule,
+    BookTableComponent
+],
   templateUrl: './books.component.html',
   styleUrl: './books.component.css'
 })

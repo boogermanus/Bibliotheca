@@ -33,4 +33,11 @@ public class BookService : IBookService
 
         return books.Select(book => book.ToApiModel()).ToList();
     }
+
+    public async Task<BookModel?> GetBookForUserAsync(int bookId)
+    {
+        var book = await _bookRepository.GetBookForUserAsync(bookId, _userService.CurrentUserId);
+
+        return book?.ToApiModel();
+    }
 }

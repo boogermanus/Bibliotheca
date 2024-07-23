@@ -31,4 +31,15 @@ public class BookController : ControllerBase
         var books = await _bookService.GetBooksForUserAsync();
         return Ok(books);
     }
+
+    [HttpGet("{id:int}")]
+    public async Task<IActionResult> GetBookForUser(int id)
+    {
+        var book = await _bookService.GetBookForUserAsync(id);
+
+        if(book == null)
+            return NotFound();
+
+        return Ok(book);
+    }
 }

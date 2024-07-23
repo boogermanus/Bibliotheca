@@ -24,4 +24,11 @@ public class BookController : ControllerBase
 
         return Ok(newBook);
     }
+
+    [HttpGet("GetBooksForUser")]
+    public async Task<IActionResult> GetBooksForUser()
+    {
+        var books = await _bookService.GetBooksForUserAsync();
+        return Ok(books);
+    }
 }

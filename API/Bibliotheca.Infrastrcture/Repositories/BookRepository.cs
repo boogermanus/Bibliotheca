@@ -13,14 +13,16 @@ public class BookRepository : BaseRepository<Book>, IBookRepository
     public async Task<IEnumerable<Book>> GetBooksForUserAsync(string userId)
     {
         var books = await Entities
-            .Join(DbContext.Libraries,
+            .Join(DbContext.LibraryUsers,
                 book => book.LibraryId,
-                library => library.Id,
-                (book,library) => new {book}
-            )
-            .Select(q => q.book)
-            .ToListAsync();
+                libraryUser => libraryUser.LibraryId,
+                (book, libraryUser) => new {book, libraryUser})
+                .Where(q => q.libraryUser.UserId == userId)
+                .Select(q => q.book)
+                .Include(q => q.LibraryBookshelf)
+                .Include(q => q.Library)
+                .ToListAsync();
 
-        return books;
+            return books;
     }
 }

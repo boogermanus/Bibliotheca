@@ -1,8 +1,6 @@
 ﻿using Bibliotheca.OpenLibrary.Services;
-Console.WriteLine("Hello, World!");
 
 var service = new IsbnOpenLibraryService("https://openlibrary.org/isbn");
-var isbn = Console.ReadLine();
-var book = await service.GetBook(isbn ?? string.Empty);
+var book = await service.GetBook("9780140328721");
 Console.WriteLine(book);
 

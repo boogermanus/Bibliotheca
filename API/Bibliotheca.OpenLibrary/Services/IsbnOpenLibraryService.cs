@@ -9,7 +9,7 @@ public class IsbnOpenLibraryService : BaseOpenLibraryService<Book>
 
     }
 
-    public async Task<Book?> GetBook(string isdn)
+    public async Task<Book?> GetBookAsync(string isdn)
     {
         return await GetAsync($"{isdn}.json");
     }

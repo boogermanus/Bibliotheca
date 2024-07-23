@@ -5,11 +5,11 @@ namespace Bibliotheca.OpenLibrary.Models;
 public class Book
 {
     public string Title { get; set; } = string.Empty;
-    public List<Author> Authors { get; set; } = null;
-    public List<Work> Works { get; set; } = null;
-    public string Publish_Date { get; set; }
-    public List<string> Isbn_10 { get; set; } = null;
-    public List<string> Isbn_13 { get; set; } = null;
+    public List<AuthorKey> Authors { get; set; } = new List<AuthorKey>();
+    public List<WorkKey> Works { get; set; } = new List<WorkKey>();
+    public string Publish_Date { get; set; } = string.Empty;
+    public List<string> Isbn_10 { get; set; } = new List<string>();
+    public List<string> Isbn_13 { get; set; } = new List<string>();
     public DateTime PublishDate 
     {
         get => DateTime.Parse(Publish_Date);

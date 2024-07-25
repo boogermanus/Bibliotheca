@@ -4,3 +4,7 @@
     padding: 15px;
     margin: auto;
 }
+
+.postition-relative {
+    position: relative;
+}

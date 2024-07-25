@@ -4,7 +4,7 @@ namespace Bibliotheca.OpenLibrary.Services;
 
 public class AuthorOpenLibraryService : BaseOpenLibraryService<Author>
 {
-    public AuthorOpenLibraryService(string url) : base(url)
+    public AuthorOpenLibraryService() : base()
     {
     }
 

@@ -9,7 +9,7 @@ public abstract class BaseOpenLibraryService<TEntity> where TEntity : class
     private RestClientOptions _restClientOptions { get; set; }
     private RestClient _restClient { get; set; }
 
-    protected BaseOpenLibraryService(string url)
+    protected BaseOpenLibraryService(string url = "https://openlibrary.org")
     {
         _url = url;
 

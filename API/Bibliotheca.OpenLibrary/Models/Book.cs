@@ -10,6 +10,7 @@ public class Book
     public string Publish_Date { get; set; } = string.Empty;
     public List<string> Isbn_10 { get; set; } = new List<string>();
     public List<string> Isbn_13 { get; set; } = new List<string>();
+    public int Number_of_Pages { get; set; }
     public DateTime PublishDate 
     {
         get => DateTime.Parse(Publish_Date);

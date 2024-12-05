@@ -11,7 +11,9 @@ public abstract class BaseOpenLibraryService<TEntity> where TEntity : class
         set
         {
             _url = value;
-            SetupRestClient(_url);
+            var setup = SetupRestClient(_url);
+            _restClientOptions = setup.Item1;
+            _restClient = setup.Item2;
         }
     }
     private Dictionary<string, string> _headers { get; set; }
@@ -27,13 +29,16 @@ public abstract class BaseOpenLibraryService<TEntity> where TEntity : class
             {"User-Agent","Bibliotheca/1.0 (boogermanus@gmail.com)"}
         };
 
-        SetupRestClient(_url);
+        var setup = SetupRestClient(_url);
+        _restClientOptions = setup.Item1;
+        _restClient = setup.Item2;
     }
 
-    private void SetupRestClient(string url)
+    private Tuple<RestClientOptions, RestClient> SetupRestClient(string url)
     {
         _restClientOptions = new RestClientOptions(url);
         _restClient = new RestClient(_restClientOptions);
+        return new Tuple<RestClientOptions, RestClient>(_restClientOptions, _restClient);
     }
 
     protected Task<TEntity?> GetAsync(string path)
@@ -42,6 +47,7 @@ public abstract class BaseOpenLibraryService<TEntity> where TEntity : class
 
         _headers.Keys.ToList().ForEach(key => request.AddHeader(key, _headers[key]));
 
-        return _restClient.GetAsync<TEntity>(request);
+        var entity = _restClient.GetAsync<TEntity>(request);
+        return entity;
     }
 }

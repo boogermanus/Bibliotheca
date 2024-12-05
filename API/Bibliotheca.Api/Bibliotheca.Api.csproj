@@ -25,6 +25,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Bibliotheca.Infrastrcture\Bibliotheca.Infrastrcture.csproj" />
     <ProjectReference Include="..\Bibliotheca.Core\Bibliotheca.Core.csproj" />
+    <ProjectReference Include="..\Bibliotheca.OpenLibrary\Bibliotheca.OpenLibrary.csproj" />
   </ItemGroup>
 
 </Project>

@@ -4,6 +4,7 @@ public class OpenLibraryBook
 {
     public string Title { get; set; } = string.Empty;
     public string[] Authors { get; set; } = [];
+    public string Author => string.Join(',', Authors);
     public DateTime PublishDate { get; set; }
     public string Isbn10 { get; set; } = string.Empty;
     public string Isbn13 { get; set; } = string.Empty;

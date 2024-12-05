@@ -7,6 +7,8 @@ using Bibliotheca.Core.Services.Api;
 using Bibliotheca.Core.Services.Auth;
 using Bibliotheca.Infrastrcture;
 using Bibliotheca.Infrastrcture.Repositories;
+using Bibliotheca.OpenLibrary.Interfaces;
+using Bibliotheca.OpenLibrary.Services;
 using Bibliotheca.Utils;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -70,6 +72,7 @@ builder.Services.AddScoped<ILibraryUserService, LibraryUserService>();
 builder.Services.AddScoped<ILibraryBookshelfService, LibraryBookshelfService>();
 builder.Services.AddScoped<IBookRepository, BookRepository>();
 builder.Services.AddScoped<IBookService, BookService>();
+builder.Services.AddSingleton<IOpenLibraryService, OpenLibraryService>();
 
 var app = builder.Build();
 

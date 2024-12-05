@@ -24,6 +24,7 @@ public class Book
         builder.AppendLine($"{PublishDate}");
         Isbn_10.ForEach(isbn => builder.AppendLine(isbn));
         Isbn_13.ForEach(isbn => builder.AppendLine(isbn));
+        builder.AppendLine(Number_of_Pages.ToString());
         return builder.ToString();
     }
 }

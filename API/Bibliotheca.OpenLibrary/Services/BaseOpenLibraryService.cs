@@ -5,6 +5,15 @@ namespace Bibliotheca.OpenLibrary.Services;
 public abstract class BaseOpenLibraryService<TEntity> where TEntity : class
 {
     private string _url { get; set; }
+    protected string URL
+    {
+        get => _url;
+        set
+        {
+            _url = value;
+            SetupRestClient(_url);
+        }
+    }
     private Dictionary<string, string> _headers { get; set; }
     private RestClientOptions _restClientOptions { get; set; }
     private RestClient _restClient { get; set; }
@@ -18,8 +27,12 @@ public abstract class BaseOpenLibraryService<TEntity> where TEntity : class
             {"User-Agent","Bibliotheca/1.0 (boogermanus@gmail.com)"}
         };
 
-        _restClientOptions = new RestClientOptions(url);
+        SetupRestClient(_url);
+    }
 
+    private void SetupRestClient(string url)
+    {
+        _restClientOptions = new RestClientOptions(url);
         _restClient = new RestClient(_restClientOptions);
     }
 

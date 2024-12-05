@@ -4,9 +4,9 @@ namespace Bibliotheca.OpenLibrary.Services;
 
 public class IsbnOpenLibraryService : BaseOpenLibraryService<Book>
 {
-    public IsbnOpenLibraryService(string url) : base(url)
+    public IsbnOpenLibraryService() : base()
     {
-
+        URL = $"{URL}/isbn/";
     }
 
     public async Task<Book?> GetBookAsync(string isdn)

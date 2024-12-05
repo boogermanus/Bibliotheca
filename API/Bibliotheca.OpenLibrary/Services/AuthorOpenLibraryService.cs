@@ -6,6 +6,7 @@ public class AuthorOpenLibraryService : BaseOpenLibraryService<Author>
 {
     public AuthorOpenLibraryService() : base()
     {
+
     }
 
     public async Task<Author?> GetAuthorAsync(string author)

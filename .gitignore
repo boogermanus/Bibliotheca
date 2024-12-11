@@ -234,3 +234,4 @@ Bibliotheca.db
 Bibliotheca.production.db
 Bibliotheca.db-shm
 Bibliotheca.db-wal
+appsettings.Production.json

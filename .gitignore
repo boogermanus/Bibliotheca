@@ -230,7 +230,7 @@ _Pvt_Extensions
 .fake/
 .idea/
 
-Bibilotheca.db
-Bibilotheca.production.db
-Bibilotheca.db-shm
-Bibilotheca.db-wal
+Bibliotheca.db
+Bibliotheca.production.db
+Bibliotheca.db-shm
+Bibliotheca.db-wal

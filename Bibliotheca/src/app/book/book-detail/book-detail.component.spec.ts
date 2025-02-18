@@ -11,14 +11,16 @@ describe('BookDetailComponent', () => {
   let fixture: ComponentFixture<BookDetailComponent>;
   beforeEach(async () => {
 
-    const serviceSpy = jasmine.createSpyObj('BookService',['getBookForUser']);
+    const serviceSpy = jasmine.createSpyObj('BookService', ['getBookForUser']);
     await TestBed.configureTestingModule({
       imports: [BookDetailComponent],
       providers: [
         { provide: ActivatedRoute, useValue: { snapshot: { params: { id: 1 } } } },
-        { provide: BookService, useValue: jasmine.createSpyObj('BookService', {
-        getBookForUser: of({library: {name: ''}, libraryBookshelf: {name: ''}})
-        }) }
+        {
+          provide: BookService, useValue: jasmine.createSpyObj('BookService', {
+            getBookForUser: of({ library: { name: '' }, libraryBookshelf: { name: '' } })
+          })
+        }
       ],
     })
       .compileComponents();

@@ -5,6 +5,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { BookService } from '../services/book.service';
 import { provideAnimations } from '@angular/platform-browser/animations';
+import { provideRouter } from '@angular/router';
 
 describe('BookAddFormComponent', () => {
   let component: BookAddFormComponent;
@@ -17,7 +18,8 @@ describe('BookAddFormComponent', () => {
         provideHttpClient(),
         provideHttpClientTesting(),
         BookService,
-        provideAnimations()
+        provideAnimations(),
+        provideRouter([])
       ]
     })
     .compileComponents();

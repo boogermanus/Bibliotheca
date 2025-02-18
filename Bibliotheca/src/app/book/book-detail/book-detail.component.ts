@@ -37,7 +37,7 @@ export class BookDetailComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.bookId = this.route.snapshot.params['id'];
     this.subscriptions.add(
-      this.bookService.getBookforUser(this.bookId)
+      this.bookService.getBookForUser(this.bookId)
         .subscribe({
           next: (book) => this.book = book,
           error: () => this.loadError = true

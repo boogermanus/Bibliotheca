@@ -4,6 +4,8 @@ import { BookService } from './book.service';
 import { provideHttpClient } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { AppConfig } from '../../config';
+import { Book } from '../models/book';
+import { firstValueFrom } from 'rxjs';
 
 describe('BookService', () => {
   let service: BookService;
@@ -23,8 +25,15 @@ describe('BookService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should call getBookForUser HTTP', () => {
+  it('should call getBookForUser HTTP for GET', () => {
     service.getBookForUser(1).subscribe();
-    http.expectOne({url: `${AppConfig.BookApi}/1`, method: 'GET'});
+    const req = http.expectOne({url: `${AppConfig.BookApi}/1`, method: 'GET'});
+    expect(req.request.method).toBe('GET');
+  });
+
+  it('should call getBookForUser HTTP with URL', () => {
+    service.getBookForUser(1).subscribe();
+    const req = http.expectOne({url: `${AppConfig.BookApi}/1`, method: 'GET'});
+    expect(req.request.url).toBe(`${AppConfig.BookApi}/1`);
   });
 });

@@ -4,8 +4,6 @@ import { BookService } from './book.service';
 import { provideHttpClient } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { AppConfig } from '../../config';
-import { Book } from '../models/book';
-import { firstValueFrom } from 'rxjs';
 
 describe('BookService', () => {
   let service: BookService;

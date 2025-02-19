@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { BookService } from '../services/book.service';
 import { of } from 'rxjs';
 import { IBook } from '../interfaces/ibook';
+import { Book } from '../models/book';
 
 describe('BookDetailComponent', () => {
   let component: BookDetailComponent;
@@ -22,31 +23,13 @@ describe('BookDetailComponent', () => {
 
     let service = TestBed.inject(BookService) as jasmine.SpyObj<BookService>;
 
-    const data: IBook = {
-      id: 1,
-      title: '',
-      author: '',
-      subject: '',
-      format: '',
-      isbn13: '',
-      isbn10: '',
-      numberOfPages: 1,
-      publishDate: new Date(),
-      description: '',
-      libraryId: 1,
-      library: { name: '', createDate: new Date(), bookCount: 1 },
-      libraryBookshelfId: 1,
-      libraryBookshelf: { name: '', libraryId: 1, numberOfRows: 1 },
-      row: 1
-    }
+    const data: IBook = Book.MockBook();
     
     service.getBookForUser.and.returnValue(of(data))
     
     fixture = TestBed.createComponent(BookDetailComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-
-
 
   });
 

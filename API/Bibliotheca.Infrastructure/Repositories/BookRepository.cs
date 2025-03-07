@@ -2,7 +2,7 @@ using Bibliotheca.Core.Interfaces.Database.Repositories;
 using Bibliotheca.Core.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace Bibliotheca.Infrastrcture.Repositories;
+namespace Bibliotheca.Infrastructure.Repositories;
 
 public class BookRepository : BaseRepository<Book>, IBookRepository
 {

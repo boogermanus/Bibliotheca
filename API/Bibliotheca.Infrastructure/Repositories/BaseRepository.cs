@@ -1,7 +1,7 @@
 using Bibliotheca.Core.Interfaces.Database;
 using Microsoft.EntityFrameworkCore;
 
-namespace Bibliotheca.Infrastrcture.Repositories;
+namespace Bibliotheca.Infrastructure.Repositories;
 
 public abstract class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : class, IEntity
 {

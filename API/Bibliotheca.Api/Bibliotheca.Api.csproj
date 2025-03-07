@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Bibliotheca.Infrastrcture\Bibliotheca.Infrastrcture.csproj" />
+    <ProjectReference Include="..\Bibliotheca.Infrastrcture\Bibliotheca.Infrastructure.csproj" />
     <ProjectReference Include="..\Bibliotheca.Core\Bibliotheca.Core.csproj" />
     <ProjectReference Include="..\Bibliotheca.OpenLibrary\Bibliotheca.OpenLibrary.csproj" />
   </ItemGroup>

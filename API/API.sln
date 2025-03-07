@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BibliothecaApi", "Bibliothe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bibliotheca.Core", "Bibliotheca.Core\Bibliotheca.Core.csproj", "{586FA159-E48F-45B4-82F8-76AABA91BA78}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bibliotheca.Infrastrcture", "Bibliotheca.Infrastrcture\Bibliotheca.Infrastrcture.csproj", "{42BC9237-5306-4FA4-94F6-46074698D169}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bibliotheca.Infrastrcture", "Bibliotheca.Infrastructure\Bibliotheca.Infrastructure.csproj", "{42BC9237-5306-4FA4-94F6-46074698D169}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bibliotheca.OpenLibrary", "Bibliotheca.OpenLibrary\Bibliotheca.OpenLibrary.csproj", "{B52B3740-2385-49D6-8CE0-24DB69A3470A}"
 EndProject

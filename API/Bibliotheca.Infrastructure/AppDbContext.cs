@@ -3,7 +3,7 @@ using Bibliotheca.Core.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace Bibliotheca.Infrastrcture;
+namespace Bibliotheca.Infrastructure;
 
 public class AppDbContext : IdentityDbContext<User>
 {

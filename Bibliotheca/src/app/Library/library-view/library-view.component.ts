@@ -13,19 +13,18 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
-  selector: 'app-library-view',
-  standalone: true,
-  imports: [
-    CommonModule,
-    MatCardModule,
-    LibraryUsersComponent,
-    LibraryBookshelvesComponent,
-    MatButtonModule,
-    MatIconModule,
-    MatTooltipModule
-  ],
-  templateUrl: './library-view.component.html',
-  styleUrl: './library-view.component.css'
+    selector: 'app-library-view',
+    imports: [
+        CommonModule,
+        MatCardModule,
+        LibraryUsersComponent,
+        LibraryBookshelvesComponent,
+        MatButtonModule,
+        MatIconModule,
+        MatTooltipModule
+    ],
+    templateUrl: './library-view.component.html',
+    styleUrl: './library-view.component.css'
 })
 export class LibraryViewComponent {
   public library: ILibrary = {

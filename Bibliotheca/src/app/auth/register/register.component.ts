@@ -10,18 +10,17 @@ import { RegisterModel } from '../models/register-model';
 import { RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'app-register',
-  standalone: true,
-  imports: [
-    CommonModule,
-    MatFormFieldModule,
-    MatInput,
-    MatButtonModule,
-    ReactiveFormsModule,
-    RouterModule
-  ],
-  templateUrl: './register.component.html',
-  styleUrl: './register.component.css'
+    selector: 'app-register',
+    imports: [
+        CommonModule,
+        MatFormFieldModule,
+        MatInput,
+        MatButtonModule,
+        ReactiveFormsModule,
+        RouterModule
+    ],
+    templateUrl: './register.component.html',
+    styleUrl: './register.component.css'
 })
 export class RegisterComponent extends BaseAuthComponent implements OnDestroy {
   public confirmPasswordControl: FormControl = new FormControl('', Validators.compose([Validators.required]));

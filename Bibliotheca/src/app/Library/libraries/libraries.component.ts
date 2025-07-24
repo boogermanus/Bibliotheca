@@ -13,21 +13,20 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { LibraryDetailComponent } from "../library-detail/library-detail.component";
 
 @Component({
-  selector: 'app-libraries',
-  standalone: true,
-  imports: [
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
-    MatIconModule,
-    MatTooltipModule,
-    ReactiveFormsModule,
-    CommonModule,
-    MatExpansionModule,
-    LibraryDetailComponent
-],
-  templateUrl: './libraries.component.html',
-  styleUrl: './libraries.component.css'
+    selector: 'app-libraries',
+    imports: [
+        MatFormFieldModule,
+        MatInputModule,
+        MatButtonModule,
+        MatIconModule,
+        MatTooltipModule,
+        ReactiveFormsModule,
+        CommonModule,
+        MatExpansionModule,
+        LibraryDetailComponent
+    ],
+    templateUrl: './libraries.component.html',
+    styleUrl: './libraries.component.css'
 })
 export class LibrariesComponent implements OnInit, OnDestroy {
   public form: FormGroup

@@ -10,17 +10,16 @@ import { Router } from '@angular/router';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
-  selector: 'app-library-detail',
-  standalone: true,
-  imports: [
-    MatExpansionModule,
-    MatIconModule,
-    MatButtonModule,
-    CommonModule,
-    MatTooltipModule
-  ],
-  templateUrl: './library-detail.component.html',
-  styleUrl: './library-detail.component.css'
+    selector: 'app-library-detail',
+    imports: [
+        MatExpansionModule,
+        MatIconModule,
+        MatButtonModule,
+        CommonModule,
+        MatTooltipModule
+    ],
+    templateUrl: './library-detail.component.html',
+    styleUrl: './library-detail.component.css'
 })
 export class LibraryDetailComponent implements OnDestroy {
 

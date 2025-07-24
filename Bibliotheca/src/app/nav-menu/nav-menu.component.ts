@@ -8,18 +8,17 @@ import { MatIconModule } from '@angular/material/icon';
 import { AuthService } from '../auth/services/auth.service';
 
 @Component({
-  selector: 'app-nav-menu',
-  standalone: true,
-  imports: [
-    CommonModule,
-    RouterModule,
-    MatToolbarModule,
-    MatMenuModule,
-    MatButtonModule,
-    MatIconModule,
-  ],
-  templateUrl: './nav-menu.component.html',
-  styleUrl: './nav-menu.component.css'
+    selector: 'app-nav-menu',
+    imports: [
+        CommonModule,
+        RouterModule,
+        MatToolbarModule,
+        MatMenuModule,
+        MatButtonModule,
+        MatIconModule,
+    ],
+    templateUrl: './nav-menu.component.html',
+    styleUrl: './nav-menu.component.css'
 })
 export class NavMenuComponent {
 

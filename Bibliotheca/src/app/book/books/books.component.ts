@@ -7,17 +7,16 @@ import { Router } from '@angular/router';
 import { BookTableComponent } from "../book-table/book-table.component";
 
 @Component({
-  selector: 'app-books',
-  standalone: true,
-  imports: [
-    MatButtonModule,
-    MatIconModule,
-    MatMenuModule,
-    MatTooltipModule,
-    BookTableComponent
-],
-  templateUrl: './books.component.html',
-  styleUrl: './books.component.css'
+    selector: 'app-books',
+    imports: [
+        MatButtonModule,
+        MatIconModule,
+        MatMenuModule,
+        MatTooltipModule,
+        BookTableComponent
+    ],
+    templateUrl: './books.component.html',
+    styleUrl: './books.component.css'
 })
 export class BooksComponent {
 

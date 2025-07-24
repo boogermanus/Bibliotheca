@@ -13,19 +13,18 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
-  selector: 'app-library-users',
-  standalone: true,
-  imports: [
-    MatButtonModule,
-    MatIconModule,
-    CommonModule,
-    MatListModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatTooltipModule
-  ],
-  templateUrl: './library-users.component.html',
-  styleUrl: './library-users.component.css'
+    selector: 'app-library-users',
+    imports: [
+        MatButtonModule,
+        MatIconModule,
+        CommonModule,
+        MatListModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatTooltipModule
+    ],
+    templateUrl: './library-users.component.html',
+    styleUrl: './library-users.component.css'
 })
 export class LibraryUsersComponent implements OnInit, OnDestroy {
   public libraryUsers: Observable<ILibraryUser[]>

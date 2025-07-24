@@ -18,25 +18,24 @@ import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'app-book-add-form',
-  standalone: true,
-  imports: [
-    MatCardModule,
-    MatSelectModule,
-    CommonModule,
-    MatFormFieldModule,
-    ReactiveFormsModule,
-    MatInputModule,
-    MatDatepickerModule,
-    MatButtonModule,
-    MatIconModule,
-    RouterModule
-  ],
-  providers: [
-    provideNativeDateAdapter()
-  ],
-  templateUrl: './book-add-form.component.html',
-  styleUrl: './book-add-form.component.css'
+    selector: 'app-book-add-form',
+    imports: [
+        MatCardModule,
+        MatSelectModule,
+        CommonModule,
+        MatFormFieldModule,
+        ReactiveFormsModule,
+        MatInputModule,
+        MatDatepickerModule,
+        MatButtonModule,
+        MatIconModule,
+        RouterModule
+    ],
+    providers: [
+        provideNativeDateAdapter()
+    ],
+    templateUrl: './book-add-form.component.html',
+    styleUrl: './book-add-form.component.css'
 })
 export class BookAddFormComponent implements OnInit {
   public libraries: Observable<ILibrary[]>

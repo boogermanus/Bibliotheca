@@ -10,17 +10,16 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
-  selector: 'app-book-detail',
-  standalone: true,
-  imports: [
-    CommonModule,
-    MatCardModule,
-    MatButtonModule,
-    MatIconModule,
-    MatTooltipModule
-  ],
-  templateUrl: './book-detail.component.html',
-  styleUrl: './book-detail.component.css'
+    selector: 'app-book-detail',
+    imports: [
+        CommonModule,
+        MatCardModule,
+        MatButtonModule,
+        MatIconModule,
+        MatTooltipModule
+    ],
+    templateUrl: './book-detail.component.html',
+    styleUrl: './book-detail.component.css'
 })
 export class BookDetailComponent implements OnInit, OnDestroy {
   public loadError: boolean = false;

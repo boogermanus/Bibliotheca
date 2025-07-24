@@ -12,18 +12,17 @@ import { MatInputModule } from '@angular/material/input';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
-  selector: 'app-library-bookshelves',
-  standalone: true,
-  imports: [
-    MatListModule,
-    CommonModule,
-    MatIconModule,
-    MatButtonModule,
-    MatTooltipModule,
-    MatInputModule
-  ],
-  templateUrl: './library-bookshelves.component.html',
-  styleUrl: './library-bookshelves.component.css'
+    selector: 'app-library-bookshelves',
+    imports: [
+        MatListModule,
+        CommonModule,
+        MatIconModule,
+        MatButtonModule,
+        MatTooltipModule,
+        MatInputModule
+    ],
+    templateUrl: './library-bookshelves.component.html',
+    styleUrl: './library-bookshelves.component.css'
 })
 export class LibraryBookshelvesComponent implements OnInit, OnDestroy {
   public libraryId: number;

@@ -7,16 +7,15 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { Router, RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'app-book-table',
-  standalone: true,
-  imports: [
-    MatTableModule,
-    CommonModule,
-    MatPaginatorModule,
-    RouterModule
-  ],
-  templateUrl: './book-table.component.html',
-  styleUrl: './book-table.component.css'
+    selector: 'app-book-table',
+    imports: [
+        MatTableModule,
+        CommonModule,
+        MatPaginatorModule,
+        RouterModule
+    ],
+    templateUrl: './book-table.component.html',
+    styleUrl: './book-table.component.css'
 })
 export class BookTableComponent implements OnInit {
 

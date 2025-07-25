@@ -12,4 +12,5 @@ builder.Services.AddDatabaseServices(builder.Configuration);
 
 builder.Services.AddBibliothecaServices();
 
-AppBuilder.Build(builder).Run();
+builder.BuildBibliothecaApp().Run();
+

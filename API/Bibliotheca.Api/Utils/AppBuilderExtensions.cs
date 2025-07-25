@@ -1,8 +1,8 @@
 ﻿namespace Bibliotheca.Utils;
 
-public static class AppBuilder
+public static class AppBuilderExtensions
 {
-    public static WebApplication Build(WebApplicationBuilder builder)
+    public static WebApplication BuildBibliothecaApp(this WebApplicationBuilder builder)
     {
         var app = builder.Build();
 

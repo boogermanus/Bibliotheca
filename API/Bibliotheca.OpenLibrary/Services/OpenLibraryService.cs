@@ -20,7 +20,7 @@ public class OpenLibraryService : IOpenLibraryService
     {
         var book = await _isbnService.GetBookAsync(isbn);
 
-        if(book == null) 
+        if(book?.IsEmpty() ?? true) 
             return null;
 
         var authors = new List<Author>();

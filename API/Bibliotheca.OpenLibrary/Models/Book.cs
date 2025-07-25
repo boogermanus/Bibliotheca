@@ -27,4 +27,9 @@ public class Book
         builder.AppendLine(Number_of_Pages.ToString());
         return builder.ToString();
     }
+
+    public bool IsEmpty()
+    {
+        return string.IsNullOrEmpty(Title);
+    }
 }

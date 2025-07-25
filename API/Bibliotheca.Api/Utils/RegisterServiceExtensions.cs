@@ -18,7 +18,7 @@ namespace Bibliotheca.Utils;
 
 public static class RegisterServiceExtensions
 {
-    public static void RegisterCommonServices(this IServiceCollection services)
+    public static IServiceCollection RegisterCommonServices(this IServiceCollection services)
     {
         services.AddControllers()
             .AddNewtonsoftJson();
@@ -35,9 +35,11 @@ public static class RegisterServiceExtensions
             });
             options.OperationFilter<AddAuthHeaderOperationFilter>();
         });
+        
+        return services;
     }
 
-    public static void AddDatabaseServices(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddDatabaseServices(this IServiceCollection services, IConfiguration configuration)
     {
         var connectionString = configuration.GetConnectionString("DefaultConnection") ??
                                throw new InvalidOperationException("Connections string 'DefaultConnection' not fould");
@@ -64,8 +66,10 @@ public static class RegisterServiceExtensions
                     ValidateIssuerSigningKey = true,
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Jwt:Key"] ?? string.Empty))
                 });
+        
+        return services;
     }
-    public static void AddBibliothecaServices(this IServiceCollection services)
+    public static IServiceCollection AddBibliothecaServices(this IServiceCollection services)
     {
         services.AddScoped<IAuthService, AuthService>();
         services.AddTransient<IUserService, UserService>();
@@ -81,5 +85,7 @@ public static class RegisterServiceExtensions
         services.AddSingleton<AuthorOpenLibraryService>();
         services.AddSingleton<WorksOpenLibraryService>();
         services.AddSingleton<IOpenLibraryService, OpenLibraryService>();
+        
+        return services;
     }
 }

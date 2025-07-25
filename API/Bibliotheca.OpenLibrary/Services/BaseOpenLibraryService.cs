@@ -5,7 +5,7 @@ namespace Bibliotheca.OpenLibrary.Services;
 public abstract class BaseOpenLibraryService<TEntity> where TEntity : class
 {
     private string _url { get; set; }
-    protected string URL
+    protected string Url
     {
         get => _url;
         set

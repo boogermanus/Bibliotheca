@@ -9,11 +9,11 @@ public class OpenLibraryService : IOpenLibraryService
     private AuthorOpenLibraryService _authorService;
     private WorksOpenLibraryService _worksService;
 
-    public OpenLibraryService()
+    public OpenLibraryService(IsbnOpenLibraryService isbnService, AuthorOpenLibraryService authorService, WorksOpenLibraryService worksService)
     {
-        _isbnService = new IsbnOpenLibraryService();
-        _authorService = new AuthorOpenLibraryService();
-        _worksService = new WorksOpenLibraryService();
+        _isbnService = isbnService;
+        _authorService = authorService;
+        _worksService = worksService;
     }
 
     public async Task<OpenLibraryBook?> GetBookByIsbn(string isbn)

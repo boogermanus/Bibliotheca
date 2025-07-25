@@ -6,11 +6,11 @@ public class IsbnOpenLibraryService : BaseOpenLibraryService<Book>
 {
     public IsbnOpenLibraryService() : base()
     {
-        URL = $"{URL}/isbn/";
+        Url = $"{Url}/isbn/";
     }
 
-    public async Task<Book?> GetBookAsync(string isdn)
+    public async Task<Book?> GetBookAsync(string isbn)
     {
-        return await GetAsync($"{isdn}.json");
+        return await GetAsync($"{isbn}.json");
     }
 }

@@ -2,15 +2,15 @@ namespace Bibliotheca.OpenLibrary.Models;
 
 public class OpenLibraryBook
 {
-    public string Title { get; set; } = string.Empty;
-    public string[] Authors { get; set; } = [];
-    public string Author => string.Join(',', Authors);
+    public string Title { get; set; }
+    public string[] Authors { get; set; }
+    public string Author => string.Join(", ", Authors);
     public DateTime PublishDate { get; set; }
-    public string Isbn10 { get; set; } = string.Empty;
-    public string Isbn13 { get; set; } = string.Empty;
+    public string Isbn10 { get; set; }
+    public string Isbn13 { get; set; }
     public int NumberOfPages { get; set; }
-    public string Description { get; set; } = string.Empty;
-    public string[] Subjects { get; set; } = [];
+    public string Description { get; set; }
+    public string[] Subjects { get; set; }
 
     public OpenLibraryBook(Book book, Author[] authors, Work work)
     {

@@ -1,4 +1,4 @@
-import { Injectable, signal } from '@angular/core';
+import {inject, Injectable, signal} from '@angular/core';
 import { AppConfig } from '../../config';
 import { HttpClient } from '@angular/common/http';
 import { JwtHelperService } from '@auth0/angular-jwt';
@@ -11,17 +11,20 @@ import { IAuthResponse } from '../interfaces/iauth-response';
   providedIn: 'root'
 })
 export class AuthService {
+  private httpClient = inject(HttpClient);
 
   private readonly AUTH_URL = AppConfig.authApi;
-  private readonly TOKEN = 'token';
-  private readonly USER_ID = 'userid';
-  private readonly EMAIL = 'email';
+  private readonly TOKEN = 'bib_token';
+  private readonly USER_ID = 'bib_userid';
+  private readonly EMAIL = 'bib_email';
 
   private _isAuthenticated = signal(false);
   public readonly isAuthenticated = this._isAuthenticated.asReadonly();
+  public get token(): string | null {
+    return localStorage.getItem(this.TOKEN);
+  }
 
   constructor(
-    private readonly httpClient: HttpClient,
     private readonly jwtService: JwtHelperService
   ) {
 

@@ -26,11 +26,9 @@
         </div>
         <div class="row">
           <div class="col-md-4">
-            @if (searching) {
-              <mat-spinner></mat-spinner>
-            } @else {
-              {{ openLibraryBook | json }}
-            }
+            <mat-spinner [hidden]="!searching"></mat-spinner>
+            {{ openLibraryBook | json }}
+            <mat-error [hidden]="!errorOnSearch">ISBN not found</mat-error>
           </div>
         </div>
       </mat-card-content>

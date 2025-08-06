@@ -32,9 +32,11 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
   styleUrl: './book-add-isbn-form.component.css'
 })
 export class BookAddIsbnFormComponent extends BaseFormComponent {
+  private readonly Enter_Key = 'Enter';
   private readonly bookService = inject(BookService)
   public isbnSearch = signal<string>('')
   public searching = false;
+  public errorOnSearch = false;
   public openLibraryBook: IOpenLibraryBook;
 
   public lookup(event: KeyboardEvent) {
@@ -47,6 +49,8 @@ export class BookAddIsbnFormComponent extends BaseFormComponent {
 
   public loadOpenLibraryBook(): void {
     this.searching = true;
+    this.errorOnSearch = false;
+
     this.subscriptions.add(
       this.bookService.getOpenLibraryBook(this.isbnSearch())
         .subscribe({
@@ -58,6 +62,7 @@ export class BookAddIsbnFormComponent extends BaseFormComponent {
             console.log(error);
             this.searching = false;
             this.openLibraryBook = null;
+            this.errorOnSearch = true;
           },
         })
     );

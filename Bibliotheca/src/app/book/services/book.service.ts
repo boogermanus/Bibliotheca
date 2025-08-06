@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { IBook } from '../interfaces/ibook';
 import { Observable } from 'rxjs';
 import { AppConfig } from '../../config';
+import { IOpenLibraryBook } from '../interfaces/iopen-library-book';
 
 @Injectable({
   providedIn: 'root'
@@ -27,5 +28,9 @@ export class BookService {
 
   public deleteBook(bookId: number): Observable<IBook> {
     return this.httpClient.delete<IBook>(`${AppConfig.BookApi}/${bookId}`);
+  }
+
+  public getOpenLibraryBook(isbn: string): Observable<IOpenLibraryBook> {
+    return this.httpClient.get<IOpenLibraryBook>(`${AppConfig.BookApi}/GetOpenLibraryBook`, {params: {isbn: isbn}});
   }
 }

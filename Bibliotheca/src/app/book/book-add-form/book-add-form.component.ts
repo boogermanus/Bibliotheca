@@ -62,10 +62,7 @@ export class BookAddFormComponent extends BaseFormComponent implements OnInit {
   public libraryControl: FormControl<string> = new FormControl<string>('', Validators.required);
   public rowControl: FormControl<number> = new FormControl<number>(1, Validators.required);
   public bookshelfControl: FormControl<any> = new FormControl<any>('', Validators.required);
-
   public bookshelfRows: number = 0;
-
-  public subscriptions: Subscription = new Subscription();
 
   constructor(
     private readonly formBuilder: FormBuilder,
@@ -92,7 +89,7 @@ export class BookAddFormComponent extends BaseFormComponent implements OnInit {
     this.bookshelfControl.disable();
   }
 
-  ngOnInit(): void {
+  override ngOnInit(): void {
     this.libraries = this.libraryService.getLibrariesForUser();
   }
 

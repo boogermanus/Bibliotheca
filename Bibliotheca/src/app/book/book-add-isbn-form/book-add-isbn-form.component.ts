@@ -11,7 +11,6 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {BookService} from "../services/book.service";
 import {IOpenLibraryBook} from "../interfaces/iopen-library-book";
-import {Observable} from "rxjs";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 @Component({
@@ -34,11 +33,33 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 })
 export class BookAddIsbnFormComponent extends BaseFormComponent {
   private readonly bookService = inject(BookService)
-  public openLibraryBook: Observable<IOpenLibraryBook>
   public isbnSearch = signal<string>('')
+  public searching = false;
+  public openLibraryBook: IOpenLibraryBook;
+
   public lookup(event: KeyboardEvent) {
-    if(event.key === 'Enter') {
-      this.openLibraryBook = this.bookService.getOpenLibraryBook(this.isbnSearch())
+
+    // todo constant for 'enter'
+    if (event.key === 'Enter') {
+      this.loadOpenLibraryBook();
     }
+  }
+
+  public loadOpenLibraryBook(): void {
+    this.searching = true;
+    this.subscriptions.add(
+      this.bookService.getOpenLibraryBook(this.isbnSearch())
+        .subscribe({
+          next: (book: IOpenLibraryBook) => {
+            this.openLibraryBook = book;
+            this.searching = false;
+          },
+          error: (error: Error) => {
+            console.log(error);
+            this.searching = false;
+            this.openLibraryBook = null;
+          },
+        })
+    );
   }
 }

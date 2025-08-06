@@ -21,11 +21,15 @@
         </div>
         <div class="row">
           <div class="col-md-4">
-            @let bookData = openLibraryBook | async;
-            @if (bookData) {
-              {{ bookData | json }}
-            } @else {
+            {{ isbnSearch() }}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            @if (searching) {
               <mat-spinner></mat-spinner>
+            } @else {
+              {{ openLibraryBook | json }}
             }
           </div>
         </div>

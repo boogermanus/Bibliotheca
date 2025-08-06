@@ -12,6 +12,7 @@ import {MatInputModule} from "@angular/material/input";
 import {BookService} from "../services/book.service";
 import {IOpenLibraryBook} from "../interfaces/iopen-library-book";
 import {Observable} from "rxjs";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 @Component({
   selector: 'app-book-add-isbn-form',
@@ -25,7 +26,8 @@ import {Observable} from "rxjs";
     ReactiveFormsModule,
     MatInputModule,
     MatFormFieldModule,
-    FormsModule
+    FormsModule,
+    MatProgressSpinnerModule
   ],
   templateUrl: './book-add-isbn-form.component.html',
   styleUrl: './book-add-isbn-form.component.css'

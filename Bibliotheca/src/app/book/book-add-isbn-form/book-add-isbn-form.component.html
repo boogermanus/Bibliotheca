@@ -1,4 +1,3 @@
-@let bookData = openLibraryBook | async;
 <button mat-mini-fab class="mb-2 mt-2" matTooltip="Back to Books" matTooltipPosition="right" [routerLink]="['/books']"
         color="primary">
   <mat-icon>arrow_back</mat-icon>
@@ -22,7 +21,12 @@
         </div>
         <div class="row">
           <div class="col-md-4">
-          {{bookData | json}}
+            @let bookData = openLibraryBook | async;
+            @if (bookData) {
+              {{ bookData | json }}
+            } @else {
+              <mat-spinner></mat-spinner>
+            }
           </div>
         </div>
       </mat-card-content>

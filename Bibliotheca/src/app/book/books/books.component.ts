@@ -25,4 +25,8 @@ export class BooksComponent {
   public bookAddForm(): void {
     this.router.navigate(['/book-add-form']);
   }
+
+  public bookAddIsbnForm(): void {
+    this.router.navigate(['/book-add-isbn-form']);
+  }
 }

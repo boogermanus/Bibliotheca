@@ -9,6 +9,7 @@ import { LibraryViewComponent } from './library/library-view/library-view.compon
 import { BooksComponent } from './book/books/books.component';
 import { BookAddFormComponent } from './book/book-add-form/book-add-form.component';
 import { BookDetailComponent } from './book/book-detail/book-detail.component';
+import {BookAddIsbnFormComponent} from "./book/book-add-isbn-form/book-add-isbn-form.component";
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -19,6 +20,7 @@ export const routes: Routes = [
     { path: 'library/:id', component: LibraryViewComponent, canActivate: [authGuard] },
     { path: 'books', component: BooksComponent, canActivate: [authGuard] },
     { path: 'book-add-form', component: BookAddFormComponent, canActivate: [authGuard] },
+    {path: 'book-add-isbn-form', component: BookAddIsbnFormComponent, canActivate: [authGuard] },
     { path: 'book-detail/:id', component: BookDetailComponent, canActivate: [authGuard] },
     { path: '**', component: HomeComponent, pathMatch: 'full', redirectTo: '' }
 ];

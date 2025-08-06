@@ -1,12 +1,11 @@
 <div class="row">
-    <div class="col-md-2">
-        <button mat-fab matTooltip="Add Books" matTooltipPosition="right" color="primary" [mat-menu-trigger-for]="menu">
+    <div class="col-md-2 mt-2">
+        <button mat-fab matTooltip="Add Books" matTooltipPosition="right" color="primary" [matMenuTriggerFor]="menu">
             <mat-icon>add</mat-icon>
         </button>
         <mat-menu #menu="matMenu">
             <button mat-menu-item (click)="bookAddForm()">Manually</button>
-            <button mat-menu-item>By ISBN</button>
-            <button mat-menu-item>Scan ISBN</button>
+            <button mat-menu-item (click)="bookAddIsbnForm()">By ISBN</button>
         </mat-menu>
     </div>
 </div>

@@ -1,5 +1,6 @@
 using Bibliotheca.Core.ApiModels.Api;
 using Bibliotheca.Core.Interfaces.Services;
+using Bibliotheca.OpenLibrary.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,10 +12,12 @@ namespace Bibliotheca.Controllers;
 public class BookController : ControllerBase
 {
     private readonly IBookService _bookService;
+    private readonly IOpenLibraryService _openLibraryService;
 
-    public BookController(IBookService bookService)
+    public BookController(IBookService bookService, IOpenLibraryService openLibraryService)
     {
         _bookService = bookService;
+        _openLibraryService = openLibraryService;
     }
 
     [HttpPost("AddBook")]
@@ -49,4 +52,15 @@ public class BookController : ControllerBase
         var book = await _bookService.DeleteBookAsync(id);
         return Ok(book);
     }
+    [HttpGet("GetOpenLibraryBook")]
+    public async Task<IActionResult> GetBook([FromQuery] string isbn)
+    {
+        var book = await _openLibraryService.GetBookByIsbn(isbn);
+        
+        if(book == null)
+            return NotFound();
+        
+        return Ok(book);
+    }
+    
 }

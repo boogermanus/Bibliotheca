@@ -21,6 +21,6 @@ public class OpenLibraryBook
         Isbn13 = book.Isbn_13.First();
         NumberOfPages = book.Number_of_Pages;
         Description = work.Description;
-        Subjects = work.Subjects.ToArray();
+        Subjects = work.Subjects.Any() ? work.Subjects.ToArray() : book.Subjects;
     }
 }

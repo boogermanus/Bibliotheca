@@ -1,4 +1,4 @@
-﻿import {AbstractControl, FormGroup} from "@angular/forms";
+﻿import {AbstractControl, FormGroup, ReactiveFormsModule} from "@angular/forms";
 
 export class BaseFormComponent {
   protected form: FormGroup;

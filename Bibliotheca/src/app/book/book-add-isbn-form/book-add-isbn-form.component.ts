@@ -5,8 +5,10 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {RouterModule} from "@angular/router";
 import {MatCardModule} from "@angular/material/card";
-import {FormGroup, ReactiveFormsModule} from "@angular/forms";
+import {ReactiveFormsModule} from "@angular/forms";
 import {BaseFormComponent} from "../base-form";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
 
 @Component({
   selector: 'app-book-add-isbn-form',
@@ -17,11 +19,18 @@ import {BaseFormComponent} from "../base-form";
     MatIconModule,
     MatTooltipModule,
     MatCardModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatInputModule,
+    MatFormFieldModule,
   ],
   templateUrl: './book-add-isbn-form.component.html',
   styleUrl: './book-add-isbn-form.component.css'
 })
 export class BookAddIsbnFormComponent extends BaseFormComponent {
 
+  public lookup(event: KeyboardEvent) {
+    if(event.key === 'Enter') {
+      console.log('enter was pressed');
+    }
+  }
 }

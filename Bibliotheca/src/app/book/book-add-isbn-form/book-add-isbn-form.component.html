@@ -6,8 +6,20 @@
   <div class="col-md-8">
     <mat-card appearance="outlined">
       <mat-card-header>
-        <p class="h3">Add a new Book</p>
+        <div class="row">
+          <p class="h3">Add a new Book</p>
+        </div>
+
       </mat-card-header>
+      <mat-card-content>
+        <div class="row">
+          <div class="col-md-4">
+            <mat-form-field class="mat-input-field">
+              <input matInput type="text" placeholder="isbn" (keydown)="lookup($event)"/>
+            </mat-form-field>
+          </div>
+        </div>
+      </mat-card-content>
     </mat-card>
   </div>
 </div>

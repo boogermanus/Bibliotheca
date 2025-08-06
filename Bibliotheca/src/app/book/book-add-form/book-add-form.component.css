@@ -1,5 +1,1 @@
-.mat-input-field {
-    width: 100%;
-    margin-top: 5px;
-    margin-left: 5px
-}
+@import '../base-form.css';

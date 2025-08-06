@@ -49,7 +49,7 @@ export class BookAddIsbnFormComponent extends BaseFormComponent {
 
   public loadOpenLibraryBook(): void {
     this.searching = true;
-    this.errorOnSearch = false;
+    this.errorOnSearch = true;
 
     this.subscriptions.add(
       this.bookService.getOpenLibraryBook(this.isbnSearch())
@@ -57,6 +57,7 @@ export class BookAddIsbnFormComponent extends BaseFormComponent {
           next: (book: IOpenLibraryBook) => {
             this.openLibraryBook = book;
             this.searching = false;
+            this.errorOnSearch = !this.errorOnSearch;
           },
           error: (error: Error) => {
             console.log(error);

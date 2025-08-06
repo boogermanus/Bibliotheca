@@ -24,6 +24,7 @@ export class BookTableComponent implements OnInit {
     'title',
     'author',
     'subject',
+    'library',
     'bookshelf',
     'row'
   ]

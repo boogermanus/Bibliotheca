@@ -12,10 +12,22 @@ public class Book
     public List<string> Isbn_13 { get; set; } = new List<string>();
     public int Number_of_Pages { get; set; }
     public string[] Subjects { get; set; }
-    public DateTime PublishDate 
+    public DateTime PublishDate
     {
-        get => DateTime.Parse(Publish_Date);
+        get
+        {
+            try
+            {
+                return DateTime.Parse(Publish_Date);
+            }
+            catch
+            {
+                // some books only return a year
+                return new DateTime(int.Parse(Publish_Date), 1, 1);
+            }
+        }
     }
+
     public override string ToString()
     {
         var builder = new StringBuilder();

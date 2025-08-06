@@ -84,6 +84,7 @@ public static class RegisterServiceExtensions
         services.AddSingleton<IsbnOpenLibraryService>();
         services.AddSingleton<AuthorOpenLibraryService>();
         services.AddSingleton<WorksOpenLibraryService>();
+        services.AddSingleton<WorkWithDescKeyService>();
         services.AddSingleton<IOpenLibraryService, OpenLibraryService>();
         
         return services;

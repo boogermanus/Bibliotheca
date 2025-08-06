@@ -4,7 +4,7 @@ using Bibliotheca.Core.Interfaces.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Bibliotheca.Controllers;
+namespace Bibliotheca.Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]

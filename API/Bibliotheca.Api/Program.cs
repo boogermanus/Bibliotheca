@@ -1,4 +1,4 @@
-using Bibliotheca.Utils;
+using Bibliotheca.Api.Utils;
 
 var builder = WebApplication.CreateBuilder(args);
 

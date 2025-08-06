@@ -1,4 +1,4 @@
-﻿namespace Bibliotheca.Utils;
+﻿namespace Bibliotheca.Api.Utils;
 
 public static class AppBuilderExtensions
 {

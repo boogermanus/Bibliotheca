@@ -1,7 +1,7 @@
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
-namespace Bibliotheca.Utils;
+namespace Bibliotheca.Api.Utils;
 public class AddAuthHeaderOperationFilter : IOperationFilter
 {
 

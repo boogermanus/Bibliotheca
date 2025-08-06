@@ -14,7 +14,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 
-namespace Bibliotheca.Utils;
+namespace Bibliotheca.Api.Utils;
 
 public static class RegisterServiceExtensions
 {

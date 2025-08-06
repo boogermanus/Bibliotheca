@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace Bibliotheca.Controllers;
+namespace Bibliotheca.Api.Controllers;
 [ApiController]
 [Route("/")]
 public class HomeController : ControllerBase

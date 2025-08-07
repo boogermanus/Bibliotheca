@@ -5,7 +5,7 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {RouterModule} from "@angular/router";
 import {MatCardModule} from "@angular/material/card";
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {FormControl, FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {BaseFormComponent} from "../base-form";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
@@ -33,16 +33,18 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 })
 export class BookAddIsbnFormComponent extends BaseFormComponent {
   private readonly Enter_Key = 'Enter';
+  // todo: add to base
   private readonly bookService = inject(BookService)
   public isbnSearch = signal<string>('')
   public searching = false;
   public errorOnSearch = false;
   public openLibraryBook: IOpenLibraryBook;
 
-  public lookup(event: KeyboardEvent) {
+  public titleControl: FormControl<string> = new FormControl('');
 
-    // todo constant for 'enter'
-    if (event.key === 'Enter') {
+
+  public lookup(event: KeyboardEvent) {
+    if (event.key === this.Enter_Key) {
       this.loadOpenLibraryBook();
     }
   }

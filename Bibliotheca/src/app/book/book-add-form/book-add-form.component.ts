@@ -45,18 +45,16 @@ export class BookAddFormComponent extends BaseFormComponent implements OnInit {
   public bookshelves: Observable<ILibraryBookshelf[]>
 
   public titleControl: FormControl<string> =
-    new FormControl<string>('', Validators.compose([Validators.required, Validators.maxLength(300)]));
+    new FormControl<string>('', [Validators.required, Validators.maxLength(300)]);
   public authorControl: FormControl<string> =
-    new FormControl<string>('', Validators.compose([Validators.required, Validators.maxLength(300)]));
-  public subjectControl: FormControl<string> =
-    new FormControl<string>('', Validators.compose([Validators.required, Validators.maxLength(100)]));
+    new FormControl<string>('', [Validators.required, Validators.maxLength(300)]);
   public formatControl: FormControl<string> =
-    new FormControl<string>('', Validators.compose([Validators.required, Validators.maxLength(100)]));
+    new FormControl<string>('', [Validators.required, Validators.maxLength(100)]);
   public isbn13Control: FormControl<string> =
-    new FormControl<string>('', Validators.compose([Validators.minLength(13), Validators.pattern('[0-9]*')]));
+    new FormControl<string>('', [Validators.minLength(13), Validators.pattern('[0-9]*')]);
   public isbn10Control: FormControl<string> =
-    new FormControl<string>('', Validators.compose([Validators.minLength(10), Validators.pattern('[0-9]*')]));
-  public pagesControl: FormControl<number> = new FormControl<number>(1, Validators.compose([Validators.required, Validators.min(1)]));
+    new FormControl<string>('', [Validators.minLength(10), Validators.pattern('[0-9]*')]);
+  public pagesControl: FormControl<number> = new FormControl<number>(1,[Validators.required, Validators.min(1)]);
   public publishControl: FormControl<Date> = new FormControl<Date>(new Date(), Validators.required);
   public descControl: FormControl<string> = new FormControl<string>('');
   public libraryControl: FormControl<string> = new FormControl<string>('', Validators.required);
@@ -88,6 +86,7 @@ export class BookAddFormComponent extends BaseFormComponent implements OnInit {
 
   override ngOnInit(): void {
     this.libraries = this.libraryService.getLibrariesForUser();
+    this.subjectControl.addValidators(Validators.maxLength(100));
   }
 
   librarySelected(event: MatSelectChange): void {

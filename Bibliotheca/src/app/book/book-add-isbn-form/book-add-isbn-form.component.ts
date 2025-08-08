@@ -5,7 +5,7 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {RouterModule} from "@angular/router";
 import {MatCardModule} from "@angular/material/card";
-import {FormControl, FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {FormControl, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
 import {BaseFormComponent} from "../base-form";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
@@ -14,6 +14,7 @@ import {IOpenLibraryBook} from "../interfaces/iopen-library-book";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {catchError, map, Observable, switchMap, tap} from "rxjs";
 import {Title} from "@angular/platform-browser";
+import {MatSelectModule} from "@angular/material/select";
 
 @Component({
   selector: 'app-book-add-isbn-form',
@@ -28,7 +29,8 @@ import {Title} from "@angular/platform-browser";
     MatInputModule,
     MatFormFieldModule,
     FormsModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatSelectModule
   ],
   templateUrl: './book-add-isbn-form.component.html',
   styleUrl: './book-add-isbn-form.component.css'
@@ -41,6 +43,7 @@ export class BookAddIsbnFormComponent extends BaseFormComponent {
   public openLibraryBook: IOpenLibraryBook;
 
   public titleControl: FormControl<string> = new FormControl<string>({value: '', disabled: true});
+  public authorControl: FormControl<string> = new  FormControl<string>({value: '', disabled: true});
 
   override ngOnInit(): void {
     this.form = this.formBuilder.group({
@@ -53,12 +56,13 @@ export class BookAddIsbnFormComponent extends BaseFormComponent {
     }
   }
 
-  public loadOpenLibraryBook(): void {
+  private loadOpenLibraryBook(): void {
     this.searching = true;
     this.errorOnSearch = false;
+    const search = this.isbnSearch().replaceAll('-', '');
 
     this.subscriptions.add(
-      this.bookService.getOpenLibraryBook(this.isbnSearch())
+      this.bookService.getOpenLibraryBook(search)
         .subscribe({
           next: (book: IOpenLibraryBook) => {
             this.openLibraryBook = book;
@@ -93,11 +97,10 @@ export class BookAddIsbnFormComponent extends BaseFormComponent {
 
   private setFormData(): void {
     this.titleControl.setValue(this.openLibraryBook.title);
+    this.authorControl.setValue(this.openLibraryBook.author);
   }
 
   public submit(): void {
 
   }
-
-  protected readonly Title = Title;
 }

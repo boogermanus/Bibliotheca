@@ -14,7 +14,7 @@
                         <div class="col-md-8">
                             <mat-form-field class="mat-input-field">
                                 <mat-label>Title</mat-label>
-                                <input matInput type="text" [formControl]="titleControl" placeholder="title">
+                                <input matInput type="text" [formControl]="titleControl"/>
                             </mat-form-field>
                             <mat-error *ngIf="isControlInvalid(titleControl)">Title is required</mat-error>
                             <mat-error *ngIf="isControlInvalid(titleControl, 'maxlength')">Title cannot be greater than
@@ -25,7 +25,7 @@
                         <div class="col-md-8">
                             <mat-form-field class="mat-input-field">
                                 <mat-label>Author</mat-label>
-                                <input matInput type="text" [formControl]="authorControl" placeholder="author">
+                                <input matInput type="text" [formControl]="authorControl"/>
                             </mat-form-field>
                             <mat-error *ngIf="isControlInvalid(authorControl)">Author is required</mat-error>
                             <mat-error *ngIf="isControlInvalid(authorControl, 'maxlength')">Author cannot be greater
@@ -36,7 +36,7 @@
                         <div class="col-md-8">
                             <mat-form-field class="mat-input-field">
                                 <mat-label>Subject</mat-label>
-                                <input matInput type="text" [formControl]="subjectControl" placeholder="subject">
+                                <input matInput type="text" [formControl]="subjectControl"/>
                             </mat-form-field>
                             <mat-error *ngIf="isControlInvalid(subjectControl)">Subject is required</mat-error>
                             <mat-error *ngIf="isControlInvalid(subjectControl, 'maxlength')">Subject cannot be greater

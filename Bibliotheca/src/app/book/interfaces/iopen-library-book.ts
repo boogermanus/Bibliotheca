@@ -1,5 +1,6 @@
 ﻿export interface IOpenLibraryBook {
   title: string;
+  author: string;
   authors: string[];
   publishDate: Date,
   Isbn10: string;

@@ -1,5 +1,5 @@
 ﻿import {Component, inject, OnDestroy, OnInit} from "@angular/core";
-import {AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule} from "@angular/forms";
+import {AbstractControl, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {Subscription} from "rxjs";
 import {BookService} from "./services/book.service";
 
@@ -8,8 +8,9 @@ import {BookService} from "./services/book.service";
   template: ``,
 })
 export class BaseFormComponent implements OnInit, OnDestroy {
-  protected bookService = inject(BookService);
-  protected formBuilder = inject(FormBuilder);
+  protected readonly bookService = inject(BookService);
+  protected readonly formBuilder = inject(FormBuilder);
+  public subjectControl: FormControl<string> = new FormControl<string>('', [Validators.required]);
   ngOnInit(): void {
 
   }

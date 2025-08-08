@@ -15,22 +15,30 @@
         <div class="row">
           <div class="col-md-4">
             <mat-form-field class="mat-input-field">
-              <input matInput type="text" placeholder="isbn" (keydown)="lookup($event)" [(ngModel)]="isbnSearch"/>
+              <mat-label>ISBN (10/13)</mat-label>
+              <input matInput type="text" (keydown)="lookup($event)" [(ngModel)]="isbnSearch"/>
             </mat-form-field>
           </div>
         </div>
         <div class="row">
           <div class="col-md-4">
-            {{ isbnSearch() }}
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-4">
             <mat-spinner [hidden]="!searching"></mat-spinner>
-            {{ openLibraryBook | json }}
+<!--            {{ openLibraryBook | json }}-->
             <mat-error [hidden]="!errorOnSearch">ISBN not found</mat-error>
           </div>
         </div>
+
+        <form [formGroup]="form" (ngSubmit)="submit()">
+          <div class="row">
+            <div class="col-md-8">
+              <mat-form-field class="mat-input-field">
+                <mat-label>Title</mat-label>
+                <input matInput type="text" [formControl]="titleControl"/>
+              </mat-form-field>
+            </div>
+          </div>
+        </form>
+
       </mat-card-content>
     </mat-card>
   </div>

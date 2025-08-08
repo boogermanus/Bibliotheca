@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, ReactiveFormsModule, Validators} from '@angular/forms';
 import {MatCardModule} from '@angular/material/card';
 import {LibraryService} from '../../library/services/library.service';
@@ -64,11 +64,8 @@ export class BookAddFormComponent extends BaseFormComponent implements OnInit {
   public bookshelfControl: FormControl<any> = new FormControl<any>('', Validators.required);
   public bookshelfRows: number = 0;
 
-  constructor(
-    private readonly formBuilder: FormBuilder,
-    private readonly libraryService: LibraryService,
-    private readonly bookService: BookService,
-  ) {
+  private readonly libraryService = inject(LibraryService)
+  constructor() {
     super();
     this.form = this.formBuilder.group({
       title: this.titleControl,

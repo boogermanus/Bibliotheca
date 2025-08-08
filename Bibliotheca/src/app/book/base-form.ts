@@ -10,7 +10,11 @@ import {BookService} from "./services/book.service";
 export class BaseFormComponent implements OnInit, OnDestroy {
   protected readonly bookService = inject(BookService);
   protected readonly formBuilder = inject(FormBuilder);
+  public titleControl: FormControl<string> =
+    new FormControl<string>('', [Validators.required, Validators.maxLength(300)]);
   public subjectControl: FormControl<string> = new FormControl<string>('', [Validators.required]);
+  public authorControl: FormControl<string> =
+    new FormControl<string>('', [Validators.required, Validators.maxLength(300)]);
   ngOnInit(): void {
 
   }

@@ -1,19 +1,16 @@
-import {Component, inject, signal} from '@angular/core';
+import {Component, signal} from '@angular/core';
 import {CommonModule} from "@angular/common";
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from "@angular/material/icon";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {RouterModule} from "@angular/router";
 import {MatCardModule} from "@angular/material/card";
-import {FormControl, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {BaseFormComponent} from "../base-form";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
-import {BookService} from "../services/book.service";
 import {IOpenLibraryBook} from "../interfaces/iopen-library-book";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
-import {catchError, map, Observable, switchMap, tap} from "rxjs";
-import {Title} from "@angular/platform-browser";
 import {MatSelectModule} from "@angular/material/select";
 
 @Component({
@@ -42,13 +39,15 @@ export class BookAddIsbnFormComponent extends BaseFormComponent {
   public errorOnSearch = false;
   public openLibraryBook: IOpenLibraryBook;
 
-  public titleControl: FormControl<string> = new FormControl<string>({value: '', disabled: true});
-  public authorControl: FormControl<string> = new  FormControl<string>({value: '', disabled: true});
-
   override ngOnInit(): void {
     this.form = this.formBuilder.group({
-      title: this.titleControl
+      title: this.titleControl,
+      author: this.authorControl,
+      subject: this.subjectControl,
     });
+
+    this.titleControl.disable();
+    this.authorControl.disable()
   }
   public lookup(event: KeyboardEvent) {
     if (event.key === this.Enter_Key) {

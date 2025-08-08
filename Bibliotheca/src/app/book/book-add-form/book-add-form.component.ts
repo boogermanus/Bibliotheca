@@ -1,9 +1,9 @@
 import {Component, inject, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, ReactiveFormsModule, Validators} from '@angular/forms';
+import {FormControl, ReactiveFormsModule, Validators} from '@angular/forms';
 import {MatCardModule} from '@angular/material/card';
 import {LibraryService} from '../../library/services/library.service';
 import {MatSelectChange, MatSelectModule} from '@angular/material/select';
-import {Observable, Subscription} from 'rxjs';
+import {Observable} from 'rxjs';
 import {ILibrary} from '../../library/interfaces/ilibrary';
 import {CommonModule} from '@angular/common';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -12,7 +12,6 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {provideNativeDateAdapter} from '@angular/material/core';
 import {ILibraryBookshelf} from '../../library/interfaces/ilibrary-bookshelf';
 import {MatButtonModule} from '@angular/material/button';
-import {BookService} from '../services/book.service';
 import {IBook} from '../interfaces/ibook';
 import {MatIconModule} from '@angular/material/icon';
 import {RouterModule} from '@angular/router';
@@ -44,10 +43,6 @@ export class BookAddFormComponent extends BaseFormComponent implements OnInit {
   public libraries: Observable<ILibrary[]>
   public bookshelves: Observable<ILibraryBookshelf[]>
 
-  public titleControl: FormControl<string> =
-    new FormControl<string>('', [Validators.required, Validators.maxLength(300)]);
-  public authorControl: FormControl<string> =
-    new FormControl<string>('', [Validators.required, Validators.maxLength(300)]);
   public formatControl: FormControl<string> =
     new FormControl<string>('', [Validators.required, Validators.maxLength(100)]);
   public isbn13Control: FormControl<string> =

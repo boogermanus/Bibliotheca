@@ -16,7 +16,7 @@
           <div class="col-md-4">
             <mat-form-field class="mat-input-field">
               <mat-label>ISBN (10/13)</mat-label>
-              <input matInput type="text" (keydown)="lookup($event)" [(ngModel)]="isbnSearch"/>
+              <input matInput type="text" (keydown)="lookup($event)" (blur)="loadOpenLibraryBook()" [(ngModel)]="isbnSearch"/>
             </mat-form-field>
           </div>
         </div>
@@ -62,9 +62,90 @@
               </mat-form-field>
             </div>
           </div>
+          <div class="row">
+            <div class="col-md-6">
+              <mat-form-field class="mat-input-field">
+                <mat-label>Format</mat-label>
+                <input matInput type="text" [formControl]="formatControl">
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3">
+              <mat-form-field class="mat-input-field">
+                <mat-label>ISBN 13</mat-label>
+                <input matInput type="text" [formControl]="isbn13Control">
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3">
+              <mat-form-field class="mat-input-field">
+                <mat-label>ISBN 10</mat-label>
+                <input matInput type="text" [formControl]="isbn10Control">
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3">
+              <mat-form-field class="mat-input-field">
+                <mat-label>Number of Pages</mat-label>
+                <input matInput type="number" [formControl]="pagesControl">
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3">
+              <mat-form-field class="mat-input-field">
+                <mat-label>Publish Date</mat-label>
+                <input matInput [matDatepicker]="picker" [formControl]="publishControl">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <mat-form-field class="mat-input-field">
+                <mat-label>Library</mat-label>
+                <mat-select [formControl]="libraryControl" (selectionChange)="librarySelected($event)">
+                  <mat-option *ngFor="let library of libraries | async"
+                              [value]="library.id">{{library.name}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-error *ngIf="isControlInvalid(libraryControl)">Library is required</mat-error>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <mat-form-field class="mat-input-field">
+                <mat-label>Bookshelf</mat-label>
+                <mat-select [formControl]="bookshelfControl"
+                            (selectionChange)="bookshelfSelected($event)">
+                  <mat-option *ngFor="let bookshelf of bookshelves | async"
+                              [value]="{id: bookshelf.id, rows: bookshelf.numberOfRows}">{{bookshelf.name}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-error *ngIf="isControlInvalid(bookshelfControl)">Bookshelf is required</mat-error>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-2">
+              <mat-form-field class="mat-input-field">
+                <mat-label>Row</mat-label>
+                <input matInput type="number" [formControl]="rowControl" min="1" [max]="bookshelfRows">
+              </mat-form-field>
+              <mat-error *ngIf="isControlInvalid(rowControl)">Row is required</mat-error>
+            </div>
+          </div>
         </form>
-
       </mat-card-content>
+      <mat-card-actions>
+        <button class="me-2" mat-flat-button (click)="submit()" [disabled]="form.invalid">Save</button>
+        <button mat-flat-button (click)="reset()">Clear</button>
+      </mat-card-actions>
     </mat-card>
   </div>
 </div>

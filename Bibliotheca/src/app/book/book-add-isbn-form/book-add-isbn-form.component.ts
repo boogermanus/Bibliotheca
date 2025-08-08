@@ -12,6 +12,8 @@ import {MatInputModule} from "@angular/material/input";
 import {IOpenLibraryBook} from "../interfaces/iopen-library-book";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatSelectModule} from "@angular/material/select";
+import {MatDatepicker, MatDatepickerInput, MatDatepickerToggle} from "@angular/material/datepicker";
+import {provideNativeDateAdapter} from "@angular/material/core";
 
 @Component({
   selector: 'app-book-add-isbn-form',
@@ -27,8 +29,12 @@ import {MatSelectModule} from "@angular/material/select";
     MatFormFieldModule,
     FormsModule,
     MatProgressSpinnerModule,
-    MatSelectModule
+    MatSelectModule,
+    MatDatepicker,
+    MatDatepickerInput,
+    MatDatepickerToggle
   ],
+  providers: [provideNativeDateAdapter()],
   templateUrl: './book-add-isbn-form.component.html',
   styleUrl: './book-add-isbn-form.component.css'
 })
@@ -40,22 +46,22 @@ export class BookAddIsbnFormComponent extends BaseFormComponent {
   public openLibraryBook: IOpenLibraryBook;
 
   override ngOnInit(): void {
-    this.form = this.formBuilder.group({
-      title: this.titleControl,
-      author: this.authorControl,
-      subject: this.subjectControl,
-    });
+    super.ngOnInit();
 
     this.titleControl.disable();
-    this.authorControl.disable()
+    this.authorControl.disable();
+    this.isbn13Control.disable();
+    this.isbn10Control.disable();
+    this.publishControl.disable();
   }
+
   public lookup(event: KeyboardEvent) {
     if (event.key === this.Enter_Key) {
       this.loadOpenLibraryBook();
     }
   }
 
-  private loadOpenLibraryBook(): void {
+  public loadOpenLibraryBook(): void {
     this.searching = true;
     this.errorOnSearch = false;
     const search = this.isbnSearch().replaceAll('-', '');
@@ -97,9 +103,9 @@ export class BookAddIsbnFormComponent extends BaseFormComponent {
   private setFormData(): void {
     this.titleControl.setValue(this.openLibraryBook.title);
     this.authorControl.setValue(this.openLibraryBook.author);
-  }
-
-  public submit(): void {
-
+    this.isbn13Control.setValue(this.openLibraryBook.isbn13);
+    this.isbn10Control.setValue(this.openLibraryBook.isbn10);
+    this.publishControl.setValue(this.openLibraryBook.publishDate);
+    this.pagesControl.setValue(this.openLibraryBook.numberOfPages);
   }
 }

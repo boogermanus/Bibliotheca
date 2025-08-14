@@ -12,12 +12,7 @@ import {MatInputModule} from "@angular/material/input";
 import {IOpenLibraryBook} from "../interfaces/iopen-library-book";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatSelectModule} from "@angular/material/select";
-import {
-  MatDatepicker,
-  MatDatepickerInput,
-  MatDatepickerModule,
-  MatDatepickerToggle
-} from "@angular/material/datepicker";
+import {MatDatepickerModule} from "@angular/material/datepicker";
 import {provideNativeDateAdapter} from "@angular/material/core";
 import {MatDialog, MatDialogModule} from "@angular/material/dialog";
 import {CameraDialogComponent} from "../camera-dialog/camera-dialog.component";
@@ -125,7 +120,7 @@ export class BookAddIsbnFormComponent extends BaseFormComponent {
 
     this.subscriptions.add(
       dialogRef.afterClosed().subscribe(result => {
-        if(result) {
+        if (result) {
           this.isbnSearch.set(result);
         }
       })

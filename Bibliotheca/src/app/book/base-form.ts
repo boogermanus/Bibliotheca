@@ -1,6 +1,6 @@
 ﻿import {Component, inject, OnDestroy, OnInit} from "@angular/core";
 import {AbstractControl, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
-import {Observable, Subscription} from "rxjs";
+import {Observable, Subscription, tap} from "rxjs";
 import {BookService} from "./services/book.service";
 import {ILibrary} from "../library/interfaces/ilibrary";
 import {ILibraryBookshelf} from "../library/interfaces/ilibrary-bookshelf";
@@ -34,7 +34,7 @@ export class BaseFormComponent implements OnInit, OnDestroy {
   public pagesControl: FormControl<number> = new FormControl<number>(1,[Validators.required, Validators.min(1)]);
   public publishControl: FormControl<Date> = new FormControl<Date>(new Date(), Validators.required);
   public descControl: FormControl<string> = new FormControl<string>('');
-  public libraryControl: FormControl<string> = new FormControl<string>('', Validators.required);
+  public libraryControl: FormControl<number> = new FormControl<number>(null, Validators.required);
   public rowControl: FormControl<number> = new FormControl<number>(1, Validators.required);
   public bookshelfControl: FormControl<any> = new FormControl<any>('', Validators.required);
   public bookshelfRows: number = 0;
@@ -56,7 +56,12 @@ export class BaseFormComponent implements OnInit, OnDestroy {
 
     this.rowControl.disable();
     this.bookshelfControl.disable();
-    this.libraries = this.libraryService.getLibrariesForUser();
+    this.libraries = this.libraryService.getLibrariesForUser()
+      .pipe(tap(items => {
+        if(items && items.length > 0) {
+          this.libraryControl.setValue(items[0].id)
+        }
+      }));
   }
   ngOnDestroy(): void {
       this.subscriptions.unsubscribe();

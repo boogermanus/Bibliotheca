@@ -119,14 +119,14 @@ export class BookAddIsbnFormComponent extends BaseFormComponent {
 
   public openCameraDialog(): void {
     const dialogRef = this.dialog.open(CameraDialogComponent, {
-      height: '300px',
-      width: '400px'
+      height: '500px',
+      width: '500px'
     });
 
     this.subscriptions.add(
       dialogRef.afterClosed().subscribe(result => {
         if(result) {
-          this.isbnSearch = result.data.searched;
+          this.isbnSearch.set(result);
         }
       })
     );

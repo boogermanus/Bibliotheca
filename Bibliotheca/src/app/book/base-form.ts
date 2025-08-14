@@ -58,7 +58,7 @@ export class BaseFormComponent implements OnInit, OnDestroy {
     this.bookshelfControl.disable();
     this.libraries = this.libraryService.getLibrariesForUser()
       .pipe(tap(items => {
-        if(items && items.length > 0) {
+        if(items && items.length === 1) {
           this.libraryControl.setValue(items[0].id)
         }
       }));

@@ -4,8 +4,8 @@ import { Subscription } from "rxjs";
 
 export class BaseAuthComponent {
     protected form: FormGroup;
-    protected emailControl: FormControl = new FormControl('', Validators.compose([Validators.required, Validators.email]));
-    protected passwordControl: FormControl = new FormControl('', Validators.compose([Validators.required]));
+    protected emailControl: FormControl<string> = new FormControl<string>('', [Validators.required, Validators.email]);
+    protected passwordControl: FormControl<string> = new FormControl<string>('', [Validators.required]);
     protected subscriptions: Subscription = new Subscription();
     public passwordsDoNotMatch = signal(false);
 

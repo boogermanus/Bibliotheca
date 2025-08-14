@@ -4,7 +4,7 @@
         <div class="position-relative">
             <mat-form-field class="field-max-width">
                 <mat-label>Email Address</mat-label>
-                <input matInput type="email" formControlName="email" placeholder="name@example.com">
+                <input matInput id="email" type="email" [formControl]="emailControl" placeholder="name@example.com">
                 @if(isControlInvalid(emailControl)) {
                     <mat-error>Email Address is required</mat-error>
                 }
@@ -14,7 +14,7 @@
             </mat-form-field>
             <mat-form-field class="field-max-width">
                 <mat-label>Password</mat-label>
-                <input matInput type="password" formControlName="password" placeholder="Password">
+                <input matInput type="password" [formControl]="passwordControl">
                 @if(isControlInvalid(passwordControl)) {
                     <mat-error>Password is required</mat-error>
                 }

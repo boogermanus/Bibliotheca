@@ -41,5 +41,5 @@ export const routes: Routes = [
     loadComponent: () => import('./book/book-detail/book-detail.component').then(r => r.BookDetailComponent),
     canActivate: [authGuard]
   },
-  {path: '**', component: HomeComponent, pathMatch: 'full', redirectTo: ''}
+  {path: '**', pathMatch: 'full', redirectTo: ''}
 ];

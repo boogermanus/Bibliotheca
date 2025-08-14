@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CameraDialogComponent } from './camera-dialog.component';
+import {MatDialogRef} from "@angular/material/dialog";
 
 describe('CameraDialogComponent', () => {
   let component: CameraDialogComponent;
@@ -8,7 +9,8 @@ describe('CameraDialogComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CameraDialogComponent]
+      imports: [CameraDialogComponent],
+      providers: [{provide: MatDialogRef, useValue: {}}]
     })
     .compileComponents();
 

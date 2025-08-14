@@ -122,6 +122,7 @@ export class BookAddIsbnFormComponent extends BaseFormComponent {
       dialogRef.afterClosed().subscribe(result => {
         if (result) {
           this.isbnSearch.set(result);
+          this.loadOpenLibraryBook();
         }
       })
     );

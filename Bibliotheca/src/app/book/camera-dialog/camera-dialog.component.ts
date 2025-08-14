@@ -1,4 +1,4 @@
-import {Component, inject, model} from '@angular/core';
+import {Component, inject, model, signal} from '@angular/core';
 import {MatDialogModule, MatDialogRef} from "@angular/material/dialog";
 import {ZXingScannerModule} from "@zxing/ngx-scanner";
 import {CommonModule} from "@angular/common";
@@ -10,7 +10,7 @@ import {BarcodeFormat} from '@zxing/library';
     CommonModule,
     ZXingScannerModule,
     MatDialogModule,
-    MatButtonModule
+    MatButtonModule,
   ],
   templateUrl: './camera-dialog.component.html',
   styleUrl: './camera-dialog.component.css'
@@ -33,8 +33,10 @@ export class CameraDialogComponent {
   public hasDevices = false;
   public availableDevices: MediaDeviceInfo[] = [];
   public selectedDevice: MediaDeviceInfo | undefined;
+  public noBarcodeFound = signal(false)
 
   public onClose(): void {
+    this.noBarcodeFound.set(false)
     this.dialogRef.close(this.scanned());
   }
 
@@ -62,6 +64,7 @@ export class CameraDialogComponent {
   }
 
   public onError(error: any): void {
-    console.error('Barcode scanning error', error);
+    // console.error('Barcode scanning error', error);
+    this.noBarcodeFound.set(true);
   }
 }

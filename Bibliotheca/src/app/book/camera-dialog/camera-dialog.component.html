@@ -17,6 +17,9 @@
     (camerasNotFound)="onHasDevices(false)"
   >
   </zxing-scanner>
+  @if(noBarcodeFound()) {
+    <label>No Barcode found.</label>
+  }
 </mat-dialog-content>
 <mat-dialog-actions>
   <button mat-button (click)="onClose()">Close</button>

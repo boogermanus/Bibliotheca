@@ -46,9 +46,4 @@ export class BookTableComponent implements OnInit {
         }
       });
   }
-
-  public viewBookDetail(bookId: number): void {
-    this.router.navigate(['/book', bookId]);
-  }
-
 }

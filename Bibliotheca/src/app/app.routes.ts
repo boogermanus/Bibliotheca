@@ -18,7 +18,7 @@ export const routes: Routes = [
   },
   {
     path: 'library/:id',
-    loadComponent: () => import('./library/library-detail/library-detail.component').then(r => r.LibraryDetailComponent),
+    loadComponent: () => import('./library/library-view/library-view.component').then(r => r.LibraryViewComponent),
     canActivate: [authGuard]
   },
   {

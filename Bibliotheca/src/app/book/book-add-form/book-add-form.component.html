@@ -73,7 +73,7 @@
                                 <input matInput type="text" [formControl]="isbn10Control" placeholder="isbn10">
                             </mat-form-field>
                             <mat-error *ngIf="isControlInvalid(isbn10Control,'minlength')">ISBN 10 cannot be less than
-                                13 characters</mat-error>
+                                10 characters</mat-error>
                             <mat-error *ngIf="isControlInvalid(isbn10Control,'pattern')">ISBN 10 must only contain
                                 numbers</mat-error>
                         </div>

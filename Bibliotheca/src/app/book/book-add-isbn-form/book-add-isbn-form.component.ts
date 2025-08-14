@@ -1,4 +1,4 @@
-import {Component, signal} from '@angular/core';
+import {Component, inject, signal} from '@angular/core';
 import {CommonModule} from "@angular/common";
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from "@angular/material/icon";
@@ -12,8 +12,15 @@ import {MatInputModule} from "@angular/material/input";
 import {IOpenLibraryBook} from "../interfaces/iopen-library-book";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatSelectModule} from "@angular/material/select";
-import {MatDatepicker, MatDatepickerInput, MatDatepickerToggle} from "@angular/material/datepicker";
+import {
+  MatDatepicker,
+  MatDatepickerInput,
+  MatDatepickerModule,
+  MatDatepickerToggle
+} from "@angular/material/datepicker";
 import {provideNativeDateAdapter} from "@angular/material/core";
+import {MatDialog, MatDialogModule} from "@angular/material/dialog";
+import {CameraDialogComponent} from "../camera-dialog/camera-dialog.component";
 
 @Component({
   selector: 'app-book-add-isbn-form',
@@ -30,9 +37,9 @@ import {provideNativeDateAdapter} from "@angular/material/core";
     FormsModule,
     MatProgressSpinnerModule,
     MatSelectModule,
-    MatDatepicker,
-    MatDatepickerInput,
-    MatDatepickerToggle
+    MatDatepickerModule,
+    MatDialogModule,
+    MatIconModule,
   ],
   providers: [provideNativeDateAdapter()],
   templateUrl: './book-add-isbn-form.component.html',
@@ -44,6 +51,7 @@ export class BookAddIsbnFormComponent extends BaseFormComponent {
   public searching = false;
   public errorOnSearch = false;
   public openLibraryBook: IOpenLibraryBook;
+  public dialog = inject(MatDialog)
 
   override ngOnInit(): void {
     super.ngOnInit();
@@ -107,5 +115,20 @@ export class BookAddIsbnFormComponent extends BaseFormComponent {
     this.isbn10Control.setValue(this.openLibraryBook.isbn10);
     this.publishControl.setValue(this.openLibraryBook.publishDate);
     this.pagesControl.setValue(this.openLibraryBook.numberOfPages);
+  }
+
+  public openCameraDialog(): void {
+    const dialogRef = this.dialog.open(CameraDialogComponent, {
+      height: '300px',
+      width: '400px'
+    });
+
+    this.subscriptions.add(
+      dialogRef.afterClosed().subscribe(result => {
+        if(result) {
+          this.isbnSearch = result.data.searched;
+        }
+      })
+    );
   }
 }

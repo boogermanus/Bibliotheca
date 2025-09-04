@@ -3,7 +3,7 @@
     <div class="col-md-2">
       <mat-form-field class="field-max-width">
         <mat-label>filter by</mat-label>
-        <mat-select [value]="filterByOptions[0]">
+        <mat-select [value]="filterByOptions[0]" (selectionChange)="filterOnChanged($event)">
           @for(option of filterByOptions; track option){
             <mat-option [value]="option">{{option}}</mat-option>
           }

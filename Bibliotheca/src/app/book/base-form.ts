@@ -60,6 +60,9 @@ export class BaseFormComponent implements OnInit, OnDestroy {
       .pipe(tap(items => {
         if(items && items.length === 1) {
           this.libraryControl.setValue(items[0].id)
+          this.bookshelves = this.libraryService.getLibraryBookshelves(items[0].id);
+          this.bookshelfControl.enable();
+          this.rowControl.enable();
         }
       }));
   }

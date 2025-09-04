@@ -8,7 +8,7 @@ import {RouterModule} from '@angular/router';
 import {MatInputModule} from "@angular/material/input";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {FormsModule} from "@angular/forms";
-import {MatSelectModule} from "@angular/material/select";
+import {MatSelectChange, MatSelectModule} from "@angular/material/select";
 
 @Component({
   selector: 'app-book-table',
@@ -46,6 +46,11 @@ export class BookTableComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   public filterType = model<string>('title');
   public filterValue = model<string>('');
+  public filters: Array<((data: IBook, filter:string) => boolean | undefined)> = [
+    this.filterByTitle,
+    this.filterByAuthor,
+    this.filterBySubject,
+  ]
 
   private readonly bookService = inject(BookService);
   private originalFilterPredicate: ((data: IBook, filter: string) => boolean) | undefined;
@@ -67,5 +72,23 @@ export class BookTableComponent implements OnInit {
 
   public filterBooks(): void {
     this.dataSource.filter = this.filterValue();
+  }
+
+  public filterOnChanged(event: MatSelectChange): void {
+    const value: string = event.value;
+    const index: number = this.filterByOptions.indexOf(value);
+    this.dataSource.filterPredicate = this.filters[index];
+  }
+
+  private filterByTitle(data: IBook, filter: string): boolean {
+    return !filter || data.title.toLowerCase().includes(filter.toLowerCase());
+  }
+
+  private filterByAuthor(data: IBook, filter: string): boolean {
+    return !filter || data.author.toLowerCase().includes(filter.toLowerCase());
+  }
+
+  private filterBySubject(data: IBook, filter: string): boolean {
+    return !filter || data.subject.toLowerCase().includes(filter.toLowerCase());
   }
 }

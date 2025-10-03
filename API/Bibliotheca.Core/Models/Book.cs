@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.CodeAnalysis;
 using Bibliotheca.Core.ApiModels.Api;
 using Bibliotheca.Core.Interfaces.Database;
 
@@ -31,6 +32,24 @@ public class Book : IEntity
     public required int Row { get; set; }
     public LibraryBookshelf? LibraryBookshelf { get; set; }
 
+    [SetsRequiredMembers]
+    public Book()
+    {
+        Id = 0;
+        Title = string.Empty;
+        Author = string.Empty;
+        Subject = string.Empty;
+        Format = string.Empty;
+        PublishDate = DateTime.Now;
+        Isbn13 = string.Empty;
+        Isbn10 = string.Empty;
+        NumberOfPages = 0;
+        Description = string.Empty;
+        LibraryId = 1;
+        Library = null;
+        LibraryBookshelfId = 1;
+        Row = 0;
+    }
     public BookModel ToApiModel()
     {
         return new BookModel

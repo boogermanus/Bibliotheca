@@ -2,9 +2,10 @@
 using Bibliotheca.Core.Interfaces.Auth;
 using Bibliotheca.Core.Interfaces.Database.Repositories;
 using Bibliotheca.Core.Interfaces.Services;
-using Bibliotheca.Core.Models;
 using Bibliotheca.Core.Services.Api;
+using Bibliotheca.OpenLibrary.Models;
 using Moq;
+using Book = Bibliotheca.Core.Models.Book;
 
 namespace Bibliotheca.Tests.Services;
 
@@ -26,6 +27,8 @@ public class BookServiceTests
         _bookRepositoryMock.Setup(br => br.AddAsync(It.IsAny<Book>())).ReturnsAsync(new Book());
         _bookRepositoryMock.Setup(br => br.GetBooksForUserAsync(It.IsAny<string>()))
             .ReturnsAsync(new List<Book>() { new Book(), new Book() });
+        _bookRepositoryMock.Setup(br => br.GetBookForUserAsync(1, It.IsAny<string>())).ReturnsAsync(new Book());
+        _bookRepositoryMock.Setup(br => br.DeleteAsync(1)).ReturnsAsync(new Book());
         
         _bookService = new BookService(_bookRepositoryMock.Object, _userServiceMock.Object);
     }
@@ -44,4 +47,60 @@ public class BookServiceTests
         _bookRepositoryMock.Verify(br => br.GetBooksForUserAsync(It.IsAny<string>()), Times.Once);
     }
     
+    [Test]
+    public async Task GetBooksForUserAsyncShouldReturnTwoBooks()
+    {
+        var books = await _bookService.GetBooksForUserAsync();
+        Assert.That(books.Count, Is.EqualTo(2));
+    }
+
+    [Test]
+    public async Task GetBookForUserAsyncShouldCallBookRepositoryGetBookForUserAsync()
+    {
+        await _bookService.GetBookForUserAsync(1);
+        _bookRepositoryMock.Verify(br => br.GetBookForUserAsync(1, It.IsAny<string>()), Times.Once);
+    }
+
+    [Test]
+    public async Task GetBookForUserAsyncShouldReturnNull()
+    {
+        var book = await _bookService.GetBookForUserAsync(0);
+        Assert.That(book, Is.Null);
+    }
+
+    [Test]
+    public async Task DeleteBookAsyncShouldCallBookRepositoryDeleteAsync()
+    {
+        await _bookService.DeleteBookAsync(1);
+        _bookRepositoryMock.Verify(br => br.DeleteAsync(1), Times.Once);
+    }
+
+    [Test]
+    public async Task DeleteBookAsyncShouldReturnNull()
+    {
+        var book = await _bookService.DeleteBookAsync(0);
+        Assert.That(book, Is.Null);
+    }
+
+    [Test]
+    public async Task GetSubjectsAsyncShouldCallBookRepositoryGetSubjectsAsync()
+    {
+        await _bookService.GetSubjectsAsync(new OpenLibraryBook());
+        _bookRepositoryMock.Verify(br => br.GetSubjectsAsync(), Times.Once);
+    }
+
+    [Test]
+    public async Task GetSubjectsAsyncShouldReturnNull()
+    {
+        var book = await _bookService.GetSubjectsAsync(null);
+        Assert.That(book, Is.Null);
+    }
+
+    [Test]
+    public async Task GetSubjectsAsyncShouldAddSubjectsToBook()
+    {
+        _bookRepositoryMock.Setup(br => br.GetSubjectsAsync()).ReturnsAsync(["test", "one"]);
+        var book = await _bookService.GetSubjectsAsync(new OpenLibraryBook());
+        Assert.That(book?.Subjects.Length, Is.EqualTo(2));
+    }
 }

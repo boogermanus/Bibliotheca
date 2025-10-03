@@ -15,6 +15,17 @@ public class OpenLibraryBook
     public string Description { get; set; }
     public string[] Subjects { get; set; }
 
+    public OpenLibraryBook()
+    {
+        Title = string.Empty;
+        Authors = [];
+        PublishDate = DateTime.Now;
+        Isbn10 = string.Empty;
+        Isbn13 = string.Empty;
+        NumberOfPages = 0;
+        Description = string.Empty;
+        Subjects = [];
+    }
     public OpenLibraryBook(Book book, Author[] authors, Work work)
     {
         Title = book.Title;

@@ -24,15 +24,24 @@ public class BookServiceTests
         
         _bookRepositoryMock = new Mock<IBookRepository>();
         _bookRepositoryMock.Setup(br => br.AddAsync(It.IsAny<Book>())).ReturnsAsync(new Book());
+        _bookRepositoryMock.Setup(br => br.GetBooksForUserAsync(It.IsAny<string>()))
+            .ReturnsAsync(new List<Book>() { new Book(), new Book() });
         
         _bookService = new BookService(_bookRepositoryMock.Object, _userServiceMock.Object);
     }
 
     [Test]
-    public async Task AddShouldCallBookRepositoryAddAsync()
+    public async Task AddBookAsyncShouldCallBookRepositoryAddAsync()
     {
         await _bookService.AddBookAsync(new BookModel());
         _bookRepositoryMock.Verify(br => br.AddAsync(It.IsAny<Book>()), Times.Once);
+    }
+
+    [Test]
+    public async Task GetBooksForUserAsyncShouldCallBookRepositoryGetBooksForUserAsync()
+    {
+        await _bookService.GetBooksForUserAsync();
+        _bookRepositoryMock.Verify(br => br.GetBooksForUserAsync(It.IsAny<string>()), Times.Once);
     }
     
 }

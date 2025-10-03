@@ -20,8 +20,8 @@ public class OpenLibraryBook
         Title = book.Title;
         Authors = authors.Select(a => a.Name).ToArray();
         PublishDate = book.PublishDate;
-        Isbn10 = book.Isbn_10.First();
-        Isbn13 = book.Isbn_13.First();
+        Isbn10 = book.Isbn_10.FirstOrDefault() ?? string.Empty;
+        Isbn13 = book.Isbn_13.FirstOrDefault() ?? string.Empty;
         NumberOfPages = book.Number_of_Pages;
         Description = work.Description ?? string.Empty;
         Subjects = work.Subjects.Any() ? work.Subjects.ToArray() : book.Subjects;

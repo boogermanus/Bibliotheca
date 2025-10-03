@@ -41,4 +41,18 @@ public class BookRepository : BaseRepository<Book>, IBookRepository
 
         return book;
     }
+
+    public async Task<IEnumerable<string>> GetSubjectsAsync()
+    {
+        var subjects = await Entities
+            .Join(DbContext.LibraryUsers,
+                book => book.LibraryId,
+                libraryUser => libraryUser.LibraryId,
+                (book, libraryUser) => new { book, libraryUser })
+            .Select(q => q.book.Subject)
+            .Distinct()
+            .ToListAsync();
+        
+        return subjects;
+    }
 }

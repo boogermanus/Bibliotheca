@@ -2,6 +2,7 @@ using Bibliotheca.Core.ApiModels.Api;
 using Bibliotheca.Core.Interfaces.Auth;
 using Bibliotheca.Core.Interfaces.Database.Repositories;
 using Bibliotheca.Core.Interfaces.Services;
+using Bibliotheca.OpenLibrary.Models;
 
 namespace Bibliotheca.Core.Services.Api;
 
@@ -45,5 +46,19 @@ public class BookService : IBookService
     {
         var book = await _bookRepository.DeleteAsync(bookId);
         return book?.ToApiModel();
+    }
+
+    public async Task<OpenLibraryBook?> GetSubjectsAsync(OpenLibraryBook? book)
+    {
+        var subjects = await _bookRepository.GetSubjectsAsync();
+        var set = new HashSet<string>();
+        
+        book?.Subjects.ToList().ForEach(s => set.Add(s));
+        subjects.ToList().ForEach(s => set.Add(s));
+
+        if(book != null)
+            book.Subjects = set.ToArray();
+
+        return book;
     }
 }

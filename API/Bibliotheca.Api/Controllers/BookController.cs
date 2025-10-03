@@ -56,6 +56,7 @@ public class BookController : ControllerBase
     public async Task<IActionResult> GetBook([FromQuery] string isbn)
     {
         var book = await _openLibraryService.GetBookByIsbn(isbn);
+        book = await _bookService.GetSubjectsAsync(book);
         
         if(book == null)
             return NotFound();

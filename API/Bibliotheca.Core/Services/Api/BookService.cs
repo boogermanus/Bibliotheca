@@ -48,9 +48,9 @@ public class BookService : IBookService
         return book?.ToApiModel();
     }
 
-    public async Task<OpenLibraryBook?> GetSubjectsAsync(OpenLibraryBook? book)
+    public async Task<OpenLibraryBook?> GetSubjectsForUserAsync(OpenLibraryBook? book)
     {
-        var subjects = await _bookRepository.GetSubjectsAsync();
+        var subjects = await _bookRepository.GetSubjectsForUserAsync(_userService.CurrentUserId);
         var set = new HashSet<string>();
         
         book?.Subjects.ToList().ForEach(s => set.Add(s));

@@ -9,5 +9,5 @@ public interface IBookService
     Task<IEnumerable<BookModel>> GetBooksForUserAsync();
     Task<BookModel?> GetBookForUserAsync(int bookId);
     Task<BookModel?> DeleteBookAsync(int bookId);
-    Task<OpenLibraryBook?> GetSubjectsAsync(OpenLibraryBook? book);
+    Task<OpenLibraryBook?> GetSubjectsForUserAsync(OpenLibraryBook? book);
 }

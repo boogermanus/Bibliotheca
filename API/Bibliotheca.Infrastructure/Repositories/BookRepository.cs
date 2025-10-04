@@ -42,17 +42,23 @@ public class BookRepository : BaseRepository<Book>, IBookRepository
         return book;
     }
 
-    public async Task<IEnumerable<string>> GetSubjectsAsync()
+    public async Task<IEnumerable<string>> GetSubjectsForUserAsync(string userId)
     {
         var subjects = await Entities
             .Join(DbContext.LibraryUsers,
                 book => book.LibraryId,
                 libraryUser => libraryUser.LibraryId,
                 (book, libraryUser) => new { book, libraryUser })
+            .Where(q => q.libraryUser.UserId == userId)
             .Select(q => q.book.Subject)
             .Distinct()
             .ToListAsync();
         
         return subjects;
+    }
+
+    public async Task<Book?> DeleteBookForUserAsync(int bookId, string userId)
+    {
+        throw new NotImplementedException();
     }
 }

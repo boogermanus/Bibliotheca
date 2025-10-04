@@ -12,24 +12,23 @@ namespace Bibliotheca.Tests.Services;
 [TestFixture]
 public class BookServiceTests
 {
-
     private Mock<IUserService> _userServiceMock;
     private Mock<IBookRepository> _bookRepositoryMock;
     private IBookService _bookService;
-    
+
     [SetUp]
     public void SetUp()
     {
         _userServiceMock = new Mock<IUserService>();
         _userServiceMock.Setup(us => us.CurrentUserId).Returns(Guid.Empty.ToString());
-        
+
         _bookRepositoryMock = new Mock<IBookRepository>();
         _bookRepositoryMock.Setup(br => br.AddAsync(It.IsAny<Book>())).ReturnsAsync(new Book());
         _bookRepositoryMock.Setup(br => br.GetBooksForUserAsync(It.IsAny<string>()))
-            .ReturnsAsync(new List<Book>() { new Book(), new Book() });
+            .ReturnsAsync([new Book(), new Book()]);
         _bookRepositoryMock.Setup(br => br.GetBookForUserAsync(1, It.IsAny<string>())).ReturnsAsync(new Book());
         _bookRepositoryMock.Setup(br => br.DeleteAsync(1)).ReturnsAsync(new Book());
-        
+
         _bookService = new BookService(_bookRepositoryMock.Object, _userServiceMock.Object);
     }
 
@@ -46,7 +45,7 @@ public class BookServiceTests
         await _bookService.GetBooksForUserAsync();
         _bookRepositoryMock.Verify(br => br.GetBooksForUserAsync(It.IsAny<string>()), Times.Once);
     }
-    
+
     [Test]
     public async Task GetBooksForUserAsyncShouldReturnTwoBooks()
     {
@@ -85,22 +84,22 @@ public class BookServiceTests
     [Test]
     public async Task GetSubjectsAsyncShouldCallBookRepositoryGetSubjectsAsync()
     {
-        await _bookService.GetSubjectsAsync(new OpenLibraryBook());
-        _bookRepositoryMock.Verify(br => br.GetSubjectsAsync(), Times.Once);
+        await _bookService.GetSubjectsForUserAsync(new OpenLibraryBook());
+        _bookRepositoryMock.Verify(br => br.GetSubjectsForUserAsync(It.IsAny<string>()), Times.Once);
     }
 
     [Test]
     public async Task GetSubjectsAsyncShouldReturnNull()
     {
-        var book = await _bookService.GetSubjectsAsync(null);
+        var book = await _bookService.GetSubjectsForUserAsync(null);
         Assert.That(book, Is.Null);
     }
 
     [Test]
     public async Task GetSubjectsAsyncShouldAddSubjectsToBook()
     {
-        _bookRepositoryMock.Setup(br => br.GetSubjectsAsync()).ReturnsAsync(["test", "one"]);
-        var book = await _bookService.GetSubjectsAsync(new OpenLibraryBook());
+        _bookRepositoryMock.Setup(br => br.GetSubjectsForUserAsync(It.IsAny<string>())).ReturnsAsync(["test", "one"]);
+        var book = await _bookService.GetSubjectsForUserAsync(new OpenLibraryBook());
         Assert.That(book?.Subjects.Length, Is.EqualTo(2));
     }
 }

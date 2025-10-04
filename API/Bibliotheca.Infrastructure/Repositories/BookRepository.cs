@@ -16,14 +16,14 @@ public class BookRepository : BaseRepository<Book>, IBookRepository
             .Join(DbContext.LibraryUsers,
                 book => book.LibraryId,
                 libraryUser => libraryUser.LibraryId,
-                (book, libraryUser) => new {book, libraryUser})
-                .Where(q => q.libraryUser.UserId == userId)
-                .Select(q => q.book)
-                .Include(q => q.LibraryBookshelf)
-                .Include(q => q.Library)
-                .ToListAsync();
+                (book, libraryUser) => new { book, libraryUser })
+            .Where(q => q.libraryUser.UserId == userId)
+            .Select(q => q.book)
+            .Include(q => q.LibraryBookshelf)
+            .Include(q => q.Library)
+            .ToListAsync();
 
-            return books;
+        return books;
     }
 
     public async Task<Book?> GetBookForUserAsync(int bookId, string userId)
@@ -32,7 +32,7 @@ public class BookRepository : BaseRepository<Book>, IBookRepository
             .Join(DbContext.LibraryUsers,
                 book => book.LibraryId,
                 libraryUser => libraryUser.LibraryId,
-                (book, libraryUser) => new {book, libraryUser})
+                (book, libraryUser) => new { book, libraryUser })
             .Where(q => q.book.Id == bookId && q.libraryUser.UserId == userId)
             .Select(q => q.book)
             .Include(q => q.LibraryBookshelf)
@@ -53,12 +53,35 @@ public class BookRepository : BaseRepository<Book>, IBookRepository
             .Select(q => q.book.Subject)
             .Distinct()
             .ToListAsync();
-        
+
         return subjects;
     }
 
     public async Task<Book?> DeleteBookForUserAsync(int bookId, string userId)
     {
-        throw new NotImplementedException();
+        var query = GetQueryableForUser(userId);
+        var queryable = query.Where(q => q.Id == bookId);
+
+        var book = await queryable.FirstOrDefaultAsync();
+
+        if (book == null)
+            return null;
+        
+        Entities.Remove(book);
+        
+        await DbContext.SaveChangesAsync();
+
+        return book;
+    }
+
+    private IQueryable<Book> GetQueryableForUser(string userId)
+    {
+        return Entities
+            .Join(DbContext.LibraryUsers,
+                book => book.LibraryId,
+                libraryUser => libraryUser.LibraryId,
+                (book, libraryUser) => new { book, libraryUser })
+            .Where(q => q.libraryUser.UserId == userId)
+            .Select(q => q.book);
     }
 }

@@ -10,4 +10,5 @@ public interface IBookService
     Task<BookModel?> GetBookForUserAsync(int bookId);
     Task<BookModel?> DeleteBookAsync(int bookId);
     Task<OpenLibraryBook?> GetSubjectsForUserAsync(OpenLibraryBook? book);
+    Task<BookModel?> DeleteBookForUserAsync(int bookId);
 }

@@ -48,6 +48,12 @@ public class BookService : IBookService
         return book?.ToApiModel();
     }
 
+    public async Task<BookModel?> DeleteBookForUserAsync(int bookId)
+    {
+        var book = await _bookRepository.DeleteBookForUserAsync(bookId, _userService.CurrentUserId);
+        return book?.ToApiModel();
+    }
+
     public async Task<OpenLibraryBook?> GetSubjectsForUserAsync(OpenLibraryBook? book)
     {
         var subjects = await _bookRepository.GetSubjectsForUserAsync(_userService.CurrentUserId);

@@ -7,4 +7,5 @@ public interface IBookRepository : IBaseRepository<Book>
     Task<IEnumerable<Book>> GetBooksForUserAsync(string userId);
     Task<Book?> GetBookForUserAsync(int bookId, string userId);
     Task<IEnumerable<string>> GetSubjectsForUserAsync(string userId);
+    Task<Book?> DeleteBookForUserAsync(int bookId, string userId);
 }

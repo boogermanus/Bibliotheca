@@ -102,4 +102,17 @@ public class BookServiceTests
         var book = await _bookService.GetSubjectsForUserAsync(new OpenLibraryBook());
         Assert.That(book?.Subjects.Length, Is.EqualTo(2));
     }
+
+    [Test]
+    public async Task DeleteBookForUserAsyncShouldNotThrow()
+    {
+        await _bookService.DeleteBookForUserAsync(1);
+    }
+
+    [Test]
+    public async Task DeleteBookForUserAsyncShouldCallBookRepositoryDeleteBookForUserAsync()
+    {
+        await _bookService.DeleteBookForUserAsync(1);
+        _bookRepositoryMock.Verify(br => br.DeleteBookForUserAsync(1, It.IsAny<string>()), Times.Once);
+    }
 }

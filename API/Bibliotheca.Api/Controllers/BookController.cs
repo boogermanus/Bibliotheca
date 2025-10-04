@@ -21,7 +21,7 @@ public class BookController : ControllerBase
     }
 
     [HttpPost("AddBook")]
-    public async Task<IActionResult> AddBook([FromBody]BookModel book)
+    public async Task<IActionResult> AddBook([FromBody] BookModel book)
     {
         var newBook = await _bookService.AddBookAsync(book);
 
@@ -40,7 +40,7 @@ public class BookController : ControllerBase
     {
         var book = await _bookService.GetBookForUserAsync(id);
 
-        if(book == null)
+        if (book == null)
             return NotFound();
 
         return Ok(book);
@@ -49,19 +49,19 @@ public class BookController : ControllerBase
     [HttpDelete("{id:int}")]
     public async Task<IActionResult> DeleteBook(int id)
     {
-        var book = await _bookService.DeleteBookAsync(id);
+        var book = await _bookService.DeleteBookForUserAsync(id);
         return Ok(book);
     }
+
     [HttpGet("GetOpenLibraryBook")]
     public async Task<IActionResult> GetBook([FromQuery] string isbn)
     {
         var book = await _openLibraryService.GetBookByIsbn(isbn);
         book = await _bookService.GetSubjectsForUserAsync(book);
-        
-        if(book == null)
+
+        if (book == null)
             return NotFound();
-        
+
         return Ok(book);
     }
-    
 }
